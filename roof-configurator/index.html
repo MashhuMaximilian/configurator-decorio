@@ -23,7 +23,8 @@
     import { applyConfiguratorSeo } from '../shared-ui/src/configuratorSeo.js?v=platform-18';
     applyConfiguratorSeo('roof');
   </script>
-  <link rel="stylesheet" href="./layout-editor.css?v=layout-20" />
+  <link rel="stylesheet" href="./sheet-planner.css?v=layout-21" />
+  <link rel="stylesheet" href="./layout-editor.css?v=layout-21" />
 </head>
 <body>
   <main class="app-shell">
@@ -193,6 +194,7 @@
             <span>BOM &amp; price</span>
             <strong id="headerEstimateTotal">—</strong>
           </button>
+          <button type="button" class="estimate-button" id="sheetPlanOpenButton" aria-haspopup="dialog"><span>Sheet cutting plan</span><strong>Panels &amp; quantities</strong></button>
           <div class="view-actions" aria-label="Camera controls">
             <button type="button" data-view="perspective" class="active">3D</button>
             <button type="button" data-view="front">Front</button>
@@ -585,7 +587,7 @@
     })();
   </script>
   <script type="module" src="./js/sharedShell.js?v=tenant-branding-1"></script>
-  <script type="module" src="./js/app.js?v=layout-20"></script>
+  <script type="module" src="./js/app.js?v=layout-21"></script>
 </body>
 </html>
 

@@ -25,6 +25,7 @@ export const state = {
   nightPreview: false,
   customPlan: null,
   roofLayout: null,
+  sheetPlanOptions: null,
   units: 'metric',
   currency: 'RON',
   locale: 'en-US',

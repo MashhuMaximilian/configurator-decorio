@@ -3,13 +3,13 @@ import {
   joinLayoutInPlace, splitLayoutInPlace, selectionSurfaces, linkedPlanPoints, moveLayoutPoint,
   deleteLayoutPoint, deleteLayoutEdge, cloneLayout, defaultLayout, distance, footprintLayout,
   layoutFoldEdges, layoutSlopeDirections, layoutBounds, layoutMetrics, lShapedLayout, pitchedFootprint, splitSurface, validateLayout,
-} from './roofLayout.js?v=layout-20';
+} from './roofLayout.js?v=layout-21';
 
-import { addDormer } from './roofFeatures.js?v=layout-20';
+import { addDormer } from './roofFeatures.js?v=layout-21';
 
-import { presetRoofLayout } from './presetLayout.js?v=layout-20';
+import { presetRoofLayout } from './presetLayout.js?v=layout-21';
 
-import { drawAlignmentPreview } from './alignmentPreview.js?v=layout-20';
+import { drawAlignmentPreview } from './alignmentPreview.js?v=layout-21';
 
 function surfaceLetter(index) {
   let label = '';
