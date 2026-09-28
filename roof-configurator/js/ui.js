@@ -1,8 +1,9 @@
-import { RoofLayoutEditor } from './layoutEditor.js?v=layout-20';
-import { defaultLayout, layoutWallFootprint } from './roofLayout.js?v=layout-20';
+import { SheetPlannerUI } from './sheetPlannerUI.js?v=layout-21';
+import { RoofLayoutEditor } from './layoutEditor.js?v=layout-21';
+import { defaultLayout, layoutWallFootprint } from './roofLayout.js?v=layout-21';
 import { bindPanelAccordions } from '../../shared-ui/src/components/panelControls.js?v=panel-controls-1';
-import { pitchRules } from './state.js?v=layout-20';
-import { bomToCsv, calculateBom } from './bom.js?v=layout-20';
+import { pitchRules } from './state.js?v=layout-21';
+import { bomToCsv, calculateBom } from './bom.js?v=layout-21';
 import {
   displayLengthInputConfig,
   formatArea,
@@ -13,7 +14,7 @@ import {
   toDisplayLength,
 } from './preferences.js?v=platform-18';
 
-import { applyRoofTranslations, pitchRuleText, roofName, roofRateSource, roofT } from './i18n.js?v=layout-20';
+import { applyRoofTranslations, pitchRuleText, roofName, roofRateSource, roofT } from './i18n.js?v=layout-21';
 
 const LENGTH_CONTROL_KEYS = new Set(['length', 'depth', 'wallHeight', 'overhang']);
 
@@ -38,6 +39,8 @@ export class RoofUI {
         document.querySelector('#layoutLaunch p').textContent = `This preset cannot be edited at its current settings: ${error.message} Try adjusting its dimensions or pitch.`;
       }
     });
+    this.sheetPlanner = new SheetPlannerUI(state);
+    document.querySelector('#sheetPlanOpenButton').addEventListener('click', () => this.sheetPlanner.open());
     this.bindRoofTypes();
     this.bindRanges();
     this.bindCovering();

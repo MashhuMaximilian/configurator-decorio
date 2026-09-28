@@ -1,4 +1,4 @@
-import { roofSurfaceGroups, layoutStepWalls } from './roofLayout.js?v=layout-20';
+import { roofSurfaceGroups, layoutStepWalls } from './roofLayout.js?v=layout-21';
 
 // Lightweight isometric preview: no second WebGL context or covering rebuild
 // while the user is choosing a constraint. Coordinates use the real roof heights.

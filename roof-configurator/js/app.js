@@ -1,7 +1,8 @@
-import { defaultLayout, validateLayout, layoutBounds } from './roofLayout.js?v=layout-20';
-import { state, pitchRules, roofNames } from './state.js?v=layout-20';
-import { RoofScene } from './scene.js?v=layout-20';
-import { RoofUI } from './ui.js?v=layout-20';
+import { validateSheetProfile } from './sheetPlanner.js?v=layout-21';
+import { defaultLayout, validateLayout, layoutBounds } from './roofLayout.js?v=layout-21';
+import { state, pitchRules, roofNames } from './state.js?v=layout-21';
+import { RoofScene } from './scene.js?v=layout-21';
+import { RoofUI } from './ui.js?v=layout-21';
 import {
   getFallbackCurrencyRate,
   normalizeCurrency,
@@ -9,7 +10,7 @@ import {
   resolveCurrencyRate,
 } from './preferences.js?v=platform-18';
 import { readShareState } from '../../shared-ui/src/shareState.js?v=platform-18';
-import { applyRoofTranslations, resolveRoofLocale } from './i18n.js?v=layout-20';
+import { applyRoofTranslations, resolveRoofLocale } from './i18n.js?v=layout-21';
 import { requireTenantConfiguratorAccess } from '../../shared-ui/src/tenantBootstrap.js?v=tenant-domains-1';
 
 await requireTenantConfiguratorAccess('roof');
@@ -42,6 +43,13 @@ function applySharedRoofState(snapshot) {
     state.customPlan = snapshot.customPlan ? structuredClone(snapshot.customPlan) : null;
   }
   if (snapshot.roofLayout !== undefined) state.roofLayout = structuredClone(snapshot.roofLayout);
+  if (snapshot.sheetPlanOptions === null) state.sheetPlanOptions = null;
+  if (snapshot.sheetPlanOptions?.profile) {
+    try {
+      validateSheetProfile(snapshot.sheetPlanOptions.profile);
+      state.sheetPlanOptions = structuredClone(snapshot.sheetPlanOptions);
+    } catch { /* Ignore invalid saved planner settings. */ }
+  }
   if (Array.isArray(snapshot.excludedBomItems)) {
     state.excludedBomItems = snapshot.excludedBomItems.filter((item) => typeof item === 'string');
   }
@@ -263,6 +271,7 @@ const configuratorApi = {
       northDirection: state.northDirection,
       nightPreview: state.nightPreview,
       roofLayout: state.roofLayout ? structuredClone(state.roofLayout) : null,
+      sheetPlanOptions: state.sheetPlanOptions ? structuredClone(state.sheetPlanOptions) : null,
       customPlan: state.customPlan ? structuredClone(state.customPlan) : null,
       excludedBomItems: [...state.excludedBomItems],
       currentView,
