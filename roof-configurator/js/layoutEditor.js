@@ -1,3 +1,5 @@
+import { RoofWindowTool } from './roofWindowTool.js?v=windows-24';
+import { roofWindowGeometry } from './roofWindows.js?v=windows-24';
 import {
   meetRoofSlope, alignmentDirections, inside, triangulate, onSegment, addLayoutPoint,
   joinLayoutInPlace, splitLayoutInPlace, selectionSurfaces, linkedPlanPoints, moveLayoutPoint,
@@ -9,7 +11,7 @@ import { addDormer } from './roofFeatures.js?v=layout-21';
 
 import { presetRoofLayout } from './presetLayout.js?v=layout-21';
 
-import { drawAlignmentPreview } from './alignmentPreview.js?v=layout-21';
+import { drawAlignmentPreview } from './alignmentPreview.js?v=windows-24';
 
 function surfaceLetter(index) {
   let label = '';
@@ -69,6 +71,7 @@ export class RoofLayoutEditor {
         <button type="button" data-action="split">Divide surface</button>
         <button type="button" data-action="insert">Insert point</button>
         <button type="button" data-action="dormer">Add dormer</button>
+        <button type="button" data-action="window">Add roof window</button>
         <button type="button" data-action="meet">Meet roof slope</button>
         <button type="button" data-action="splitPlace">Split in place</button>
         <button type="button" data-action="joinPlace">Join in place</button>
@@ -167,7 +170,8 @@ export class RoofLayoutEditor {
         <button type="button" data-action="abort">Cancel drawing</button>
         <button type="button" data-action="cancel">Cancel</button>
         <button type="button" data-action="apply" class="layout-primary">Apply roof</button></footer>`;
-    const icons = { dormer: '⌂', select: '↖', draw: '⬡', split: '╱', insert: '⊕', meet: '∠',
+    this.windowTool = new RoofWindowTool(this);
+    const icons = { window: '▣', dormer: '⌂', select: '↖', draw: '⬡', split: '╱', insert: '⊕', meet: '∠',
       splitPlace: '⇉', joinPlace: '⋈', cycleCopy: '⇄', delete: '×', finish: '✓' };
     this.dialog.querySelectorAll('.layout-toolbar button').forEach(button => {
       const icon = document.createElement('span');
@@ -255,6 +259,7 @@ export class RoofLayoutEditor {
   }
 
   open() {
+    this.windowTool.close();
     this.stopMeet();
     this.stopDormer();
     this.layout = cloneLayout(this.state.roofType === 'layout' || !this.state.roofType
@@ -285,6 +290,7 @@ export class RoofLayoutEditor {
 
   commit(next) {
     validateLayout(next);
+    roofWindowGeometry(next);
     this.pickingSplitFaces = false;
     this.splitSelectionKey = null;
     this.history.push(cloneLayout(this.layout));
@@ -307,6 +313,10 @@ export class RoofLayoutEditor {
     this.endDrag(null, true);
     if (!['pan', 'slopeArrows', 'pickSplitFaces', 'splitPlace', 'fit', 'zoomIn', 'zoomOut'].includes(action)) this.pickingSplitFaces = false;
     try {
+      if (this.windowTool.active && !['window', 'pan', 'fit', 'zoomIn', 'zoomOut', 'slopeArrows'].includes(action)) {
+        if (action === 'apply') throw new Error('Save or cancel the roof window preview first.');
+        this.windowTool.close();
+      }
       if (this.dormer && !['dormer', 'pickDormer', 'applyDormer', 'cancelDormer', 'pan', 'fit', 'zoomIn', 'zoomOut', 'slopeArrows'].includes(action)) {
         if (action === 'apply') throw new Error('Add or cancel the dormer preview before applying the roof.');
         this.stopDormer();
@@ -316,7 +326,9 @@ export class RoofLayoutEditor {
         if (action === 'apply') throw new Error('Apply or cancel the alignment preview first.');
         this.stopMeet();
       }
-      if (action === 'dormer') {
+      if (action === 'window') {
+        this.windowTool.open();
+      } else if (action === 'dormer') {
         this.stopMeet();
         this.path = [];
         this.mode = 'select';
@@ -476,6 +488,7 @@ export class RoofLayoutEditor {
       } else if (action === 'apply') {
         if (this.path.length) throw new Error('Finish or cancel the current drawing before applying.');
         validateLayout(this.layout);
+        roofWindowGeometry(this.layout);
         this.state.roofLayout = cloneLayout(this.layout);
         this.state.roofType = 'layout';
         this.onApply();
@@ -653,6 +666,7 @@ export class RoofLayoutEditor {
     moveLayoutPoint(next, drag.id, { ...point });
     try {
       validateLayout(next);
+      roofWindowGeometry(next);
       this.layout = next;
       drag.valid = true;
       this.render();
@@ -724,7 +738,11 @@ export class RoofLayoutEditor {
     event.preventDefault();
     const point = this.pointer(event);
     try {
-      if (this.dormer) {
+      if (this.windowTool.active) {
+        this.windowTool.place(this.rawPointer(event));
+      } else if (event.target.dataset.roofWindow !== undefined) {
+        this.windowTool.open(Number(event.target.dataset.roofWindow));
+      } else if (this.dormer) {
         if (!this.dormer.picking) return;
         const raw = this.rawPointer(event);
         const faceIndex = this.layout.faces.findIndex(face => inside(raw, face.map(id => this.layout.vertices[id])));
@@ -903,6 +921,7 @@ export class RoofLayoutEditor {
         this.svg.append(svgElement('circle', { cx: v.x, cy: v.y, r: 8, class: 'layout-node division-path' }));
       });
     }
+    this.windowTool.draw(this.svg, project);
     if (this.dormer?.result) {
       this.svg.append(svgElement('polygon', { points: coords(this.dormer.result.outline), class: 'layout-dormer-outline' }));
     }
@@ -927,6 +946,7 @@ export class RoofLayoutEditor {
     this.dialog.querySelector('.layout-help').textContent = hints[this.mode];
     this.dialog.querySelector('#layoutModeLabel').textContent = { select: 'Drag to move · Shift-drag for height', draw: 'Click to draw · Click first point to close', split: 'Draw a line between surface edges', insert: 'Click an edge or surface to add a point', meetTarget: 'Choose a target slope', meetDirection: 'Choose a connected edge' }[this.mode];
     if (this.dormer) this.dialog.querySelector('#layoutModeLabel').textContent = 'Click to place dormer front · Adjust size in the panel';
+    if (this.windowTool.active) this.dialog.querySelector('#layoutModeLabel').textContent = 'Click to position roof window · Adjust size in the panel';
     if (this.panEnabled) this.dialog.querySelector('#layoutModeLabel').textContent = 'Drag to pan · Turn Pan off to edit · Fit to recenter';
     if (this.pickingSplitFaces && !this.panEnabled) this.dialog.querySelector('#layoutModeLabel').textContent = 'Click surfaces to toggle · Split in place to confirm';
     this.dialog.querySelector('.layout-detach').hidden = incident.length < 2 && this.selectionCopies().length < 2;

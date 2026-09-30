@@ -187,3 +187,13 @@
 .layout-feature-actions { display: flex; gap: 6px; margin: 8px 0; }
 .layout-feature-actions button { flex: 1; }
 @media (min-width: 1001px) { .layout-toolbar button { padding-inline: 8px; gap: 8px; font-size: 12px; } }
+
+.layout-roof-window { fill:#91d8ed; fill-opacity:.85; stroke:#17608e; stroke-width:3; cursor:pointer; }
+.layout-window p,.layout-window output { font-size:12px; line-height:1.45; }
+.layout-window output { display:block; margin:8px 0; }
+.layout-window[hidden] { display:none; }
+
+.layout-window svg { display:block; width:100%; height:150px; background:#f1f5f9; border-radius:8px; margin:8px 0; }
+.layout-window svg[hidden] { display:none; }
+
+.layout-window .layout-coordinate-row { grid-template-columns:repeat(2,minmax(0,1fr)); }

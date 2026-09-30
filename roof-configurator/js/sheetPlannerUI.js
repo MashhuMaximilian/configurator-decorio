@@ -1,4 +1,4 @@
-import { planRoofSheets, sheetProfiles, sheetPlanCsv } from './sheetPlanner.js?v=planner-23';
+import { planRoofSheets, sheetProfiles, sheetPlanCsv } from './sheetPlanner.js?v=windows-24';
 import { presetRoofLayout } from './presetLayout.js?v=layout-21';
 import { defaultLayout } from './roofLayout.js?v=layout-21';
 
