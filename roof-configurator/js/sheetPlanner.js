@@ -1,4 +1,5 @@
-import { roofSurfaceGroups, validateLayout } from './roofLayout.js?v=layout-21';
+import { roofWindowGeometry, cutRoofWindows } from './roofWindows.js?v=windows-24';
+import { roofSurfaceGroups, validateLayout, inside } from './roofLayout.js?v=layout-21';
 
 // Dimensions transcribed from the two supplied Rodach catalogue photographs.
 // End overlap is the inferred length allowance: length - modules * module pitch.
@@ -97,6 +98,7 @@ export function groupSheetLengths(pieces) {
 
 export function planRoofSheets(layout, profile, settings = {}) {
   validateLayout(layout);
+  const windows = roofWindowGeometry(layout);
   const p = validateSheetProfile(profile);
   const useful = p.usefulWidth / 1000, module = p.module / 1000;
   let pieceCount = 0;
@@ -107,7 +109,13 @@ export function planRoofSheets(layout, profile, settings = {}) {
     const dx = gradient > 1e-8 ? sx / gradient : 0;
     const dz = gradient > 1e-8 ? sz / gradient : 1;
     const flatten = v => ({ x: v.x * dz - v.z * dx, y: (v.x * dx + v.z * dz + v.h * gradient) / scale });
-    const triangles = group.triangles.map(ids => ids.map(id => flatten(layout.vertices[id])));
+    const hostPolygons = group.triangles.map(ids => ids.map(id => layout.vertices[id]));
+    const cutPolygons = hostPolygons.flatMap(polygon => cutRoofWindows(polygon, windows));
+    const triangles = cutPolygons.map(polygon => polygon.map(flatten));
+    const openings = windows.filter(window => hostPolygons.some(polygon =>
+      polygon.some(p => Math.abs(window.normal.x * p.x + window.normal.y * p.h +
+        window.normal.z * p.z - window.group.constant) < 1e-7)) &&
+      hostPolygons.some(polygon => inside(window, polygon)));
     const all = triangles.flat();
     const minX = Math.min(...all.map(p => p.x)), minY = Math.min(...all.map(p => p.y));
     const local = pt => ({ x: pt.x - minX, y: pt.y - minY });
@@ -174,8 +182,10 @@ export function planRoofSheets(layout, profile, settings = {}) {
     if (pitch + 1e-6 < p.minPitch) warnings.push(`Pitch ${pitch.toFixed(1)}° is below this profile’s ${p.minPitch}° minimum.`);
     if (gradient < 1e-8) warnings.push('Flat surface: sheet direction defaults to the plan Z axis.');
     return { id: slopeLetter(index), pitch, width, height, pieces, polygons, columns, reverse, offset: offset * 1000,
-      outline: group.boundary.map(ids => ids.map(id => local(flatten(layout.vertices[id])))),
-      planPolygons: group.triangles.map(ids => ids.map(id => layout.vertices[id])),
+      outline: [...group.boundary.map(ids => ids.map(id => local(flatten(layout.vertices[id])))),
+        ...openings.flatMap(window => window.corners.map((p, i) =>
+          [p, window.corners[(i + 1) % 4]].map(p => local(flatten(p)))))],
+      planPolygons: cutPolygons.flatMap(poly => poly.slice(1, -1).map((_, i) => [poly[0], poly[i + 1], poly[i + 2]])),
       netArea, stockArea, usefulArea, cutArea: Math.max(0, usefulArea - netArea),
       overlapArea: stockArea - usefulArea, warnings, groups: groupSheetLengths(pieces) };
   });

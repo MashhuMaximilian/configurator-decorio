@@ -1,8 +1,9 @@
-import { validateSheetProfile } from './sheetPlanner.js?v=planner-23';
+import { roofWindowGeometry } from './roofWindows.js?v=windows-24';
+import { validateSheetProfile } from './sheetPlanner.js?v=windows-24';
 import { defaultLayout, validateLayout, layoutBounds } from './roofLayout.js?v=layout-21';
 import { state, pitchRules, roofNames } from './state.js?v=layout-21';
-import { RoofScene } from './scene.js?v=generic-23';
-import { RoofUI } from './ui.js?v=planner-23';
+import { RoofScene } from './scene.js?v=windows-24';
+import { RoofUI } from './ui.js?v=windows-24';
 import {
   getFallbackCurrencyRate,
   normalizeCurrency,
@@ -24,7 +25,7 @@ function applySharedRoofState(snapshot) {
   if (!snapshot || typeof snapshot !== 'object') return;
 
   if (snapshot.roofLayout != null) {
-    try { validateLayout(snapshot.roofLayout); } catch { return false; }
+    try { validateLayout(snapshot.roofLayout); roofWindowGeometry(snapshot.roofLayout); } catch { return false; }
   }
   if (snapshot.roofType === 'layout' && !snapshot.roofLayout) return false;
   if (Object.prototype.hasOwnProperty.call(roofNames, snapshot.roofType)) state.roofType = snapshot.roofType;
