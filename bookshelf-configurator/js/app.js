@@ -1391,14 +1391,16 @@ function renderBridgeConnectors(anchor, heading, spec, material) {
 
 function addHorizontalBackPlanks(group, { width, innerWidth, height, material, moduleId }) {
   const plankHeight = 100;
-  const forwardOffset = 6;
+  const frontalRowOffset = 3;
   const { bottom, top } = shelfSlotLayout(height);
   const bottomShelfCenterY = bottom;
   const topShelfCenterY = top;
   const lowerPlankY = bottomShelfCenterY + BOARD / 2 + plankHeight / 2;
   const upperPlankY = topShelfCenterY - BOARD / 2 - plankHeight / 2;
   const middlePlankY = height / 2;
-  const centerZ = -BACK / 2 + forwardOffset;
+  // Horizontal planks sit on the interior side of the back construction, flush
+  // with the forward vertical-plank row rather than on the exterior rear face.
+  const centerZ = (-BACK / 2 + frontalRowOffset) + BACK;
 
   [lowerPlankY, middlePlankY, upperPlankY].forEach((y) => {
     addBox(group, { x: innerWidth, y: plankHeight, z: BACK }, {
