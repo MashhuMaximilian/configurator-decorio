@@ -15,6 +15,7 @@
 .sheet-workspace { display:grid; grid-template-columns:300px minmax(0,1fr); min-height:0; flex:1; }
 .sheet-settings { overflow:auto; padding:20px; border-right:1px solid #dbe4ef; background:#f6f9fc; }
 .sheet-settings label { display:flex; flex-direction:column; gap:5px; font-size:12px; margin-bottom:12px; }
+.sheet-fields label { justify-content:space-between; }
 .sheet-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 10px; }
 .sheet-settings p { font-size:12px; line-height:1.5; color:#516681; }
 .sheet-output { overflow:auto; padding:24px; min-width:0; }

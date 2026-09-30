@@ -1,8 +1,8 @@
-import { validateSheetProfile } from './sheetPlanner.js?v=layout-21';
+import { validateSheetProfile } from './sheetPlanner.js?v=planner-23';
 import { defaultLayout, validateLayout, layoutBounds } from './roofLayout.js?v=layout-21';
 import { state, pitchRules, roofNames } from './state.js?v=layout-21';
-import { RoofScene } from './scene.js?v=layout-21';
-import { RoofUI } from './ui.js?v=planner-22';
+import { RoofScene } from './scene.js?v=generic-23';
+import { RoofUI } from './ui.js?v=planner-23';
 import {
   getFallbackCurrencyRate,
   normalizeCurrency,
@@ -10,7 +10,7 @@ import {
   resolveCurrencyRate,
 } from './preferences.js?v=platform-18';
 import { readShareState } from '../../shared-ui/src/shareState.js?v=platform-18';
-import { applyRoofTranslations, resolveRoofLocale } from './i18n.js?v=layout-21';
+import { applyRoofTranslations, resolveRoofLocale } from './i18n.js?v=generic-23';
 import { requireTenantConfiguratorAccess } from '../../shared-ui/src/tenantBootstrap.js?v=tenant-domains-1';
 
 await requireTenantConfiguratorAccess('roof');
