@@ -1,4 +1,4 @@
-import { SheetPlannerUI } from './sheetPlannerUI.js?v=layout-21';
+import { SheetPlannerUI } from './sheetPlannerUI.js?v=planner-22';
 import { RoofLayoutEditor } from './layoutEditor.js?v=layout-21';
 import { defaultLayout, layoutWallFootprint } from './roofLayout.js?v=layout-21';
 import { bindPanelAccordions } from '../../shared-ui/src/components/panelControls.js?v=panel-controls-1';

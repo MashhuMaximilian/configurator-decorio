@@ -64,13 +64,17 @@ export class SheetPlannerUI {
     this.dialog.className = 'sheet-planner';
     this.dialog.setAttribute('aria-labelledby', 'sheetPlanTitle');
     this.dialog.innerHTML = `<header><div><small>ROOF COVERING</small><h2 id="sheetPlanTitle">Sheet cutting plan</h2></div><button type="button" data-sheet="close" aria-label="Close sheet planner">×</button></header>
-      <div class="sheet-workspace"><form class="sheet-settings">
+      <div class="sheet-actions">
+        <span class="sheet-update-note" role="status">Generate a cutting plan from the settings below.</span>
+        <button type="submit" form="sheetPlanSettings" class="sheet-primary">Generate plan</button>
+      </div>
+      <p class="sheet-error" role="alert" hidden></p>
+      <div class="sheet-workspace"><form id="sheetPlanSettings" class="sheet-settings">
         <label>Profile<select name="preset"><option value="antic">Rodach Antic</option><option value="clasic">Rodach Clasic</option><option value="custom">Custom profile</option></select></label>
         <div class="sheet-fields">${fields.map(([key, label]) => `<label>${label}<input type="number" name="${key}" step="${['minModules', 'maxModules'].includes(key) ? '1' : 'any'}" required></label>`).join('')}</div>
         <p class="sheet-profile-note"></p>
         <label>Start side<select name="direction"><option value="left">Left to right</option><option value="right">Right to left</option></select></label>
         <label>Start offset (mm)<input name="offset" type="number" value="0" min="0" step="any" required></label>
-        <button type="submit" class="sheet-primary">Generate plan</button>
         <p>Sheets run uphill. Each length is a whole number of modules plus the end allowance. Excess at the last sheet is trimmed. Width overlap = total − usable width.</p>
         <p>Profile sizes are independent of the visual roof covering. Vertical walls, flashings, fasteners and offcut reuse are excluded. Verify overlap and fixing details with the supplier before ordering.</p>
       </form><div class="sheet-output" aria-live="polite"></div></div>
@@ -78,7 +82,7 @@ export class SheetPlannerUI {
     document.body.append(this.dialog);
     this.dialog.addEventListener('click', event => {
       const button = event.target.closest('[data-slope-svg]');
-      if (!button || !this.plan) return;
+      if (!button || !this.plan || this.stale) return;
       const index = Number(button.dataset.slopeSvg);
       const slope = this.plan.slopes[index];
       const markup = slopeDiagram(slope, this.plan.profile).replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" ');
@@ -125,24 +129,35 @@ export class SheetPlannerUI {
     this.form.elements.direction.value = saved?.direction || 'left';
     this.form.elements.offset.value = saved?.offset || 0;
     this.note();
+    this.plan = null;
+    this.dialog.querySelector('.sheet-primary').textContent = 'Generate plan';
+    this.output.replaceChildren();
     this.dialog.showModal();
     this.generate();
   }
 
   invalidate() {
-    this.plan = null;
-    this.output.replaceChildren();
-    this.dialog.querySelector('.sheet-status').textContent = 'Settings changed. Generate a new plan.';
+    this.stale = true;
+    this.dialog.querySelector('.sheet-error').hidden = true;
+    this.dialog.querySelector('.sheet-actions').classList.add('needs-update');
+    this.dialog.querySelector('.sheet-update-note').textContent = this.plan
+      ? 'Settings changed. The previous plan is shown below. Update it to use the new settings.'
+      : 'Settings changed. Generate a plan to use the new settings.';
+    this.dialog.querySelector('.sheet-primary').textContent = this.plan ? 'Update plan' : 'Generate plan';
+    this.dialog.querySelector('.sheet-status').textContent = 'Update required · Exports paused';
     this.buttons(false);
   }
 
   buttons(enabled) {
     ['csv', 'print'].forEach(action => { this.dialog.querySelector(`[data-sheet="${action}"]`).disabled = !enabled; });
+    this.output.querySelectorAll('[data-slope-svg]').forEach(button => { button.disabled = !enabled; });
   }
 
   generate() {
     this.buttons(false);
-    this.plan = null;
+    this.stale = true;
+    const errorMessage = this.dialog.querySelector('.sheet-error');
+    errorMessage.hidden = true;
     try {
       if (this.state.roofType === 'custom') throw new Error('Draw a roof layout first. An uploaded image does not contain measurable roof surfaces.');
       const profile = Object.fromEntries(fields.map(([key]) => [key, Number(this.form.elements[key].value || NaN)]));
@@ -152,11 +167,20 @@ export class SheetPlannerUI {
       this.plan = planRoofSheets(layout, profile, settings);
       this.state.sheetPlanOptions = { preset: this.form.elements.preset.value, profile, ...settings };
       this.render();
+      this.stale = false;
+      this.dialog.querySelector('.sheet-actions').classList.remove('needs-update');
+      this.dialog.querySelector('.sheet-update-note').textContent = 'Plan is up to date. Changing settings keeps this preview until you update it.';
+      this.dialog.querySelector('.sheet-primary').textContent = 'Update plan';
       this.buttons(true);
       this.dialog.querySelector('.sheet-status').textContent = `${this.plan.slopes.length} slopes · ${this.plan.totals.count} sheets`;
     } catch (error) {
-      this.output.innerHTML = `<p class="sheet-error" role="alert">${escape(error.message)}</p>`;
-      this.dialog.querySelector('.sheet-status').textContent = 'Plan unavailable';
+      errorMessage.textContent = error.message;
+      errorMessage.hidden = false;
+      this.dialog.querySelector('.sheet-actions').classList.add('needs-update');
+      this.dialog.querySelector('.sheet-update-note').textContent = this.plan
+        ? 'Could not update. The previous plan is still shown below; correct the settings and try again.'
+        : 'Could not generate a plan. Correct the settings and try again.';
+      this.dialog.querySelector('.sheet-status').textContent = this.plan ? 'Previous plan · Exports paused' : 'Plan unavailable';
     }
   }
 
@@ -182,6 +206,7 @@ export class SheetPlannerUI {
   }
 
   download() {
+    if (!this.plan || this.stale) return;
     const url = URL.createObjectURL(new Blob(['\uFEFF' + sheetPlanCsv(this.plan)], { type: 'text/csv;charset=utf-8' }));
     const link = document.createElement('a');
     link.href = url; link.download = 'roof-sheet-plan.csv'; link.click();
@@ -189,6 +214,7 @@ export class SheetPlannerUI {
   }
 
   print() {
+    if (!this.plan || this.stale) return;
     const frame = document.createElement('iframe');
     frame.title = 'Printable roof cutting plan';
     frame.style.cssText = 'position:fixed;width:1px;height:1px;left:-10000px;border:0';
