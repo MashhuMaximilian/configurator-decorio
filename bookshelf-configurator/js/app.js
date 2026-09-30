@@ -1389,6 +1389,26 @@ function renderBridgeConnectors(anchor, heading, spec, material) {
   });
 }
 
+function addHorizontalBackPlanks(group, { width, innerWidth, height, material, moduleId }) {
+  const plankHeight = 100;
+  const forwardOffset = 6;
+  const { bottom, top } = shelfSlotLayout(height);
+  const bottomShelfCenterY = bottom;
+  const topShelfCenterY = top;
+  const lowerPlankY = bottomShelfCenterY + BOARD / 2 + plankHeight / 2;
+  const upperPlankY = topShelfCenterY - BOARD / 2 - plankHeight / 2;
+  const middlePlankY = height / 2;
+  const centerZ = -BACK / 2 + forwardOffset;
+
+  [lowerPlankY, middlePlankY, upperPlankY].forEach((y) => {
+    addBox(group, { x: innerWidth, y: plankHeight, z: BACK }, {
+      x: width / 2,
+      y,
+      z: centerZ,
+    }, material, moduleId);
+  });
+}
+
 function addAlternatingBackPlanks(group, { width, innerWidth, height, material, moduleId }) {
   const targetPlankWidth = 100;
   const forwardOffset = 3;
@@ -1453,6 +1473,11 @@ function addShelfWing(parent, module, pose, length, { cornerWing = false, shared
   // express the real construction, adjacent planks alternate between two rows:
   // the base back row and a second row set 3 mm forward.
   addAlternatingBackPlanks(group, { width, innerWidth, height, material: darkWood, moduleId: module.id });
+  // Three horizontal back rails overlay the vertical boarding: one immediately
+  // above the fixed bottom shelf, one through the center of the cabinet, and
+  // one immediately below the fixed top shelf. Their slightly more forward
+  // plane makes the traditional framed back construction clearly readable.
+  addHorizontalBackPlanks(group, { width, innerWidth, height, material: darkWood, moduleId: module.id });
   const plinthWidth = innerWidth;
   const plinthDepth = Math.max(100, shelfDepth - PLINTH_FRONT_RECESS);
   const plinthCenterZ = -depth + POST + plinthDepth / 2;
