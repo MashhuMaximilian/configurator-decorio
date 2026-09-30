@@ -3,10 +3,10 @@ import { roofSurfaceGroups, validateLayout } from './roofLayout.js?v=layout-21';
 // Dimensions transcribed from the two supplied Rodach catalogue photographs.
 // End overlap is the inferred length allowance: length - modules * module pitch.
 export const sheetProfiles = {
-  antic: { name: 'Rodach Antic', width: 1130, usefulWidth: 1000, module: 350,
+  antic: { name: '350 mm profile', width: 1130, usefulWidth: 1000, module: 350,
     endOverlap: 100, minModules: 3, maxModules: 22, maxLength: 7800,
     kgPerM2: 5.9, minPitch: 20 },
-  clasic: { name: 'Rodach Clasic', width: 1170, usefulWidth: 1080, module: 365,
+  clasic: { name: '365 mm profile', width: 1170, usefulWidth: 1080, module: 365,
     endOverlap: 125, minModules: 3, maxModules: 22, maxLength: 8150,
     kgPerM2: 4.9, minPitch: 14 },
 };

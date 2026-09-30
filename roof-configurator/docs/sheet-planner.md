@@ -1,7 +1,7 @@
 # Sheet cutting planner
 
-Open **Sheet cutting plan** next to **BOM & price**. Choose Rodach Antic,
-Rodach Clasic, or edit the dimensions to create a custom profile. Generate the
+Open **Sheet cutting plan** next to **BOM & price**. Choose 350 mm profile,
+365 mm profile, or edit the dimensions to create a custom profile. Generate the
 plan after changing settings using the fixed **Update plan** button above the
 workspace. The previous report stays visible with an update notice; CSV, SVG
 and print exports remain disabled until regeneration succeeds. Invalid settings
@@ -12,11 +12,11 @@ the browser print dialog. Settings are included in the roof's captured state.
 
 ## Reference data
 
-Source: user-supplied Rodach catalogue photographs (Antic page 3 and Clasic
-page 4). The supplied `PanotajDamilaClickS 6 ape.pdf` is the visual reference,
+Source: user-supplied catalogue photographs (350 mm module on page 3 and
+365 mm module on page 4). The supplied `PanotajDamilaClickS 6 ape.pdf` is the visual reference,
 not the source for either profile's dimensions.
 
-| Parameter | Antic | Clasic |
+| Parameter | 350 mm profile | 365 mm profile |
 | --- | ---: | ---: |
 | Total width, mm | 1130 | 1170 |
 | Usable width, mm | 1000 | 1080 |
@@ -27,11 +27,11 @@ not the source for either profile's dimensions.
 | Weight, kg/m² | 5.9 | 4.9 |
 | Minimum pitch, degrees | 20 | 14 |
 
-Clasic's table says 1100 mm usable width; its marked diagram says 1080 mm. The
+The 365 mm profile's table says 1100 mm usable width; its marked diagram says 1080 mm. The
 preset uses 1080, exposes the discrepancy, and allows an override. End allowance
 is inferred from the minimum length: 1150 - 3×350 = 100 mm and
 1220 - 3×365 = 125 mm. It is an editable planning assumption, not a verified
-installation lap specification. Clasic's 22 modules would produce 8155 mm,
+installation lap specification. The 365 mm profile's 22 modules would produce 8155 mm,
 so its printed 8150 mm maximum limits the default to 21 modules.
 
 ## Geometry and quantities

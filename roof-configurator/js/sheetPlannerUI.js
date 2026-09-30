@@ -1,4 +1,4 @@
-import { planRoofSheets, sheetProfiles, sheetPlanCsv } from './sheetPlanner.js?v=layout-21';
+import { planRoofSheets, sheetProfiles, sheetPlanCsv } from './sheetPlanner.js?v=planner-23';
 import { presetRoofLayout } from './presetLayout.js?v=layout-21';
 import { defaultLayout } from './roofLayout.js?v=layout-21';
 
@@ -70,7 +70,7 @@ export class SheetPlannerUI {
       </div>
       <p class="sheet-error" role="alert" hidden></p>
       <div class="sheet-workspace"><form id="sheetPlanSettings" class="sheet-settings">
-        <label>Profile<select name="preset"><option value="antic">Rodach Antic</option><option value="clasic">Rodach Clasic</option><option value="custom">Custom profile</option></select></label>
+        <label>Profile<select name="preset"><option value="antic">350 mm profile</option><option value="clasic">365 mm profile</option><option value="custom">Custom profile</option></select></label>
         <div class="sheet-fields">${fields.map(([key, label]) => `<label>${label}<input type="number" name="${key}" step="${['minModules', 'maxModules'].includes(key) ? '1' : 'any'}" required></label>`).join('')}</div>
         <p class="sheet-profile-note"></p>
         <label>Start side<select name="direction"><option value="left">Left to right</option><option value="right">Right to left</option></select></label>
@@ -118,7 +118,7 @@ export class SheetPlannerUI {
     const preset = this.form.elements.preset.value;
     this.dialog.querySelector('.sheet-profile-note').textContent = preset === 'clasic'
       ? 'Photo discrepancy: table width 1,100 mm; diagram 1,080 mm (used here). 22 × 365 + 125 = 8,155 mm, above the printed 8,150 mm maximum, so 21 modules are allowed. End allowance of 125 mm is inferred from the listed minimum length; confirm with supplier.'
-      : preset === 'antic' ? 'From supplied Antic photo: 1,130 / 1,000 mm width, 350 mm module, 3–22 modules. The 100 mm end allowance is inferred from the listed sheet lengths; confirm with supplier.'
+      : preset === 'antic' ? '350 mm profile reference: 1,130 / 1,000 mm width, 350 mm module, 3–22 modules. The 100 mm end allowance is inferred from the listed sheet lengths; confirm with supplier.'
       : 'Custom dimensions. Length = modules × module length + end allowance. The maximum length also limits the allowed module count.';
   }
 
