@@ -2,7 +2,10 @@
 
 Open **Sheet cutting plan** next to **BOM & price**. Choose Rodach Antic,
 Rodach Clasic, or edit the dimensions to create a custom profile. Generate the
-plan after changing settings. Each connected coplanar slope gets a letter in
+plan after changing settings using the fixed **Update plan** button above the
+workspace. The previous report stays visible with an update notice; CSV, SVG
+and print exports remain disabled until regeneration succeeds. Invalid settings
+show an error without removing the previous report. Each connected coplanar slope gets a letter in
 an overview, an unfolded diagram, and a grouped length/order table. CSV exports
 individual pieces and totals; each diagram downloads as SVG; Print / PDF uses
 the browser print dialog. Settings are included in the roof's captured state.
