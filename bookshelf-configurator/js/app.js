@@ -821,6 +821,9 @@ function addKeyholeCutoutRect(group, { rectWidth, rectHeight, depth, zOffset = 0
   geometry.translate(0, 0, zOffset);
   geometry.computeVertexNormals();
   applyNormalizedBoxUVs(geometry);
+  // Keep the front wood grain orientation consistent with the plain boxed stile
+  // so the two meeting lower-door stiles read the same instead of mirrored.
+  flipFrontBackFaceUVsHorizontally(geometry);
   const mesh = new THREE.Mesh(geometry, material);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
@@ -1104,6 +1107,20 @@ function applyNormalizedBoxUVs(geometry) {
     else uv.setXY(i, x, z);
   }
   geometry.setAttribute('uv', uv);
+  return geometry;
+}
+
+function flipFrontBackFaceUVsHorizontally(geometry) {
+  const uv = geometry.getAttribute('uv');
+  const normal = geometry.getAttribute('normal');
+  if (!uv || !normal) return geometry;
+  for (let i = 0; i < uv.count; i += 1) {
+    const ax = Math.abs(normal.getX(i));
+    const ay = Math.abs(normal.getY(i));
+    const az = Math.abs(normal.getZ(i));
+    if (az >= ax && az >= ay) uv.setX(i, 1 - uv.getX(i));
+  }
+  uv.needsUpdate = true;
   return geometry;
 }
 
@@ -1391,20 +1408,16 @@ function renderBridgeConnectors(anchor, heading, spec, material) {
 
 function addHorizontalBackPlanks(group, { width, innerWidth, height, material, moduleId }) {
   const plankHeight = 100;
+  const forwardOffset = 6;
   const { bottom, top } = shelfSlotLayout(height);
   const bottomShelfCenterY = bottom;
   const topShelfCenterY = top;
   const lowerPlankY = bottomShelfCenterY + BOARD / 2 + plankHeight / 2;
   const upperPlankY = topShelfCenterY - BOARD / 2 - plankHeight / 2;
   const middlePlankY = height / 2;
-  const topCapPlankY = height - plankHeight / 2;
-  // Local -Z points toward the bookshelf interior/front. Mount the horizontal
-  // rails on the room-facing side of the vertical boarding: the rear face of
-  // each rail sits flush against the front face of the foremost vertical row.
-  // The foremost vertical row is the base row, whose front face is at -BACK.
-  const centerZ = -BACK - BACK / 2;
+  const centerZ = -BACK / 2 + forwardOffset;
 
-  [lowerPlankY, middlePlankY, upperPlankY, topCapPlankY].forEach((y) => {
+  [lowerPlankY, middlePlankY, upperPlankY].forEach((y) => {
     addBox(group, { x: innerWidth, y: plankHeight, z: BACK }, {
       x: width / 2,
       y,
