@@ -1395,14 +1395,40 @@ function addAlternatingBackPlanks(group, { width, innerWidth, height, material, 
   const plankCount = Math.max(1, Math.round(innerWidth / targetPlankWidth));
   const plankWidth = innerWidth / plankCount;
   const xStart = width / 2 - innerWidth / 2 + plankWidth / 2;
+  const seamShadowWidth = Math.min(8, Math.max(4, plankWidth * 0.06));
+  const seamShadowDepth = 0.24;
+  const seamShadowInset = 0.12;
+  const seamShadowOpacity = 0.16;
+  const seamShadowMaterial = new THREE.MeshBasicMaterial({
+    color: 0x000000,
+    transparent: true,
+    opacity: seamShadowOpacity,
+    depthWrite: false,
+  });
 
   for (let index = 0; index < plankCount; index += 1) {
     const rowOffset = index % 2 === 0 ? 0 : forwardOffset;
+    const plankCenterX = xStart + index * plankWidth;
     addBox(group, { x: plankWidth, y: height, z: BACK }, {
-      x: xStart + index * plankWidth,
+      x: plankCenterX,
       y: height / 2,
       z: -BACK / 2 + rowOffset,
     }, material, moduleId);
+
+    if (rowOffset > 0) {
+      const leftSeamX = plankCenterX - plankWidth / 2 + seamShadowWidth / 2;
+      const rightSeamX = plankCenterX + plankWidth / 2 - seamShadowWidth / 2;
+      addBox(group, { x: seamShadowWidth, y: height, z: seamShadowDepth }, {
+        x: leftSeamX,
+        y: height / 2,
+        z: seamShadowInset,
+      }, seamShadowMaterial, moduleId, { cast: false, receive: false });
+      addBox(group, { x: seamShadowWidth, y: height, z: seamShadowDepth }, {
+        x: rightSeamX,
+        y: height / 2,
+        z: seamShadowInset,
+      }, seamShadowMaterial, moduleId, { cast: false, receive: false });
+    }
   }
 }
 
