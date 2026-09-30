@@ -3,7 +3,7 @@ import { validateSheetProfile } from './sheetPlanner.js?v=windows-24';
 import { defaultLayout, validateLayout, layoutBounds } from './roofLayout.js?v=layout-21';
 import { state, pitchRules, roofNames } from './state.js?v=layout-21';
 import { RoofScene } from './scene.js?v=windows-24';
-import { RoofUI } from './ui.js?v=windows-24';
+import { RoofUI } from './ui.js?v=windows-25';
 import {
   getFallbackCurrencyRate,
   normalizeCurrency,

@@ -197,3 +197,12 @@
 .layout-window svg[hidden] { display:none; }
 
 .layout-window .layout-coordinate-row { grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+.layout-window input[type="range"] { width:100%; padding:0; accent-color:#1261a9; }
+.layout-window .window-snap { display:flex; flex-direction:row; align-items:center; gap:8px; }
+.layout-window .window-snap input { width:auto; }
+.window-move-controls { display:flex; flex-wrap:wrap; gap:5px; }
+.window-move-controls button:first-child { flex-basis:100%; }
+.layout-roof-window.selected { fill:#fde68a; stroke:#d97706; stroke-width:4; }
+.window-selection-handle { fill:#fff; stroke:#d97706; stroke-width:3; pointer-events:none; }
+.window-label { paint-order:stroke; stroke:#fff; stroke-width:4px; font-weight:700; }

@@ -1,5 +1,5 @@
 import { SheetPlannerUI } from './sheetPlannerUI.js?v=windows-24';
-import { RoofLayoutEditor } from './layoutEditor.js?v=windows-24';
+import { RoofLayoutEditor } from './layoutEditor.js?v=windows-25';
 import { defaultLayout, layoutWallFootprint } from './roofLayout.js?v=layout-21';
 import { bindPanelAccordions } from '../../shared-ui/src/components/panelControls.js?v=panel-controls-1';
 import { pitchRules } from './state.js?v=layout-21';

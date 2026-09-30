@@ -6,7 +6,19 @@ in the slope plane), review the plan and isometric preview, and choose **Add
 window**, followed by **Apply roof**.
 
 Click an existing blue window or choose it from the window selector to resize,
-reposition or delete it. Add, update and delete are single Undo/Redo steps.
+reposition or delete it. The selected window has an orange outline, corner
+markers and a selected label. Width and height can be changed using either the
+sliders or numeric fields.
+
+Drag an existing window or click the slope to reposition its preview. Enable
+**Snap movement to grid** to align its centre while moving. **Snap centre to
+grid** aligns it immediately; arrow buttons move by the current grid step.
+These controls use **Roof properties → Grid snap**. Choose **Update window** to
+commit all preview edits in one Undo/Redo step. Invalid drags restore their
+previous position. Surface letters move clear of window footprints where space
+allows and remain visible above the overlays.
+
+Add, update and delete are single Undo/Redo steps.
 Windows are stored inside the roof layout and included in saved/shared state.
 
 The tool supports up to 30 closed, rectangular, uphill-aligned roof windows.

@@ -1,4 +1,4 @@
-import { RoofWindowTool } from './roofWindowTool.js?v=windows-24';
+import { RoofWindowTool } from './roofWindowTool.js?v=windows-25';
 import { roofWindowGeometry } from './roofWindows.js?v=windows-24';
 import {
   meetRoofSlope, alignmentDirections, inside, triangulate, onSegment, addLayoutPoint,
@@ -642,6 +642,7 @@ export class RoofLayoutEditor {
     const drag = this.drag;
     if (!drag || drag.pointerId !== event.pointerId) return;
     event.preventDefault();
+    if (drag.kind === 'window') { this.windowTool.moveDrag(event, drag); return; }
     if (drag.kind === 'pan') {
       const point = new DOMPoint(event.clientX, event.clientY).matrixTransform(drag.inverse);
       this.center = {
@@ -682,6 +683,7 @@ export class RoofLayoutEditor {
     if (!drag || (event && drag.pointerId !== event.pointerId)) return;
     this.drag = null;
     if (this.svg.hasPointerCapture(drag.pointerId)) this.svg.releasePointerCapture(drag.pointerId);
+    if (drag.kind === 'window') { this.windowTool.finishDrag(drag, cancel); return; }
     if (drag.kind === 'pan') {
       if (cancel) this.center = drag.center;
       this.render();
@@ -738,10 +740,10 @@ export class RoofLayoutEditor {
     event.preventDefault();
     const point = this.pointer(event);
     try {
-      if (this.windowTool.active) {
+      if (event.target.dataset.roofWindow !== undefined && (!this.windowTool.active || Number(this.windowTool.field('selection').value) >= 0)) {
+        this.windowTool.beginDrag(event, Number(event.target.dataset.roofWindow));
+      } else if (this.windowTool.active) {
         this.windowTool.place(this.rawPointer(event));
-      } else if (event.target.dataset.roofWindow !== undefined) {
-        this.windowTool.open(Number(event.target.dataset.roofWindow));
       } else if (this.dormer) {
         if (!this.dormer.picking) return;
         const raw = this.rawPointer(event);
@@ -869,7 +871,8 @@ export class RoofLayoutEditor {
         });
       }
       this.layout.faces.forEach((face, index) => {
-        const point = project(surfaceLabelPosition(face, this.layout.vertices));
+        const point = this.windowTool.surfaceLabelPoint(face, this.layout.vertices, project,
+          project(surfaceLabelPosition(face, this.layout.vertices)));
         const label = svgElement('text', { x: point.x, y: point.y,
           'text-anchor': 'middle', 'dominant-baseline': 'central',
           class: 'layout-surface-label', 'pointer-events': 'none',
@@ -922,6 +925,7 @@ export class RoofLayoutEditor {
       });
     }
     this.windowTool.draw(this.svg, project);
+    this.svg.querySelectorAll('.layout-surface-label').forEach(label => this.svg.append(label));
     if (this.dormer?.result) {
       this.svg.append(svgElement('polygon', { points: coords(this.dormer.result.outline), class: 'layout-dormer-outline' }));
     }
@@ -946,7 +950,7 @@ export class RoofLayoutEditor {
     this.dialog.querySelector('.layout-help').textContent = hints[this.mode];
     this.dialog.querySelector('#layoutModeLabel').textContent = { select: 'Drag to move · Shift-drag for height', draw: 'Click to draw · Click first point to close', split: 'Draw a line between surface edges', insert: 'Click an edge or surface to add a point', meetTarget: 'Choose a target slope', meetDirection: 'Choose a connected edge' }[this.mode];
     if (this.dormer) this.dialog.querySelector('#layoutModeLabel').textContent = 'Click to place dormer front · Adjust size in the panel';
-    if (this.windowTool.active) this.dialog.querySelector('#layoutModeLabel').textContent = 'Click to position roof window · Adjust size in the panel';
+    if (this.windowTool.active) this.dialog.querySelector('#layoutModeLabel').textContent = 'Drag window or click to position · Update window to save';
     if (this.panEnabled) this.dialog.querySelector('#layoutModeLabel').textContent = 'Drag to pan · Turn Pan off to edit · Fit to recenter';
     if (this.pickingSplitFaces && !this.panEnabled) this.dialog.querySelector('#layoutModeLabel').textContent = 'Click surfaces to toggle · Split in place to confirm';
     this.dialog.querySelector('.layout-detach').hidden = incident.length < 2 && this.selectionCopies().length < 2;
