@@ -1,3 +1,5 @@
+@import url('./tenantBranding.css?v=tenant-branding-1');
+
 /* Common shell base used by every configurator. */
 :root {
   font-family: "Axiforma", "Avenir Next", "Segoe UI", Arial, sans-serif;
@@ -507,19 +509,19 @@
   background: #f4f7f8;
 }
 
-.configurator-sidebar .accordion-toggle {
+.configurator-sidebar .accordion-toggle:where(:not(.shared-panel-controls *)) {
   color: #24313a;
   background: #f7f9fa;
   border-color: #dfe4e6;
 }
 
-.configurator-sidebar .accordion-section.is-open .accordion-toggle {
+.configurator-sidebar .accordion-section.is-open .accordion-toggle:where(:not(.shared-panel-controls *)) {
   color: #153b59;
   background: #eaf4fb;
   border-color: #8fc2e6;
 }
 
-.accordion-toggle__arrow {
+.accordion-toggle__arrow:where(:not(.shared-panel-controls *)) {
   width: 18px;
   height: 18px;
   flex: 0 0 auto;
@@ -531,7 +533,7 @@
   transition: transform 160ms ease;
 }
 
-.accordion-section.is-open .accordion-toggle__arrow {
+.accordion-section.is-open .accordion-toggle__arrow:where(:not(.shared-panel-controls *)) {
   transform: rotate(180deg);
 }
 
@@ -1537,13 +1539,13 @@ body,
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-.app-shell.is-dark-mode .configurator-sidebar .accordion-toggle {
+.app-shell.is-dark-mode .configurator-sidebar .accordion-toggle:where(:not(.shared-panel-controls *)) {
   color: #e2e8f0;
   background: rgba(30, 41, 59, 0.86);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.app-shell.is-dark-mode .configurator-sidebar .accordion-section.is-open .accordion-toggle {
+.app-shell.is-dark-mode .configurator-sidebar .accordion-section.is-open .accordion-toggle:where(:not(.shared-panel-controls *)) {
   color: #fff;
   background: rgba(37, 55, 84, 0.96);
   border-color: rgba(96, 165, 250, 0.48);
@@ -2847,5 +2849,43 @@ body.shared-ui-dark-mode .shared-configurator-panel__price strong { color: #edf4
     border-radius: 11px;
     font-size: 11px;
     box-shadow: 0 8px 22px rgba(8,120,201,.26);
+  }
+}
+
+/* Two independent product actions; keep both reachable on narrow panels. */
+.shared-configurator-panel > .shared-configurator-panel__footer--quotation{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.shared-configurator-panel__footer--quotation .shared-configurator-panel__price{grid-column:1/-1}
+.shared-configurator-panel__footer--quotation .shared-configurator-panel__add-button{min-width:0;padding:10px 8px;white-space:normal}
+.shared-configurator-panel__quote-button{background:#fff;color:#0878c9}
+.shared-configurator-panel__quote-button:hover:not(:disabled){color:#fff}
+.shared-configurator-panel__footer--quote-only .shared-configurator-panel__quote-button{grid-column:1/-1}
+.configuration-quotation{width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;border:1px solid #d9e1e5;border-radius:18px;padding:22px;background:#fff;color:#17232b;font:14px 'Segoe UI',sans-serif}
+.configuration-quotation::backdrop{background:#12202b88}
+.configuration-quotation header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.configuration-quotation h2{font-size:22px;margin:0}
+.configuration-quotation form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.configuration-quotation label{display:grid;gap:6px;font-size:12px}
+.configuration-quotation input,.configuration-quotation textarea{box-sizing:border-box;width:100%;padding:10px;border:1px solid #bccbd5;border-radius:8px;color:inherit;background:transparent;font:inherit}
+.configuration-quotation label:has(textarea),.configuration-quotation form>p,.configuration-quotation__send{grid-column:1/-1}
+.configuration-quotation button{min-height:44px;padding:10px 16px;border:1px solid #0878c9;border-radius:9px;cursor:pointer}
+.configuration-quotation__send{background:#0878c9;color:white}
+.configuration-quotation button:disabled{opacity:.5;cursor:wait}
+body.shared-ui-dark-mode .configuration-quotation{background:#253139;color:#edf4f7}
+@media(max-width:480px){.configuration-quotation form{grid-template-columns:1fr}}
+
+
+/* One mobile handle lane below the viewer tools, for both legacy and managed
+   panels. The shell mirrors these offsets for floating inline geometry. */
+@media (max-width: 760px) {
+  :root { --shared-mobile-panel-toggle-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
+  body.shared-ui-mounted :is(.shared-settings-toggle, .shared-configurator-panel__toggle--floating-right) {
+    top: auto !important;
+    bottom: var(--shared-mobile-panel-toggle-bottom) !important;
+    touch-action: manipulation;
+  }
+
+  body:has(:is(.shared-settings-toggle, .shared-configurator-panel__toggle--floating-right)[aria-expanded="true"])
+    .shared-ui-host .book-demo-button {
+    display: none;
   }
 }

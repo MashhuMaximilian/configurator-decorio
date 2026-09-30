@@ -1,9 +1,9 @@
-import { mountStandaloneConfiguratorShell } from '../../shared-ui/src/standaloneShell.js?v=platform-19';
+import { mountStandaloneConfiguratorShell } from '../../shared-ui/src/standaloneShell.js?v=tenant-branding-1';
 import { resolveSharedTools } from '../../shared-ui/src/tools/registry.js?v=platform-18';
 import { getSeasonForDate } from './solarPosition.js?v=platform-18';
 import { createShareUrl } from '../../shared-ui/src/shareState.js?v=platform-18';
-import { applySolarTranslations, solarFormatAzimuth, solarRegionCity, solarT, resolveSolarLocale } from './i18n.js?v=platform-18';
-import { requireTenantConfiguratorAccess } from '../../shared-ui/src/tenantBootstrap.js?v=platform-18';
+import { applySolarTranslations, solarFormatAzimuth, solarRegionCity, solarT, resolveSolarLocale } from './i18n.js?v=solar-panel-1';
+import { requireTenantConfiguratorAccess } from '../../shared-ui/src/tenantBootstrap.js?v=tenant-domains-1';
 
 const tenantContext = await requireTenantConfiguratorAccess('solar');
 
@@ -138,6 +138,12 @@ sidebarToggle?.addEventListener('click', () => setSidebarCollapsed(!sidebar?.cla
 const simulationPanel = document.querySelector('.solar-simulation-panel');
 const simulationPanelToggle = document.querySelector('#simulationPanelToggle');
 const setSimulationPanelCollapsed = (collapsed) => {
+  const body = document.querySelector('#simulationPanelBody');
+  if (collapsed && body?.contains(document.activeElement)) simulationPanelToggle?.focus();
+  if (body) {
+    body.inert = collapsed;
+    body.setAttribute('aria-hidden', String(collapsed));
+  }
   simulationPanel?.classList.toggle('is-collapsed', collapsed);
   simulationPanelToggle?.setAttribute('aria-expanded', String(!collapsed));
   simulationPanelToggle?.setAttribute('aria-label', t(collapsed ? 'simulation.graphShow' : 'simulation.graphHide'));
@@ -1321,3 +1327,4 @@ requestAnimationFrame(() => {
 });
 
 window.SOLAR_CONFIGURATOR_SHARED_SHELL = shell;
+

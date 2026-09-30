@@ -1,32 +1,11 @@
+import { tenantDomainContext } from './tenantDomains.js?v=tenant-domains-1';
+
 const FIREBASE_PROJECT_ID = 'configurator-360';
 const FIREBASE_DATABASE_ID = '(default)';
 const FIREBASE_API_KEY = 'AIzaSyBgS4VLxQYZnqW-YZJPKvuuocf5w_0kRwY';
 const TENANT_COLLECTION = 'tenantPublic';
-const TENANT_SUFFIX = '.360configurator.com';
-const TENANT_SLUG_PATTERN = /^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$/;
 const GLOBAL_CONTEXT_PROMISE_KEY = '__CFG360_TENANT_CONTEXT_PROMISE__';
 const GLOBAL_CONTEXT_KEY = '__CFG360_TENANT_CONTEXT__';
-
-const RESERVED_TENANT_SLUGS = new Set([
-  'www',
-  'aks',
-  'admin',
-  'api',
-  'app',
-  'assets',
-  'auth',
-  'billing',
-  'cdn',
-  'demo',
-  'dev',
-  'ftp',
-  'mail',
-  'staging',
-  'static',
-  'status',
-  'support',
-  'test',
-]);
 
 export const TENANT_CONFIGURATORS = Object.freeze({
   window: Object.freeze({ id: 'window', label: 'Window Configurator', path: '/window-configurator/' }),
@@ -36,21 +15,13 @@ export const TENANT_CONFIGURATORS = Object.freeze({
   hall: Object.freeze({ id: 'hall', label: 'Hall Configurator', path: '/hall-configurator/' }),
   fence: Object.freeze({ id: 'fence', label: 'Fence Configurator', path: '/fence-configurator/' }),
   cardbox: Object.freeze({ id: 'cardbox', label: 'Cardbox Configurator', path: '/cardbox-configurator/' }),
+  tiles: Object.freeze({ id: 'tiles', label: 'Pavement Configurator', path: '/tiles-configurator/' }),
   chair: Object.freeze({ id: 'chair', label: 'Chair Configurator', path: '/chair-configurator/' }),
+  bookshelf: Object.freeze({ id: 'bookshelf', label: 'Bookshelf Configurator', path: '/bookshelf-configurator/' }),
 });
 
-function normalizeHostname(hostname = '') {
-  return String(hostname).trim().toLowerCase().replace(/\.$/, '');
-}
-
 export function getTenantSlugForHostname(hostname = '') {
-  const normalized = normalizeHostname(hostname);
-  if (!normalized.endsWith(TENANT_SUFFIX)) return '';
-
-  const slug = normalized.slice(0, -TENANT_SUFFIX.length);
-  if (!slug || slug.includes('.') || !TENANT_SLUG_PATTERN.test(slug)) return '';
-  if (RESERVED_TENANT_SLUGS.has(slug)) return '';
-  return slug;
+  return tenantDomainContext(hostname)?.slug || '';
 }
 
 export function isTenantHostname(hostname = '') {
@@ -123,6 +94,7 @@ function normalizeTenantRecord(slug, data = {}) {
     companyName: String(data.companyName || slug).trim() || slug,
     status: String(data.status || '').trim().toLowerCase(),
     logoUrl: safeLogoUrl(data.logoUrl),
+    autoOpenSingleConfigurator: data.autoOpenSingleConfigurator === true,
     configurators: Object.freeze(normalizeConfigurators(data.configurators)),
   });
 }

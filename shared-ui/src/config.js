@@ -1,3 +1,5 @@
+import { TENANT_DOMAIN_ROOTS, tenantDomainContext } from './tenantDomains.js?v=tenant-domains-1';
+
 export const LANGUAGE_PROFILES = Object.freeze({
   'en-US': {
     label: 'English (US)',
@@ -41,6 +43,7 @@ export const CONFIGURATOR_PUBLIC_PATHS = Object.freeze({
     fence: '/fence-configurator/',
     cardbox: '/cardbox-configurator/',
     bookshelf: '/bookshelf-configurator/',
+    tiles: '/tiles-configurator/',
     chair: '/chair-configurator/',
   }),
   'ro-RO': Object.freeze({
@@ -52,6 +55,7 @@ export const CONFIGURATOR_PUBLIC_PATHS = Object.freeze({
     fence: '/configurator-garduri/',
     cardbox: '/configurator-cutii-carton/',
     bookshelf: '/bookshelf-configurator/',
+    tiles: '/tiles-configurator/',
     chair: '/configurator-scaune/',
   }),
   'de-DE': Object.freeze({
@@ -63,6 +67,7 @@ export const CONFIGURATOR_PUBLIC_PATHS = Object.freeze({
     fence: '/zaun-konfigurator/',
     cardbox: '/karton-konfigurator/',
     bookshelf: '/bookshelf-configurator/',
+    tiles: '/tiles-configurator/',
     chair: '/stuhl-konfigurator/',
   }),
 });
@@ -94,6 +99,8 @@ export function getLanguageProfile(locale) {
 }
 
 export function getLocaleForHostname(hostname = '') {
+  const tenant = tenantDomainContext(hostname);
+  if (tenant) return tenant.locale;
   const normalized = String(hostname).toLowerCase().replace(/\.$/, '');
   if (normalized === '360configurator.ro' || normalized === 'www.360configurator.ro') return 'ro-RO';
   if (normalized === '360konfigurator.de' || normalized === 'www.360konfigurator.de') return 'de-DE';
@@ -102,6 +109,7 @@ export function getLocaleForHostname(hostname = '') {
 
 function normalizeProductType(productType = '') {
   const value = String(productType).toLowerCase();
+  if (value === 'tiles') return 'tiles';
   if (value.includes('pergola')) return 'pergola';
   if (value.includes('roof')) return 'roof';
   if (value.includes('window')) return 'window';
@@ -116,11 +124,19 @@ function normalizeProductType(productType = '') {
 
 export function getLocalizedConfiguratorUrl(locale, productType, location = window.location) {
   const resolvedLocale = LANGUAGE_PROFILES[locale] ? locale : 'en-US';
+  const current = typeof location === 'string' ? new URL(location, globalThis.location?.href) : location;
+  const tenant = tenantDomainContext(current.hostname);
   const product = normalizeProductType(productType);
-  const path = product ? CONFIGURATOR_PUBLIC_PATHS[resolvedLocale]?.[product] : location.pathname;
+  // Public sites and tenant aliases share the same localized route catalogue.
+  // Keep the customer slug when changing locale or editing a cart item.
+  const paths = CONFIGURATOR_PUBLIC_PATHS[resolvedLocale];
+  const path = product ? paths?.[product] : current.pathname;
   if (!path) return null;
-  const url = new URL(`https://${LOCALE_HOSTS[resolvedLocale]}${path}`);
-  url.search = location.search || '';
-  url.hash = location.hash || '';
+  const hostname = tenant
+    ? `${tenant.slug}.${TENANT_DOMAIN_ROOTS[resolvedLocale]}`
+    : LOCALE_HOSTS[resolvedLocale];
+  const url = new URL(`https://${hostname}${path}`);
+  url.search = current.search || '';
+  url.hash = current.hash || '';
   return url.href;
 }

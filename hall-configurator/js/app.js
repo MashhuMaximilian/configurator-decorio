@@ -1,10 +1,10 @@
 import { state, deriveHallMetrics } from './state.js?v=platform-18';
 import { HallScene } from './scene.js?v=platform-18';
-import { HallUI } from './ui.js?v=platform-18';
+import { HallUI } from './ui.js?v=panel-controls-1';
 import { normalizeOpenings } from './openings.js?v=platform-18';
 import { applyHallTranslations, resolveHallLocale } from './i18n.js?v=platform-18';
 import { readShareState } from '../../shared-ui/src/shareState.js?v=platform-18';
-import { requireTenantConfiguratorAccess } from '../../shared-ui/src/tenantBootstrap.js?v=platform-18';
+import { requireTenantConfiguratorAccess } from '../../shared-ui/src/tenantBootstrap.js?v=tenant-domains-1';
 
 await requireTenantConfiguratorAccess('hall');
 
@@ -247,3 +247,4 @@ window.HALL_CONFIGURATOR_API = {
 
 applyHallDarkMode(Boolean(window.HALL_CONFIGURATOR_SHARED_SHELL?.state?.darkMode));
 syncToolButtons();
+

@@ -3,7 +3,7 @@ import {
   CURRENCY_OPTIONS,
   QUALITY_OPTIONS,
   UNIT_OPTIONS,
-} from '../config.js?v=platform-21';
+} from '../config.js?v=tenant-domains-1';
 import { sharedT } from '../i18n.js?v=platform-21';
 import { sharedIcon } from '../icons.js?v=platform-21';
 import { escapeHtml } from '../utils.js?v=platform-21';
@@ -151,7 +151,7 @@ export function renderAccountMenu(state, { profile = true } = {}) {
       <div data-account-guest-domain-content ${authenticated ? 'hidden' : ''}>
         <nav class="account-menu__items account-menu__items--guest">
           ${renderDomainControl(locale, domainOpen, currentDomainLocale)}
-          ${renderAccountSettings(state)}
+          ${authenticated ? '' : renderAccountSettings(state)}
         </nav>
       </div>
       <div data-account-authenticated-content ${authenticated ? '' : 'hidden'}>
@@ -172,7 +172,7 @@ export function renderAccountMenu(state, { profile = true } = {}) {
               <strong>office@360configurator.com</strong>
             </button>
           </div>
-          ${renderAccountSettings(state)}
+          ${authenticated ? renderAccountSettings(state) : ''}
           <button type="button" data-action="account-signout"><span>${sharedIcon('signout')}</span><strong>${escapeHtml(sharedT(locale, 'account.signOut'))}</strong></button>
         </nav>
       </div>

@@ -1,4 +1,4 @@
-import { mountStandaloneConfiguratorShell } from '../../shared-ui/src/standaloneShell.js?v=platform-19';
+import { mountStandaloneConfiguratorShell } from '../../shared-ui/src/standaloneShell.js?v=tenant-branding-1';
 import { resolveSharedTools } from '../../shared-ui/src/tools/registry.js?v=platform-19';
 import { createShareUrl } from '../../shared-ui/src/shareState.js?v=platform-19';
 
@@ -10,6 +10,7 @@ export function mountChairShell(api, tenantContext = null) {
     capabilities: { viewAR: false, save: true, undo: false, reset: true, share: true },
     tools: { items: resolveSharedTools(['camera']), placement: { side: 'left', direction: 'down', offsetX: 12, offsetY: 12 } },
     settingsPanel: { panelSelector: '.chair-sidebar', toggleSelector: '#chairSidebarToggle', collapsedClass: 'is-collapsed', bodyCollapsedClass: 'chair-sidebar-collapsed', initiallyCollapsed: compact.matches },
+    configuratorPanel: { panelSelector: '.chair-sidebar' },
     callbacks: {
       resetConfiguration() { api.resetConfiguration(); return true; },
       captureState() { return api.captureState(); },

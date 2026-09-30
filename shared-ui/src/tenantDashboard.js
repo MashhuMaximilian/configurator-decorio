@@ -1,3 +1,7 @@
+import { renderPlatformAttribution } from './tenantBranding.js?v=tenant-branding-1';
+import { getLocaleForHostname } from './config.js?v=tenant-routes-1';
+import { renderTenantDomainLinks } from './tenantDomainLinks.js?v=tenant-domains-1';
+import { TENANT_CONFIGURATORS } from './tenantBootstrap.js?v=tenant-domains-1';
 import {
   getFirebaseIdToken,
   observeGoogleAuth,
@@ -13,9 +17,11 @@ const FUNCTION_URLS = Object.freeze({
 });
 const LOGO_TARGET_BYTES = 190_000;
 const LOGO_MAX_DIMENSION = 512;
-const CONFIGURATOR_LABELS = Object.freeze({
-  window: 'Window', pergola: 'Pergola', roof: 'Roof', solar: 'Solar', hall: 'Hall', fence: 'Fence', cardbox: 'Cardbox', chair: 'Chair',
-});
+const CONFIGURATOR_LABELS = Object.freeze(Object.fromEntries(
+  Object.values(TENANT_CONFIGURATORS).map(({ id, label }) => [
+    id, label.replace(/ Configurator$/, ''),
+  ]),
+));
 
 const authState = document.querySelector('#authState');
 const authButton = document.querySelector('#authButton');
@@ -38,6 +44,7 @@ const metricAccesses = document.querySelector('#metricAccesses');
 const metricConfigurations = document.querySelector('#metricConfigurations');
 const settingsForm = document.querySelector('#settingsForm');
 const companyName = document.querySelector('#companyName');
+const autoOpenSingleConfigurator = document.querySelector('#autoOpenSingleConfigurator');
 const planSelect = document.querySelector('#planSelect');
 const planHint = document.querySelector('#planHint');
 const currentLogo = document.querySelector('#currentLogo');
@@ -249,9 +256,14 @@ function populateDashboard(data) {
   dashboard = data;
   document.title = `${data.companyName} Dashboard`;
   headerCompany.textContent = data.companyName;
+  document.querySelector('#dashboardPlatformBrand').innerHTML = renderPlatformAttribution(
+    getLocaleForHostname(window.location.hostname),
+  );
   overviewCompany.textContent = data.companyName;
-  overviewDomain.textContent = data.domain;
+  overviewDomain.textContent = window.location.hostname;
+  renderTenantDomainLinks(document.querySelector('#dashboardDomainLinks'), data.slug, '/dashboard/');
   companyName.value = data.companyName;
+  autoOpenSingleConfigurator.checked = data.autoOpenSingleConfigurator === true;
 
   if (data.logoUrl) {
     headerLogo.src = data.logoUrl; headerLogo.alt = data.companyName; headerLogo.hidden = false; headerBrandMark.hidden = true;
@@ -353,10 +365,11 @@ settingsForm.addEventListener('submit', async (event) => {
     const requestedPlanChange = planSelect.value !== dashboard.planId;
     const result = await callDashboardFunction('updateTenantDashboard', {
       companyName: name, planId: planSelect.value, configurators, logoMode, logoDataUrl,
+      autoOpenSingleConfigurator: autoOpenSingleConfigurator.checked,
     });
     populateDashboard(result);
     setStatus(
-      requestedPlanChange ? 'Branding changes saved. Your plan change request is pending confirmation.' : 'Changes saved.',
+      requestedPlanChange ? 'Site settings saved. Your plan change request is pending confirmation.' : 'Changes saved.',
       'success',
     );
   } catch (error) { console.error('Tenant dashboard update failed.', error); setStatus(error?.message || 'Could not save changes.', 'error'); }

@@ -5,6 +5,7 @@ export const roofNames = {
   lshape: 'L-shaped roof',
   dormer: 'Two-slope roof with dormer',
   custom: 'Custom roof plan',
+  layout: 'Drawn roof layout',
 };
 
 export const state = {
@@ -23,6 +24,8 @@ export const state = {
   northDirection: 108,
   nightPreview: false,
   customPlan: null,
+  roofLayout: null,
+  sheetPlanOptions: null,
   units: 'metric',
   currency: 'RON',
   locale: 'en-US',

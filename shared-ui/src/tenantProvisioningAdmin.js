@@ -1,3 +1,5 @@
+import { renderTenantDomainLinks } from './tenantDomainLinks.js?v=tenant-domains-1';
+import { TENANT_CONFIGURATORS } from './tenantBootstrap.js?v=tenant-domains-1';
 import {
   getFirebaseIdToken,
   observeGoogleAuth,
@@ -20,26 +22,14 @@ const TENANT_SUFFIX = '.360configurator.com';
 const TENANT_SLUG_PATTERN = /^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$/;
 const LOGO_TARGET_BYTES = 190_000;
 const LOGO_MAX_DIMENSION = 512;
-const CONFIGURATOR_PATHS = Object.freeze({
-  window: '/window-configurator/',
-  pergola: '/pergola-configurator/',
-  roof: '/roof-configurator/',
-  solar: '/solar-configurator/',
-  hall: '/hall-configurator/',
-  fence: '/fence-configurator/',
-  cardbox: '/cardbox-configurator/',
-  chair: '/chair-configurator/',
-});
-const CONFIGURATOR_LABELS = Object.freeze({
-  window: 'Window',
-  pergola: 'Pergola',
-  roof: 'Roof',
-  solar: 'Solar',
-  hall: 'Hall',
-  fence: 'Fence',
-  cardbox: 'Cardbox',
-  chair: 'Chair',
-});
+const CONFIGURATOR_PATHS = Object.freeze(Object.fromEntries(
+  Object.values(TENANT_CONFIGURATORS).map(({ id, path }) => [id, path]),
+));
+const CONFIGURATOR_LABELS = Object.freeze(Object.fromEntries(
+  Object.values(TENANT_CONFIGURATORS).map(({ id, label }) => [
+    id, label.replace(/ Configurator$/, ''),
+  ]),
+));
 const RESERVED_SLUGS = new Set([
   'www', 'aks', 'admin', 'api', 'app', 'assets', 'auth', 'billing', 'cdn', 'demo',
   'dev', 'ftp', 'mail', 'staging', 'static', 'status', 'support', 'test',
@@ -65,6 +55,7 @@ const tenantEditorTitle = document.querySelector('#tenantEditorTitle');
 const tenantEditorMeta = document.querySelector('#tenantEditorMeta');
 const tenantEditorForm = document.querySelector('#tenantEditorForm');
 const manageCompanyName = document.querySelector('#manageCompanyName');
+const manageAutoOpenSingleConfigurator = document.querySelector('#manageAutoOpenSingleConfigurator');
 const manageDomain = document.querySelector('#manageDomain');
 const manageOwnerEmail = document.querySelector('#manageOwnerEmail');
 const managePlan = document.querySelector('#managePlan');
@@ -108,6 +99,7 @@ const closeTenantEditorButton = document.querySelector('#closeTenantEditorButton
 
 const tenantForm = document.querySelector('#tenantForm');
 const companyNameInput = document.querySelector('#companyName');
+const createAutoOpenSingleConfigurator = document.querySelector('#createAutoOpenSingleConfigurator');
 const slugInput = document.querySelector('#slug');
 const slugHint = document.querySelector('#slugHint');
 const ownerEmailInput = document.querySelector('#ownerEmail');
@@ -644,7 +636,9 @@ function populateTenantEditor(tenant) {
   tenantEditorTitle.textContent = tenant.companyName || tenant.slug;
   tenantEditorMeta.textContent = `${tenant.slug} · ${tenant.planName || tenant.planId || 'Go Live Now'} · ${subscriptionStatusLabel(tenant.subscription?.status)}`;
   manageCompanyName.value = tenant.companyName || '';
+  manageAutoOpenSingleConfigurator.checked = tenant.autoOpenSingleConfigurator === true;
   manageDomain.textContent = tenant.domain || `${tenant.slug}${TENANT_SUFFIX}`;
+  renderTenantDomainLinks(document.querySelector('#manageDomainLinks'), tenant.slug);
   manageOwnerEmail.value = tenant.ownerEmail || '';
   populatePlanSelect(managePlan, tenant.planId || '');
   managePlanHint.textContent = planHint(managePlan.value);
@@ -817,7 +811,10 @@ tenantForm.addEventListener('submit', async (event) => {
     const [logoFile] = logoInput.files || [];
     const logoDataUrl = logoFile ? await optimizeLogo(logoFile) : '';
     setStatus(formStatus, 'Creating tenant…');
-    const result = await callAdminFunction('provisionTenant', { companyName, slug, ownerEmail, planId, configurators, logoDataUrl });
+    const result = await callAdminFunction('provisionTenant', {
+      companyName, slug, ownerEmail, planId, configurators, logoDataUrl,
+      autoOpenSingleConfigurator: createAutoOpenSingleConfigurator.checked,
+    });
     setStatus(formStatus, 'Tenant created successfully.', 'success');
     renderProvisioned(result);
     await refreshTenantList({ quiet: true });
@@ -875,6 +872,7 @@ tenantEditorForm.addEventListener('submit', async (event) => {
 
     await updateManagedTenant({
       companyName,
+      autoOpenSingleConfigurator: manageAutoOpenSingleConfigurator.checked,
       ownerEmail,
       planId,
       configurators,

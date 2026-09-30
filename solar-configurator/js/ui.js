@@ -18,7 +18,7 @@ import {
   normalizeUnits,
   toDisplayLength,
 } from './preferences.js?v=platform-18';
-import { applySolarTranslations, solarFormatAzimuth, solarModuleLabel, solarModuleNote, solarRateSourceLabel, solarRegionCity, solarRoofName, solarSeasonLabel, solarT, resolveSolarLocale } from './i18n.js?v=platform-18';
+import { applySolarTranslations, solarFormatAzimuth, solarModuleLabel, solarModuleNote, solarRateSourceLabel, solarRegionCity, solarRoofName, solarSeasonLabel, solarT, resolveSolarLocale } from './i18n.js?v=solar-panel-1';
 
 const LENGTH_CONTROL_KEYS = new Set(['length', 'depth']);
 const numeric = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
@@ -41,6 +41,9 @@ export class SolarUI {
     this.bindBatteryControls();
     this.bindPricingControls();
     this.bindToggles();
+    const chart = document.querySelector('#simulationChart');
+    this.chartResizeObserver = new ResizeObserver(() => this.renderChart());
+    if (chart) this.chartResizeObserver.observe(chart);
     this.bindEstimate();
     this.syncAllControls();
   }
@@ -558,7 +561,9 @@ export class SolarUI {
   renderChart() {
     const svg = document.querySelector('#simulationChart');
     if (!svg || !this.currentSimulation) return;
-    const width = 720;
+    const compact = window.matchMedia('(max-width: 760px)').matches;
+    const width = compact ? Math.max(260, svg.clientWidth) : 720;
+    svg.setAttribute('viewBox', `0 0 ${width} 230`);
     const height = 230;
     const left = 42;
     const right = 16;
@@ -658,3 +663,4 @@ export class SolarUI {
     URL.revokeObjectURL(url);
   }
 }
+

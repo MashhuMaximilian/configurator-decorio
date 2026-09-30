@@ -1,20 +1,21 @@
-import { LANGUAGE_PROFILES, LOCALE_HOSTS, getLanguageProfile, getLocaleForHostname, getLocalizedConfiguratorUrl } from './config.js?v=platform-21';
+import {openConfigurationQuotation, quotationLabel} from './configurationQuotation.js';
+import { LANGUAGE_PROFILES, LOCALE_HOSTS, getLanguageProfile, getLocaleForHostname, getLocalizedConfiguratorUrl } from './config.js?v=tenant-routes-1';
 import { DEFAULT_GUEST_REGION, fetchGuestRegion, guestRegionForCountry } from './regionDefaults.js?v=platform-21';
 import { sharedT } from './i18n.js?v=platform-21';
 import { renderActionFeedback } from './components/feedback.js?v=platform-21';
-import { renderTopBar } from './components/topBar.js?v=platform-21';
+import { renderTopBar } from './components/topBar.js?v=tenant-branding-1';
 import { syncAccountIdentity } from './components/accountMenu.js?v=platform-21';
 import { createDomainAuthHandoff, observeGoogleAuth, redeemDomainAuthHandoff, signInWithDomainCustomToken, signInWithGoogle, signOutGoogle } from './firebaseAuth.js?v=platform-19';
 import { renderToolsMenu } from './components/toolsMenu.js?v=platform-19';
 import { renderSavedConfigurationsDialog } from './components/savedConfigurationsDialog.js?v=platform-19';
 import { renderProfileDialog } from './components/profileDialog.js?v=platform-19';
 import { renderLanguageSwitchLoading } from './components/languageSwitchLoading.js?v=platform-19';
-import { renderConfiguratorPanelFooter } from './components/configuratorPanel.js?v=platform-19';
+import { renderConfiguratorPanelFooter } from './components/configuratorPanel.js?v=quotation-1';
 import { renderCartMenu } from './components/cartMenu.js?v=platform-19';
 import { getUserCart, mutateUserCart } from './userCart.js?v=platform-19';
 import { deleteUserConfiguration, getUserConfiguration, listUserConfigurations, saveUserConfiguration } from './savedConfigurations.js?v=platform-19';
 import { readShareState } from './shareState.js?v=platform-19';
-import { getTenantSlugForHostname } from './tenantBootstrap.js?v=platform-19';
+import { currentTenantContext, getTenantSlugForHostname } from './tenantBootstrap.js?v=tenant-domains-1';
 import { recordConfiguratorAccessOnce, recordConfiguratorAnalyticsEvent } from './configuratorAnalytics.js?v=platform-19';
 import { deleteUserAccount, exportUserProfileData, getUserProfile, updateUserProfile } from './userProfile.js?v=platform-19';
 
@@ -37,9 +38,9 @@ const SAVED_CONFIGURATION_ID_PATTERN = /^[A-Za-z0-9_-]{1,128}$/;
 const CART_EDIT_ITEM_PARAM = 'cartItem';
 const CART_EDIT_PRODUCT_PARAM = 'cartProduct';
 const CART_EDIT_ITEM_ID_PATTERN = /^[A-Za-z0-9_-]{1,180}$/;
-const CART_EDIT_PRODUCTS = new Set(['window', 'roof', 'pergola', 'hall', 'solar', 'fence', 'cardbox', 'bookshelf', 'chair']);
+const CART_EDIT_PRODUCTS = new Set(['window', 'roof', 'pergola', 'hall', 'solar', 'fence', 'cardbox', 'bookshelf', 'chair', 'tiles']);
 const DOMAIN_SAVE_FAILURE_MESSAGE = 'Domain change failed because of a saving failure';
-const DRAFT_PRODUCTS = new Set(['window', 'roof', 'pergola', 'hall', 'fence', 'solar', 'cardbox', 'bookshelf', 'chair']);
+const DRAFT_PRODUCTS = new Set(['window', 'roof', 'pergola', 'hall', 'fence', 'solar', 'cardbox', 'bookshelf', 'chair', 'tiles']);
 const SUPPORT_EMAIL = 'office@360configurator.com';
 const SUPPORT_PRODUCT_NAMES = Object.freeze({
   window: 'Window',
@@ -50,6 +51,7 @@ const SUPPORT_PRODUCT_NAMES = Object.freeze({
   solar: 'Solar',
   cardbox: 'Cardbox',
   bookshelf: 'Bookshelf',
+  tiles: 'Pavement',
   chair: 'Chair',
 });
 const CART_SUCCESS_FEEDBACK_MS = 1500;
@@ -211,7 +213,7 @@ function resizeProfileAvatar(file) {
   });
 }
 
-const SHARED_STANDALONE_STYLE_VERSION = '26';
+const SHARED_STANDALONE_STYLE_VERSION = 'tenant-branding-1';
 
 function refreshSharedStandaloneStylesheet() {
   document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
@@ -596,16 +598,15 @@ export class StandaloneConfiguratorShell {
     const product = normalizeProductId(productId);
     if (!CART_EDIT_PRODUCTS.has(product) || !CART_EDIT_ITEM_ID_PATTERN.test(String(itemKey || ''))) return null;
 
+    const destination = new URL(baseUrl, window.location.href);
     const tenantSlug = getTenantSlugForHostname(window.location.hostname);
-    let target;
-    if (tenantSlug) {
-      target = new URL(`/${product}-configurator/`, window.location.origin);
-    } else {
-      const domainLocale = getLocaleForHostname(window.location.hostname);
-      const localized = getLocalizedConfiguratorUrl(domainLocale, product, baseUrl);
-      if (!localized) return null;
-      target = new URL(localized, window.location.href);
-    }
+    if (tenantSlug && getTenantSlugForHostname(destination.hostname) !== tenantSlug) return null;
+    const domainLocale = getLocaleForHostname(
+      tenantSlug ? destination.hostname : window.location.hostname,
+    );
+    const localized = getLocalizedConfiguratorUrl(domainLocale, product, destination);
+    if (!localized) return null;
+    const target = new URL(localized, window.location.href);
     target.search = '';
     target.hash = '';
     const hash = readHashParams(target);
@@ -983,6 +984,7 @@ export class StandaloneConfiguratorShell {
       ${renderTopBar({
         brandSrc: this.options.brandSrc,
         brandAlt: this.options.brandAlt,
+        tenant: currentTenantContext(),
         projectName: this.projectName,
         state: {
           ...this.state,
@@ -1103,6 +1105,9 @@ export class StandaloneConfiguratorShell {
       const toggleSelector = this.options.settingsPanel?.toggleSelector;
       this.configuratorPanelToggle = toggleSelector ? document.querySelector(toggleSelector) : null;
       this.configuratorPanelToggle?.classList.add('shared-configurator-panel__toggle--floating-right');
+      this.panelLayoutQuery = window.matchMedia('(max-width: 760px)');
+      this.onPanelLayoutChange = () => this.syncFloatingConfiguratorPanelToggle();
+      this.panelLayoutQuery.addEventListener('change', this.onPanelLayoutChange);
       this.syncFloatingConfiguratorPanelToggle();
     }
 
@@ -1141,6 +1146,7 @@ export class StandaloneConfiguratorShell {
     this.configuratorPanelFooter = footer;
 
     this.onConfiguratorPanelFooterClick = (event) => {
+      if (event.target.closest('[data-shared-panel-quotation]')) { void openConfigurationQuotation(this); return; }
       const button = event.target.closest('[data-shared-panel-add-to-cart]');
       if (!button || button.disabled) return;
       void this.addCurrentConfigurationToCart(button);
@@ -1160,8 +1166,9 @@ export class StandaloneConfiguratorShell {
 
     toggle.style.setProperty('position', 'fixed', 'important');
     toggle.style.setProperty('top', compact
-      ? 'calc(var(--shared-topbar-height, 47px) + 26px)'
+      ? 'auto'
       : 'calc(var(--shared-topbar-height, 47px) + 34px)', 'important');
+    toggle.style.setProperty('bottom', compact ? 'var(--shared-mobile-panel-toggle-bottom)' : 'auto', 'important');
     toggle.style.setProperty('right', right, 'important');
     toggle.style.setProperty('left', 'auto', 'important');
     toggle.style.setProperty('width', '34px', 'important');
@@ -1251,6 +1258,8 @@ export class StandaloneConfiguratorShell {
       priceText: this.resolveConfiguratorPanelPriceText(),
       addToCartLabel: sharedT(this.state.locale, 'panel.addToCart'),
       addToCartDisabled: !this.canAddToCart(),
+      showAddToCart: this.options.capabilities.save !== false,
+      quotationLabel: this.productId === 'bookshelf' ? '' : quotationLabel(this.state.locale),
     });
   }
 
@@ -1512,8 +1521,15 @@ export class StandaloneConfiguratorShell {
   async applyGuestRegionDefaults() {
     let region = this.readGuestRegionPreference();
     if (!region) {
-      region = await fetchGuestRegion();
-      region = this.persistGuestRegionPreference(region, 'ip');
+      const tenantSlug = getTenantSlugForHostname(window.location.hostname);
+      if (tenantSlug) {
+        const locale = getLocaleForHostname(window.location.hostname);
+        const { currency, units } = getLanguageProfile(locale);
+        region = { countryCode: '', locale, currency, units };
+      } else {
+        region = await fetchGuestRegion();
+      }
+      region = this.persistGuestRegionPreference(region, tenantSlug ? 'domain' : 'ip');
     }
     if (this.authUser?.uid) return;
     const changes = [];
@@ -1855,7 +1871,11 @@ export class StandaloneConfiguratorShell {
   async buildSharedDomainTarget(nextLocale) {
     const shareUrl = await Promise.resolve(this.options.callbacks.getShareUrl?.() || '');
     if (!shareUrl) throw new Error('A share URL could not be generated for the domain change.');
-    const target = getLocalizedConfiguratorUrl(nextLocale, this.productId, new URL(shareUrl, window.location.href));
+    const transport = new URL(shareUrl, window.location.href);
+    // Some product share builders canonicalize their host. A domain switch
+    // must keep the actual tenant while copying only configuration transport.
+    if (getTenantSlugForHostname(window.location.hostname)) transport.hostname = window.location.hostname;
+    const target = getLocalizedConfiguratorUrl(nextLocale, this.productId, transport);
     if (!target) throw new Error('The destination domain URL could not be generated.');
     return target;
   }
@@ -2244,9 +2264,9 @@ export class StandaloneConfiguratorShell {
       this.accountSettingsOpen = !this.accountSettingsOpen;
       this.helpOpen = false;
       this.domainOpen = false;
-      // Re-render before syncing so guest/auth transitions can never leave the
-      // Settings button pointing at stale account-menu DOM.
-      this.renderHost();
+      // Keep the existing account menu mounted while toggling Settings.
+      // Re-rendering the host here restarts the account-menu open transition,
+      // which makes the whole menu visibly close and reopen on every click.
       this.sync();
     } else if (action === 'toggle-dark-mode') {
       this.state.darkMode = !this.state.darkMode;
@@ -2957,10 +2977,11 @@ export class StandaloneConfiguratorShell {
     if (this.configuratorPanelFooter && this.onConfiguratorPanelFooterClick) {
       this.configuratorPanelFooter.removeEventListener('click', this.onConfiguratorPanelFooterClick);
     }
+    this.panelLayoutQuery?.removeEventListener('change', this.onPanelLayoutChange);
     this.configuratorPanelHost?.classList.remove('shared-configurator-panel-host--floating-right');
     if (this.configuratorPanelToggle) {
       this.configuratorPanelToggle.classList.remove('shared-configurator-panel__toggle--floating-right');
-      ['position', 'top', 'right', 'left', 'width', 'height', 'margin', 'border-radius'].forEach((property) => {
+      ['position', 'top', 'bottom', 'right', 'left', 'width', 'height', 'margin', 'border-radius'].forEach((property) => {
         this.configuratorPanelToggle.style.removeProperty(property);
       });
     }
