@@ -29,8 +29,6 @@ const LEGACY_SHELF_SLOT_STEP = 20;
 const DEFAULT_SHELF_COUNT = 9;
 const MOVABLE_SHELF_DEPTH_REDUCTION = 32;
 const BACK = 16;
-const BACK_PLANK_TARGET_WIDTH = 100;
-const BACK_PLANK_SEAM = 1.2;
 const SIDE = 10;
 const SIDE_RAIL_BODY = 276;
 const SIDE_RAIL_RAMP = 14;
@@ -1391,49 +1389,20 @@ function renderBridgeConnectors(anchor, heading, spec, material) {
   });
 }
 
-function addVerticalBackPlanks(group, module, { centerX, width, height }) {
-  // The real cabinet back is built from individual vertical boards rather than
-  // one sheet. Keep each board close to the client's ~100 mm nominal width and
-  // use a very narrow, darker tongue/joint between them so the construction is
-  // clearly readable even when the bookshelf uses a dark finish.
-  const plankCount = Math.max(1, Math.round(width / BACK_PLANK_TARGET_WIDTH));
-  const seamCount = Math.max(0, plankCount - 1);
-  const seamWidth = seamCount ? BACK_PLANK_SEAM : 0;
-  const plankWidth = Math.max(12, (width - seamWidth * seamCount) / plankCount);
-  const startX = centerX - width / 2;
-  const plankMaterial = darkWoodMaterial(module.colour);
-  const seamColour = new THREE.Color(module.colour).multiplyScalar(0.42);
-  const seamMaterial = new THREE.MeshStandardMaterial({
-    color: seamColour,
-    roughness: 0.9,
-    metalness: 0,
-  });
+function addAlternatingBackPlanks(group, { width, innerWidth, height, material, moduleId }) {
+  const targetPlankWidth = 100;
+  const forwardOffset = 3;
+  const plankCount = Math.max(1, Math.round(innerWidth / targetPlankWidth));
+  const plankWidth = innerWidth / plankCount;
+  const xStart = width / 2 - innerWidth / 2 + plankWidth / 2;
 
-  let cursorX = startX;
   for (let index = 0; index < plankCount; index += 1) {
-    addBox(group, {
-      x: plankWidth,
-      y: height,
-      z: BACK,
-    }, {
-      x: cursorX + plankWidth / 2,
+    const rowOffset = index % 2 === 0 ? 0 : forwardOffset;
+    addBox(group, { x: plankWidth, y: height, z: BACK }, {
+      x: xStart + index * plankWidth,
       y: height / 2,
-      z: -BACK / 2,
-    }, plankMaterial, module.id);
-    cursorX += plankWidth;
-
-    if (index < plankCount - 1) {
-      addBox(group, {
-        x: seamWidth,
-        y: height,
-        z: BACK,
-      }, {
-        x: cursorX + seamWidth / 2,
-        y: height / 2,
-        z: -BACK / 2,
-      }, seamMaterial, module.id, { cast: false, receive: true });
-      cursorX += seamWidth;
-    }
+      z: -BACK / 2 + rowOffset,
+    }, material, moduleId);
   }
 }
 
@@ -1454,9 +1423,10 @@ function addShelfWing(parent, module, pose, length, { cornerWing = false, shared
   const shelfDepth = depth - 34;
   const shelfWidth = innerWidth;
 
-  // Model the real back as individual vertical timber planks instead of one
-  // uniform sheet. The lower plinth remains a separate recessed structural part.
-  addVerticalBackPlanks(group, module, { centerX: width / 2, width: innerWidth, height });
+  // Build the rear face from individual vertical timber planks. To better
+  // express the real construction, adjacent planks alternate between two rows:
+  // the base back row and a second row set 3 mm forward.
+  addAlternatingBackPlanks(group, { width, innerWidth, height, material: darkWood, moduleId: module.id });
   const plinthWidth = innerWidth;
   const plinthDepth = Math.max(100, shelfDepth - PLINTH_FRONT_RECESS);
   const plinthCenterZ = -depth + POST + plinthDepth / 2;
