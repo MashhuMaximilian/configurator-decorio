@@ -1397,13 +1397,14 @@ function addHorizontalBackPlanks(group, { width, innerWidth, height, material, m
   const lowerPlankY = bottomShelfCenterY + BOARD / 2 + plankHeight / 2;
   const upperPlankY = topShelfCenterY - BOARD / 2 - plankHeight / 2;
   const middlePlankY = height / 2;
+  const topCapPlankY = height - plankHeight / 2;
   // Local -Z points toward the bookshelf interior/front. Mount the horizontal
   // rails on the room-facing side of the vertical boarding: the rear face of
   // each rail sits flush against the front face of the foremost vertical row.
   // The foremost vertical row is the base row, whose front face is at -BACK.
   const centerZ = -BACK - BACK / 2;
 
-  [lowerPlankY, middlePlankY, upperPlankY].forEach((y) => {
+  [lowerPlankY, middlePlankY, upperPlankY, topCapPlankY].forEach((y) => {
     addBox(group, { x: innerWidth, y: plankHeight, z: BACK }, {
       x: width / 2,
       y,
