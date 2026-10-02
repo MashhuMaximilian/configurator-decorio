@@ -43,7 +43,7 @@ async function init(){
  renderProducts();if(state.segments[0]){$('#product').value=state.segments[0].productId;renderProduct();$('#variant').value=state.segments[0].variantId;}
  refresh();viewer?.fit(state);editor.fit(state);
  if(local){$('#connection-status').textContent='Preview local · export JSON disponibil';$('#login').disabled=true;}else{
-  const {requireTenantConfiguratorAccess}=await import('../../shared-ui/src/tenantBootstrap.js');const context=await requireTenantConfiguratorAccess('fence');if(context?.slug!=='decorio')throw Error('Identitatea tenantului Decorio nu a fost confirmată.');cloudReady=true;$('#connection-status').textContent='Tenant Decorio conectat';
+  const {resolveTenantContext}=await import('../../shared-ui/src/tenantBootstrap.js');const context=await resolveTenantContext();if(!context?.isTenant||context.slug!=='decorio'||!context.exists||context.status!=='active'||context.configurators?.fence!==true)throw Error('Demo-ul Decorio nu este încă activat. Administratorul platformei trebuie să finalizeze configurarea clientului.');cloudReady=true;$('#connection-status').textContent='Tenant Decorio conectat';
   const auth=await import('../../shared-ui/src/firebaseAuth.js');await auth.observeGoogleAuth(u=>{user=u;$('#login').textContent=u?'Deconectare':'Intră în cont';});
  }
  const params=new URLSearchParams(location.search),hash=new URLSearchParams(location.hash.slice(1));
