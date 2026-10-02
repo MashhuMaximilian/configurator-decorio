@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 import { CSS2DObject, CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
+import {createSurfaceSystem} from '../../shared-3d/src/createSurfaceSystem.js';
 // Scene infrastructure from configurator-360 @ 83376ec. Geometry is injected by each application.
 const GRADE_Y = -0.02;
 
@@ -29,41 +30,6 @@ export class FenceScene {
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.08;
     this.host.appendChild(this.renderer.domElement);
-
-    // Metallic powder coats need something structured to reflect. The former
-    // light-only setup left bronze nearly black from the default camera and
-    // produced a highlight only after orbiting underneath the assembly.
-    const environmentScene = new THREE.Scene();
-    environmentScene.background = new THREE.Color(0x222a31);
-    const studioBox = new THREE.BoxGeometry();
-    const studioRoom = new THREE.Mesh(
-      studioBox,
-      new THREE.MeshStandardMaterial({ color: 0x38424a, side: THREE.BackSide, roughness: 0.94 }),
-    );
-    studioRoom.scale.set(24, 24, 24);
-    environmentScene.add(studioRoom);
-    const addSoftbox = (position, scale, color, intensity) => {
-      const panel = new THREE.Mesh(
-        studioBox,
-        new THREE.MeshLambertMaterial({ color: 0x000000, emissive: color, emissiveIntensity: intensity }),
-      );
-      panel.position.fromArray(position);
-      panel.scale.fromArray(scale);
-      environmentScene.add(panel);
-    };
-    addSoftbox([-8, 5, 5], [0.08, 5, 4], 0xffecd1, 17);
-    addSoftbox([7, 3, 2], [0.08, 3.6, 5], 0xaad9ff, 10);
-    addSoftbox([0, 8, -2], [5, 0.08, 3], 0xffffff, 12);
-    addSoftbox([-2, 4.2, 10], [1.5, 4.2, 0.08], 0xffdfb8, 19);
-    const pmremGenerator = new THREE.PMREMGenerator(this.renderer);
-    this.environmentTarget = pmremGenerator.fromScene(environmentScene, 0.04);
-    this.scene.environment = this.environmentTarget.texture;
-    pmremGenerator.dispose();
-    environmentScene.traverse((object) => {
-      object.geometry?.dispose?.();
-      const surface = object.material;
-      if (surface) (Array.isArray(surface) ? surface : [surface]).forEach((entry) => entry.dispose());
-    });
 
     this.labelRenderer = new CSS2DRenderer();
     this.labelRenderer.domElement.className = 'fence-label-layer';
@@ -118,6 +84,7 @@ export class FenceScene {
     this.compassGroup = new THREE.Group();
     this.scene.add(this.compassGroup);
 
+    this.surface = createSurfaceSystem(THREE, {renderer:this.renderer, scene:this.scene, shadowLights:[this.sun], quality:'balanced'});
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(this.host);
     this.resize();
@@ -383,6 +350,7 @@ export class FenceScene {
   }
 
   resize() {
+    if (!this.host.clientWidth || !this.host.clientHeight) return;
     const width = Math.max(1, this.host.clientWidth);
     const height = Math.max(1, this.host.clientHeight);
     this.camera.aspect = width / height;
@@ -395,7 +363,8 @@ export class FenceScene {
     this.animationFrame = requestAnimationFrame(() => this.animate());
     this.controls.update();
     this.updateStudioLights();
-    this.renderer.render(this.scene, this.camera);
+    if(this.surface)this.surface.render(this.camera,{onDemand:true});
+    else this.renderer.render(this.scene, this.camera);
     this.labelRenderer.render(this.scene, this.camera);
   }
 }

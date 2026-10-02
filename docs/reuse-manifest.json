@@ -1,0 +1,355 @@
+{
+  "source": "office-360design/configurator-360",
+  "sourceCheckout": "/Users/max/Documents/configurator-360",
+  "base": "83376ec",
+  "modules": [
+    {
+      "file": "shared-3d/src/createSurfaceSystem.js",
+      "sourceSha256": "f2ec7d4f00bdba82440f45c99a3c068b1998654c7b47f659e17f85988a0b328e",
+      "forkSha256": "f2ec7d4f00bdba82440f45c99a3c068b1998654c7b47f659e17f85988a0b328e",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/environment/GlazingEnvironment.js",
+      "sourceSha256": "717fb6fd851e89a39cc42e90695031fce8a4833bffef763b58fcab01929a1822",
+      "forkSha256": "717fb6fd851e89a39cc42e90695031fce8a4833bffef763b58fcab01929a1822",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/environment/NeutralEnvironment.js",
+      "sourceSha256": "d6d078e770f1d634840e708466d605eb20e1f10f5a387d347914b5d87318de1f",
+      "forkSha256": "d6d078e770f1d634840e708466d605eb20e1f10f5a387d347914b5d87318de1f",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/geometry/GeometryLibrary.js",
+      "sourceSha256": "5414a00faf0a1158fd9cca74f7ee2279d50bdf19556359146047116d33f036ba",
+      "forkSha256": "5414a00faf0a1158fd9cca74f7ee2279d50bdf19556359146047116d33f036ba",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/geometry/edgeFinishes.js",
+      "sourceSha256": "8e8fe7fff207fb52d0828bc492e3e5ba15ff365475c764b2f578fa977e455874",
+      "forkSha256": "8e8fe7fff207fb52d0828bc492e3e5ba15ff365475c764b2f578fa977e455874",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/geometry/resourceLifecycle.js",
+      "sourceSha256": "61af4ed5035e1aab209a20ed468bb376576cabe58cdccacc5905985d12e6c215",
+      "forkSha256": "61af4ed5035e1aab209a20ed468bb376576cabe58cdccacc5905985d12e6c215",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/geometry/scalarGeometry.js",
+      "sourceSha256": "8b5a7923a3cded1e6db9364b3cc13e8658ea7cfd130c9271aba1c187b07c4ba1",
+      "forkSha256": "8b5a7923a3cded1e6db9364b3cc13e8658ea7cfd130c9271aba1c187b07c4ba1",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/geometry/surfaceDeformation.js",
+      "sourceSha256": "026afa082d2f1198299cbca32c0182e1e190b4a458bcd4a157b29538a7e23bf9",
+      "forkSha256": "026afa082d2f1198299cbca32c0182e1e190b4a458bcd4a157b29538a7e23bf9",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/geometry/surfaceMapping.js",
+      "sourceSha256": "313946588261ca348cfcdea00d12f97ce1dd24bad6ae353dddad635d35af2175",
+      "forkSha256": "313946588261ca348cfcdea00d12f97ce1dd24bad6ae353dddad635d35af2175",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/geometry/surfaceUVs.js",
+      "sourceSha256": "5b34fdf301f3c878fb8da312ef23e2dfc6cdc483ae3753cc20c759e769d3b8e3",
+      "forkSha256": "5b34fdf301f3c878fb8da312ef23e2dfc6cdc483ae3753cc20c759e769d3b8e3",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/materials/MaterialLibrary.js",
+      "sourceSha256": "5cbdf0a6fcb16da578c3c382a48eb4dba805668dab05a10faefcc56b1a154def",
+      "forkSha256": "5cbdf0a6fcb16da578c3c382a48eb4dba805668dab05a10faefcc56b1a154def",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/materials/PBRTextureSets.js",
+      "sourceSha256": "da8c07e86b6996e9654a867e2fa87c3ea8c51d808938ce55654857ceab1135a9",
+      "forkSha256": "da8c07e86b6996e9654a867e2fa87c3ea8c51d808938ce55654857ceab1135a9",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/materials/SurfaceTextures.js",
+      "sourceSha256": "4dfc940d4a811c3f195de3c81109e66b7397303ca00b1a8e69bf0d20e5c28cf7",
+      "forkSha256": "4dfc940d4a811c3f195de3c81109e66b7397303ca00b1a8e69bf0d20e5c28cf7",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/materials/accessoryTextures.js",
+      "sourceSha256": "b80fa8f6cc1ea5a8bca47c7693ae5ef7fa3e0a6baf2c505a2278b573a5b5f5f6",
+      "forkSha256": "b80fa8f6cc1ea5a8bca47c7693ae5ef7fa3e0a6baf2c505a2278b573a5b5f5f6",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/materials/polymerTextures.js",
+      "sourceSha256": "5d8211511432ee8f54da95ec924f475a305577c246c6f41dc88dc43ad323f27d",
+      "forkSha256": "5d8211511432ee8f54da95ec924f475a305577c246c6f41dc88dc43ad323f27d",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/materials/presets.js",
+      "sourceSha256": "9746696fd1f46b054c634ee6c71453a819bb6b957adaee1f84e639774247fb1c",
+      "forkSha256": "9746696fd1f46b054c634ee6c71453a819bb6b957adaee1f84e639774247fb1c",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/materials/textureSets.js",
+      "sourceSha256": "bc7ea73beeb79fbe792592427f81a0c784f166c603d3d92bc4d15a4fda5fe8dc",
+      "forkSha256": "bc7ea73beeb79fbe792592427f81a0c784f166c603d3d92bc4d15a4fda5fe8dc",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/quality.js",
+      "sourceSha256": "d567d5d429ba4d4f187fbe4c0c87c92ca52671038082e5686688f561fabda52b",
+      "forkSha256": "d567d5d429ba4d4f187fbe4c0c87c92ca52671038082e5686688f561fabda52b",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/rendering/ContactShading.js",
+      "sourceSha256": "bb2fad0eb42533ef26e7d8a1f00f258313b05603b3ec75bfde08c35f4dbcc24b",
+      "forkSha256": "bb2fad0eb42533ef26e7d8a1f00f258313b05603b3ec75bfde08c35f4dbcc24b",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/rendering/RenderPerformance.js",
+      "sourceSha256": "c59c1c35064916b026d773d819774965ebf4716ae2bab900b08601a9c8e3a901",
+      "forkSha256": "c59c1c35064916b026d773d819774965ebf4716ae2bab900b08601a9c8e3a901",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/rendering/SceneRevision.js",
+      "sourceSha256": "b227db004bd281ea32e97579f973de57a2ee9091242d3a378b0e3b6576475d86",
+      "forkSha256": "b227db004bd281ea32e97579f973de57a2ee9091242d3a378b0e3b6576475d86",
+      "adapted": false
+    },
+    {
+      "file": "shared-3d/src/rendering/contactShaders.js",
+      "sourceSha256": "bfc8df7307772a3c222d072670cbc10656876e76e76174f4942d551841f9d410",
+      "forkSha256": "bfc8df7307772a3c222d072670cbc10656876e76e76174f4942d551841f9d410",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/firebase-app-check.json",
+      "sourceSha256": "618f7ff9bc1f959c1652cbbfc3e95e552892d5bd0d8b4d14ca8e295b69f69648",
+      "forkSha256": "618f7ff9bc1f959c1652cbbfc3e95e552892d5bd0d8b4d14ca8e295b69f69648",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/accountMenu.js",
+      "sourceSha256": "85869641815a3616cd6232789dec1214d9dd0300f4e1488045f00e61618c43bc",
+      "forkSha256": "85869641815a3616cd6232789dec1214d9dd0300f4e1488045f00e61618c43bc",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/accountOrders.js",
+      "sourceSha256": "22060322aae7827dc750329644203050b3022df43dab20a87bbc1aece1ab9684",
+      "forkSha256": "22060322aae7827dc750329644203050b3022df43dab20a87bbc1aece1ab9684",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/cartMenu.js",
+      "sourceSha256": "d9304d7b595215e0c5ef3f27c63e3df540138470c183cf26e693aa82ad6ab8e4",
+      "forkSha256": "d9304d7b595215e0c5ef3f27c63e3df540138470c183cf26e693aa82ad6ab8e4",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/configuratorPanel.js",
+      "sourceSha256": "004baf8e8fd63c63d6205b974833798757037c6dbf745d46a00d23cfb2e03375",
+      "forkSha256": "004baf8e8fd63c63d6205b974833798757037c6dbf745d46a00d23cfb2e03375",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/feedback.js",
+      "sourceSha256": "51aed3f60527d4705f3ee8c068f8eda5dc5be1febcb6393b219c88c2d1da4de4",
+      "forkSha256": "51aed3f60527d4705f3ee8c068f8eda5dc5be1febcb6393b219c88c2d1da4de4",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/languageMenu.js",
+      "sourceSha256": "e2cbee880708e1439e466a5ef4d62b21d0df36eb6f2a773a13825b2bb29d05a9",
+      "forkSha256": "e2cbee880708e1439e466a5ef4d62b21d0df36eb6f2a773a13825b2bb29d05a9",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/languageSwitchLoading.js",
+      "sourceSha256": "66b219e2c2ea5385c85ad4f40d17b06019e24bba752f2cef3fe702873ac1e2fc",
+      "forkSha256": "66b219e2c2ea5385c85ad4f40d17b06019e24bba752f2cef3fe702873ac1e2fc",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/panelControls.js",
+      "sourceSha256": "20f91a4ccc0f65124b97864d57988930f3a45481cc2f2407fbd8227a3bccad87",
+      "forkSha256": "5c966275c1f97229972d2cacafc50d404c7391789489dcf08fda678e9939113b",
+      "adapted": true
+    },
+    {
+      "file": "shared-ui/src/components/profileDialog.js",
+      "sourceSha256": "9bd0ca342e5e7824e06c1677400626fee577cade8247b466005117c37f3af5d3",
+      "forkSha256": "9bd0ca342e5e7824e06c1677400626fee577cade8247b466005117c37f3af5d3",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/savedConfigurationsDialog.js",
+      "sourceSha256": "c9e8cc75c7bd0ad70147ce10bc1f088ae998c25b87bfe07a1c22146dc422f6db",
+      "forkSha256": "c9e8cc75c7bd0ad70147ce10bc1f088ae998c25b87bfe07a1c22146dc422f6db",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/toolsMenu.js",
+      "sourceSha256": "f24c6672e29d17cf81823da1f8f5334fc27d8fab2e94094f99b337f308ab3803",
+      "forkSha256": "f24c6672e29d17cf81823da1f8f5334fc27d8fab2e94094f99b337f308ab3803",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/components/topBar.js",
+      "sourceSha256": "dde085a1edbc89c3958e311b6ac7d8611cf9a40d323cf8d46b9c51ba10cb6690",
+      "forkSha256": "d37134829ae82e34267fda415e1d27449f0a5c3fb184a48f115ffc5bff4fe793",
+      "adapted": true
+    },
+    {
+      "file": "shared-ui/src/config.js",
+      "sourceSha256": "fd283ec3e442f090307991a37a2baf98bdfded3e6596abf385e6184282db52be",
+      "forkSha256": "fd283ec3e442f090307991a37a2baf98bdfded3e6596abf385e6184282db52be",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/configurationQuotation.js",
+      "sourceSha256": "e93febbddc73618df1bd8a571d8ad4333dbf1f0abd88551ae22d2d7ef64b95aa",
+      "forkSha256": "e93febbddc73618df1bd8a571d8ad4333dbf1f0abd88551ae22d2d7ef64b95aa",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/configuratorAnalytics.js",
+      "sourceSha256": "bfb58c515c9ad226ebe9f2cda250cffd7fb72eb103250af7b3b005fb01280d29",
+      "forkSha256": "bfb58c515c9ad226ebe9f2cda250cffd7fb72eb103250af7b3b005fb01280d29",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/firebaseAppCheck.js",
+      "sourceSha256": "9786fade3ca5334c538eeebdb6db69e277152fbc2a6b2deb8863bc7195fe89b9",
+      "forkSha256": "9786fade3ca5334c538eeebdb6db69e277152fbc2a6b2deb8863bc7195fe89b9",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/firebaseAuth.js",
+      "sourceSha256": "9f0bd462a363e998d83adc1ea80484954fb152957adca16d55a4a8549f28af83",
+      "forkSha256": "9f0bd462a363e998d83adc1ea80484954fb152957adca16d55a4a8549f28af83",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/history/undoManager.js",
+      "sourceSha256": "5e74e5e9a84911138d57fded783e00663525c3418a67c675d39a76cf369d8719",
+      "forkSha256": "5e74e5e9a84911138d57fded783e00663525c3418a67c675d39a76cf369d8719",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/i18n.js",
+      "sourceSha256": "f553fe334918a641458f6349122f1befea4c542f86d189d33479489feeacad33",
+      "forkSha256": "f553fe334918a641458f6349122f1befea4c542f86d189d33479489feeacad33",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/icons.js",
+      "sourceSha256": "333771d3404e41f76ca9315656090ba59bb162cf25c3b84b20de4450b2c21c9a",
+      "forkSha256": "333771d3404e41f76ca9315656090ba59bb162cf25c3b84b20de4450b2c21c9a",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/quotationRequest.js",
+      "sourceSha256": "44f03fa2613c0ea4715e62e0ff1b260cb0204a125bc6edc24e258c2863ee17da",
+      "forkSha256": "44f03fa2613c0ea4715e62e0ff1b260cb0204a125bc6edc24e258c2863ee17da",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/regionDefaults.js",
+      "sourceSha256": "84e0c4beab7b8ec0973872665b2b4759b27432e0182ad9bf5013454d91c87605",
+      "forkSha256": "84e0c4beab7b8ec0973872665b2b4759b27432e0182ad9bf5013454d91c87605",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/savedConfigurations.js",
+      "sourceSha256": "932b57d91f2bd330e91e115f8a893911f8575767f52891422d93c8b02bb49eb5",
+      "forkSha256": "932b57d91f2bd330e91e115f8a893911f8575767f52891422d93c8b02bb49eb5",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/shareState.js",
+      "sourceSha256": "94ca1d207e8b55ea7d4224a9a21d60169b6c3810e6ecbbe55616fd96c08f53dd",
+      "forkSha256": "94ca1d207e8b55ea7d4224a9a21d60169b6c3810e6ecbbe55616fd96c08f53dd",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/standaloneShell.js",
+      "sourceSha256": "fa45a27f719764cd8a8c3ad7fe96565c3ac88aaadee1cf6b1ce00ff6afae2c66",
+      "forkSha256": "286e6dcbf6516860001b4faab152ed89754f49f62d068d93a138e2fdce2f1ed3",
+      "adapted": true
+    },
+    {
+      "file": "shared-ui/src/tenantBootstrap.js",
+      "sourceSha256": "76b3bf0600b2f354f426c8789b053d36f0da1748005adbc82bfa16ad2bf3758c",
+      "forkSha256": "76b3bf0600b2f354f426c8789b053d36f0da1748005adbc82bfa16ad2bf3758c",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/tenantBranding.js",
+      "sourceSha256": "c5c0dea7f5964712b2d916b9bbb9a7e74286e6bd686123bc5805e2149f2e20f5",
+      "forkSha256": "c5c0dea7f5964712b2d916b9bbb9a7e74286e6bd686123bc5805e2149f2e20f5",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/tenantDomains.js",
+      "sourceSha256": "3d077f59d2cdf31c2c8f1aceb6d5e575d22157cb5b943a6aedec1e30e4d7f8eb",
+      "forkSha256": "3d077f59d2cdf31c2c8f1aceb6d5e575d22157cb5b943a6aedec1e30e4d7f8eb",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/tools/registry.js",
+      "sourceSha256": "855af71c6f2e38403879a9100c0af14925f02f4d17160441431f4593c08f5ab4",
+      "forkSha256": "855af71c6f2e38403879a9100c0af14925f02f4d17160441431f4593c08f5ab4",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/userCart.js",
+      "sourceSha256": "886b01dba6eb6b580df977f81f960ae5e9371e0d052a59a7fd1a289f454489b4",
+      "forkSha256": "886b01dba6eb6b580df977f81f960ae5e9371e0d052a59a7fd1a289f454489b4",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/userProfile.js",
+      "sourceSha256": "21e08cfd6bb044f3510ec2c7343533e026d71bddb95b712a6e9368f94fca7ca2",
+      "forkSha256": "21e08cfd6bb044f3510ec2c7343533e026d71bddb95b712a6e9368f94fca7ca2",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/src/utils.js",
+      "sourceSha256": "c6131e996155b040e8ff3d11dc12b96c8d9eaaf5802dd2d23e755d45a0492623",
+      "forkSha256": "c6131e996155b040e8ff3d11dc12b96c8d9eaaf5802dd2d23e755d45a0492623",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/styles/panelControls.css",
+      "sourceSha256": "aa4fdfaa702c063a023eee48dd76884c840dab10845e979c930f16df2ebdc37c",
+      "forkSha256": "aa4fdfaa702c063a023eee48dd76884c840dab10845e979c930f16df2ebdc37c",
+      "adapted": false
+    },
+    {
+      "file": "shared-ui/styles/standalone.css",
+      "sourceSha256": "f2b218c4c050ed8a74ad4a558afcf5643b72e76b56f5d72458196911e0aed9a6",
+      "forkSha256": "e407d126eab0f01f8e1dc9ddb235bd9b63333d299b4d329a444c0065551edb5f",
+      "adapted": true
+    },
+    {
+      "file": "shared-ui/styles/tenantBranding.css",
+      "sourceSha256": "37fc2890af8368544f6b5a82d9d1d240bb07bbd6573984ce125e6a4e778b33ef",
+      "forkSha256": "37fc2890af8368544f6b5a82d9d1d240bb07bbd6573984ce125e6a4e778b33ef",
+      "adapted": false
+    }
+  ]
+}

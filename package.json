@@ -1,6 +1,20 @@
 {
-  "name": "configurator-decorio", "version": "0.1.0", "private": true, "type": "module",
-  "engines": {"node": ">=20"},
-  "scripts": {"dev":"node scripts/serve.mjs", "build":"node scripts/build.mjs", "test":"node --test tests/*.test.mjs", "check":"npm test && npm run build", "catalog:report":"node scripts/catalog-report.mjs"},
-  "dependencies": {"three":"0.169.0"}
+  "name": "configurator-decorio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test && npm run build",
+    "catalog:report": "node scripts/ontology-report.mjs",
+    "catalog:compile": "python3 scripts/build-ontology.py && node scripts/ontology-report.mjs"
+  },
+  "dependencies": {
+    "three": "0.169.0"
+  }
 }

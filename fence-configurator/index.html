@@ -1,51 +1,33 @@
-<!doctype html>
-<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#233d33"><title>Decorio — Proiectează împrejmuirea</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/shared-ui/styles/panelControls.css"><link rel="stylesheet" href="./decorio.css"><script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/addons/"}}</script></head>
-<body>
-<header class="header"><a class="brand" href="/" aria-label="Decorio configurator"><span class="brand-symbol">▥</span>decorio<span class="brand-dot">.</span></a><div class="header-divider"></div><span class="header-title">STUDIO DE ÎMPREJMUIRI</span><span class="demo-label">DEMO</span><div class="header-actions"><button id="open-projects" aria-label="Proiectele mele"><span class="desktop-label">Proiectele mele</span><span class="mobile-label" aria-hidden="true">▣</span></button><button id="login">Intră în cont</button><button id="share" class="primary">Distribuie ↗</button></div></header>
-<main class="workspace">
-<aside class="sidebar shared-panel-controls">
- <div class="intro"><p class="eyebrow">CONFIGURATOR 3D</p><h1>Locul tău. <br>Limitele tale.</h1><p>Alege sistemul. Desenează traseul.<br>Vezi proiectul prinzând contur.</p></div>
- <nav class="steps" aria-label="Etape configurare"><button class="active" data-step="catalog"><b>01</b> Sistem</button><button data-step="layout"><b>02</b> Traseu</button><button data-step="bom"><b>03</b> Piese</button></nav>
- <section id="catalog-panel" class="panel panel-section">
-  <label>Familie de produse<select id="family"></select></label>
-  <label class="search-label">Caută în catalog<input id="search" type="search" placeholder="Model, cod sau denumire…"></label>
-  <div class="filter-row"><label class="check"><input id="only-configurable" type="checkbox" checked> Cu dimensiuni documentate</label><span id="product-count"></span></div>
-  <p class="muted">Inventar extins; modelele 3D sunt schematice. Debifează filtrul pentru a vedea și produsele fără geometrie disponibilă.</p>
-  <label>Aplică automat alegerea pe<select id="apply-scope"><option value="all">Întregul proiect</option><option value="connected">Traseul conectat selectat</option><option value="segment">Doar segmentul selectat</option></select></label>
-  <p id="selection-status" class="notice" role="status">Produsul și varianta alese actualizează automat traseul. Lungimile se păstrează.</p>
-  <label>Produs<select id="product" size="6" aria-label="Produs"></select></label>
-  <div class="product-detail"><h2 id="product-name"></h2><p id="product-status" class="tag"></p><p id="product-notes"></p><a id="product-source" target="_blank" rel="noopener noreferrer">Vezi documentația ↗</a></div>
-  <details><summary>Datele produsului</summary><dl id="product-specs"></dl><div id="kit-included"></div></details>
-  <label>Variantă<select id="variant"></select></label>
-  <div id="custom-dimensions" hidden><p class="muted">Dimensiuni la comandă. Sunt verificate limitele publicate; montajul și disponibilitatea se confirmă.</p><div class="button-grid"><label>Lățime modul (m)<input id="module-width" type="number" step="0.01"></label><label>Înălțime (m)<input id="module-height" type="number" step="0.01"></label></div><p id="size-limits" class="muted"></p></div>
-  <button id="apply-all" class="secondary wide">Aplică pe întregul traseu</button>
-  <button id="apply-product" class="primary wide">Aplică pe segmentul selectat</button>
-  <button id="draw-product" class="secondary wide">Desenează cu acest produs →</button>
-  <button id="coverage" class="text-button">Vezi acoperirea întregului catalog</button>
+<!doctype html><html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#244f43"><title>Decorio · Configurator de împrejmuiri</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/shared-ui/styles/standalone.css"><link rel="stylesheet" href="/shared-ui/styles/panelControls.css"><link rel="stylesheet" href="./decorio.css"><script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/addons/"}}</script></head>
+<body data-mobile-panel="catalog">
+<main class="decorio-workspace">
+ <aside class="catalog-panel shared-panel-controls" aria-label="Catalog produse">
+  <div class="catalog-heading"><h1>Produse Decorio</h1><label>Familie<select id="family"></select></label><label>Caută model<input id="search" type="search" placeholder="Vega B, AL.101…"></label><div class="catalog-counter"><span id="product-count"></span><button id="coverage" class="link-button">Acoperire</button></div></div>
+  <div id="products" class="product-grid" role="group" aria-label="Modele"></div><button id="more-products" hidden>Mai multe produse</button>
+ </aside>
+ <section class="scene-stage" aria-label="Previzualizare produs și proiect">
+  <nav class="context-switch" aria-label="Context"><button data-context="product" aria-pressed="true">Produs</button><button data-context="project" aria-pressed="false">Proiect <span id="segment-count">0</span></button></nav>
+  <div id="viewer"></div><div id="reference-only" hidden><img id="reference-photo" alt="Referința produsului Decorio"><p id="reference-reason"></p></div>
+  <div id="editor" hidden><svg id="plan" viewBox="0 0 900 650" role="application" tabindex="0" aria-label="Plan 2D: desenează și selectează segmente"></svg></div>
+  <div class="scene-toolbar"><button id="front">Din față</button><button id="fit">Încadrează</button><div id="view-switch" hidden><button data-view="3d" aria-pressed="true">3D</button><button data-view="2d" aria-pressed="false">2D</button></div></div>
+  <div id="plan-tools" class="plan-tools" hidden><button id="draw" aria-pressed="false">Desenează</button><button id="select" aria-pressed="true">Încheie / selectează</button><button id="pan" aria-pressed="false">Deplasează planul</button><button id="zoom-in" aria-label="Mărește planul">＋</button><button id="zoom-out" aria-label="Micșorează planul">−</button></div>
+  <div class="scene-caption"><strong id="scene-title"></strong><span id="scene-note"></span></div>
  </section>
- <section id="layout-panel" class="panel panel-section" hidden>
-  <h2>Desenează în plan</h2><p class="muted">Apasă două puncte pentru un segment. Continuă dintr-un nod existent pentru colțuri și ramificații.</p>
-  <div class="button-grid"><button id="draw" aria-pressed="false" class="primary">＋ Desenează</button><button id="select" aria-pressed="true">↖ Încheie / selectează</button></div>
-  <p id="drawing-status" role="status" class="muted">Selectare activă · apasă un segment sau trage un punct.</p>
-  <label class="check"><input id="snap" type="checkbox" checked> Aliniere pe grilă de 10 cm</label><label class="check"><input id="ortho" type="checkbox"> Doar orizontal / vertical</label>
-  <label>Segment<select id="segment-select"></select></label>
-  <label>Lungime segment (m)<input id="segment-length" type="number" min="0.1" max="500" step="0.01"></label><button id="set-length" class="secondary wide">Actualizează lungimea</button>
-  <div id="node-controls" hidden><h3>Punct selectat</h3><div class="button-grid"><label>X (m)<input id="node-x" type="number" step="0.1"></label><label>Y (m)<input id="node-y" type="number" step="0.1"></label></div><button id="move-node">Mută punctul</button><button id="delete-node" class="danger">Șterge punctul</button></div>
-  <button id="delete-segment" class="danger wide">Șterge segmentul selectat</button>
-  <details class="gate-panel"><summary>Porți compatibile</summary><p class="muted">Sunt disponibile doar combinațiile cu compatibilitate și gol de montaj documentate.</p><label>Poartă<select id="gate-product"></select></label><label>Poziție de la început (m)<input id="gate-offset" type="number" min="0" step="0.1" value="0"></label><label>Deschidere<select id="gate-hand"><option value="left">Stânga</option><option value="right">Dreapta</option></select></label><button id="add-gate" class="secondary wide">Adaugă poartă</button><div id="gate-list"></div></details>
- </section>
- <section id="bom-panel" class="panel panel-section" hidden><p class="eyebrow">LISTĂ DE COMPONENTE</p><h2>De la idee la piese.</h2><p id="bom-status" class="notice"></p><div id="bom-items"></div><h3>De confirmat</h3><ul id="issues"></ul><button id="export-csv" class="primary wide">Descarcă lista CSV ↓</button></section>
- <footer class="sidebar-footer">Tehnologie <b>360Configurator</b><span>Proiectare pe teren plan</span></footer>
-</aside>
-<section class="canvas-area">
- <div class="project-bar"><div><span class="eyebrow">PROIECTUL TĂU</span><input id="project-name" aria-label="Nume proiect" value="Proiect Decorio" maxlength="120"></div><div class="view-switch" role="group" aria-label="Mod vizualizare"><button data-view="3d" class="active">3D</button><button data-view="2d">Plan 2D</button></div></div>
- <div id="viewer" aria-label="Vizualizare 3D a împrejmuirii"><div class="scene-watermark">DECORIO / VIZUALIZARE SCHEMATICĂ</div></div>
- <div id="editor" hidden><svg id="plan" viewBox="0 0 900 650" aria-label="Editor traseu 2D" role="application" tabindex="0"></svg><div class="editor-help">Click pentru puncte · Trage un nod pentru a-l muta · Escape încheie traseul</div></div>
- <div class="scene-tools"><button id="undo" title="Anulează ultima modificare">↶ <span>Undo</span></button><button id="redo" title="Refă modificarea">↷</button><button id="fit">⌖ <span>Încadrează</span></button><button id="dimensions" aria-pressed="true">↔ <span>Cote</span></button><label class="light-control">☀<input id="light" aria-label="Direcția luminii" type="range" min="0" max="6.28" step="0.1" value="1"></label><button id="reset">Proiect nou</button></div>
- <div class="summary-strip"><div><small>LUNGIME TOTALĂ</small><strong id="total-length">0 <em>m</em></strong></div><div><small>SEGMENTE</small><strong id="segment-count">0</strong></div><div><small>COMPONENTE</small><strong id="item-count">0</strong></div><div class="summary-note"><span class="status-dot"></span> Cantități preliminare<br><small>Montajul se confirmă pentru amplasament.</small></div><button id="show-bom" class="primary">Vezi piesele →</button></div>
- <div class="project-actions"><button id="export-json">Export proiect</button><label class="file-button">Import proiect<input id="import-json" type="file" accept="application/json,.json" hidden></label><button id="save">Salvează în cont</button><span id="connection-status">Verificare conexiune…</span></div>
-</section>
-</main><div id="toast" role="status" aria-live="polite" hidden></div>
-<dialog id="dialog"><div class="dialog-header"><h2 id="dialog-title"></h2><button id="close-dialog" aria-label="Închide">×</button></div><div id="dialog-content"></div></dialog>
-<script type="module" src="./js/decorio-app.js"></script>
-</body></html>
+ <aside class="properties-panel shared-panel-controls" aria-label="Configurare produs">
+  <section class="panel-section product-properties"><p id="editing-context" class="eyebrow">PREVIZUALIZARE PRODUS</p><h2 id="product-name"></h2><div id="parameters" class="control-list"></div><p id="parameter-error" role="alert" hidden></p><p id="sku" class="subtle"></p>
+   <div class="apply-controls"><button id="draw-product" class="primary">Desenează cu produsul</button><label id="apply-label" hidden>Aplică produsul pe<select id="apply-scope"><option value="segment">Segmentul selectat</option><option value="connected">Traseul conectat</option><option value="all">Întregul proiect</option></select></label><button id="apply-product" hidden>Aplică proprietățile</button></div>
+  </section>
+  <section id="layout-controls" class="panel-section" hidden><h3>Traseu</h3><p id="drawing-status" class="subtle" role="status"></p><div class="two-fields"><label>Lungime nouă (m)<input id="draw-length" class="number-input" type="number" min="0.1" max="500" step="0.01" value="5"></label><label>Unghi (°)<input id="draw-angle" class="number-input" type="number" step="1" value="0"></label></div><button id="numeric-segment">Adaugă segment numeric</button><p class="subtle">Din ultimul punct ales; primul segment pornește din origine. Unghiul este față de axa orizontală a planului.</p><label class="check"><input id="snap" type="checkbox" checked> Grilă 10 cm</label><label class="check"><input id="ortho" type="checkbox"> Aliniere la 90°</label>
+   <label>Segment<select id="segment-select"></select></label><div class="two-fields"><label>Lungime traseu (m)<input id="segment-length" class="number-input" type="number" min="0.1" max="500" step="0.01"></label><button id="set-length">Modifică lungimea</button></div><button id="delete-segment">Șterge segmentul</button>
+   <div id="node-controls" hidden><h3>Punct selectat</h3><div class="two-fields"><label>X (m)<input id="node-x" type="number" step="0.1"></label><label>Y (m)<input id="node-y" type="number" step="0.1"></label></div><button id="move-node">Mută punctul</button><button id="delete-node">Șterge punctul</button></div>
+   <div id="gate-controls"><h3>Porți compatibile</h3><select id="gate-product" aria-label="Poartă compatibilă"></select><div class="two-fields"><label>Distanță de la început (m)<input id="gate-offset" type="number" step="0.01" min="0" value="0"></label><label>Deschidere<select id="gate-hand"><option value="left">Stânga</option><option value="right">Dreapta</option></select></label></div><button id="add-gate">Adaugă poartă</button><div id="gate-list"></div></div>
+  </section>
+  <section class="panel-section accordion-section"><button class="accordion-toggle" aria-expanded="false">Documentație și limite <span>＋</span></button><div class="accordion-panel" hidden><img id="product-photo" alt="Fotografia de referință Decorio"><p id="product-notes"></p><a id="product-source" target="_blank" rel="noopener">Pagina Decorio ↗</a><dl id="product-specs"></dl><div id="kit-included"></div></div></section>
+  <section class="panel-section project-actions"><div class="summary"><span id="total-length">0 m</span><button id="show-bom">Componente și export</button></div><button id="redo" disabled>Refă operația</button><p id="connection-status" class="subtle"></p></section>
+ </aside>
+</main>
+<nav class="mobile-navigation" aria-label="Panouri"><button data-panel="catalog" aria-pressed="true">Produse</button><button data-panel="properties">Configurează</button><button data-panel="layout">Traseu</button></nav>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="dialog"><div class="dialog-heading"><h2 id="dialog-title"></h2><button id="close-dialog" aria-label="Închide">×</button></div><div id="dialog-content"></div></dialog>
+<input id="import-json" type="file" accept="application/json,.json" hidden>
+<script type="module" src="./js/decorio-app.js"></script></body></html>

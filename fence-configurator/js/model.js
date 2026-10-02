@@ -175,7 +175,7 @@ export function deriveAssembly(state,catalog){
     const count=Math.floor((available+EPS)/v.width),rest=round(available-count*v.width);
     for(let i=0;i<count;i++){const left=start+i*v.width;parts.push({kind:'panel',generator:p.generator,a:at(left),b:at(left+v.width),variant:v,product:p,segmentId:e.id});emitPost(at(left));}
     if(count)emitPost(at(start+count*v.width));
-    bom(p.id+v.id+(v.dimensionBounds?'-'+v.width+'x'+v.height:''),p.name+' · '+v.label,count,'buc',p.source,v.dimensionBounds?'Dimensiune solicitată la comandă; disponibilitate de confirmat.':'Dimensiune fixă; fără debitare implicită.',v.sku||'');
+    bom(p.id+v.id+(v.dimensionBounds?'-'+v.width+'x'+v.height:''),p.name+' · '+v.label,count,'buc',p.source,v.dimensionBounds||v.madeToOrder?'Dimensiune solicitată la comandă; disponibilitate de confirmat.':'Dimensiune fixă; fără debitare implicită.',v.sku||'');
     if(rest>EPS){issue('remainder','Rest de '+rest.toFixed(3)+' m: ajustează lungimea la '+(length-rest).toFixed(3)+' m sau la '+(length-rest+v.width).toFixed(3)+' m. Debitarea nu este validată.',e.id);parts.push({kind:'gap',a:at(start+count*v.width),b:at(end),segmentId:e.id});}
    }
   }

@@ -1,37 +1,33 @@
-# Acceptance evidence — 2026-10-02
+# Verificare Decorio — refacere 2026-10-02
 
-This is an implementation draft, not final acceptance of the entire Decorio plan.
+**Planul integral nu este finalizat.** Această revizie este verificabilă local; nu înlocuiește încă versiunea publicată. Numerele de inventar, parametri sau teste nu reprezintă acceptarea întregii oferte.
 
-## Passed
+## Verificări efectuate
 
-- 25 automated tests: fixed modules/remainders; shared corner and branch posts; explicit crossings; overlaps; node movement/deletion; unsupported mixed systems; gate/panel space and swing/fence collision; corrupt/unknown/old states; JSON roundtrip; all published configurable variants; roll aggregation; kit non-duplication; CSV escaping; custom bounds; 100-segment model; build and deployment isolation.
-- Desktop browser render and numerical segment editing.
-- Mobile layout in a 390 × 844 iframe: document width equals viewport width, no horizontal overflow; corrected camera framing. This checks layout, not physical-device touch behavior.
-- Browser imported `output/acceptance-project.json`. Browser-exported JSON matched the original parsed state exactly. Browser-downloaded CSV matched `output/acceptance-components.csv` byte-for-byte.
-- Two ready Cloud Run revisions provide a Decorio-only rollback target. Additional revisions retain the same isolation controls.
-- Live URL map comparison: original default service, host rules and path matchers unchanged; only three exact Decorio hosts and one matcher added.
-- Live Decorio assets return the dedicated app; .com/.de redirects preserve the query; noindex header returned; unrelated configurator paths return 404. Standard and AKS fence pages return 200 and the original application.
-- The standard deployment remains unchanged. The shared admin form correction is on a separate upstream branch `codex/tenant-plan-load-error`; it is not deployed. Decorio implementation changes are on the dedicated fork's `codex/decorio-demo` branch. Draft PR #1. Actions disabled.
+- 39 teste automate: tuple comerciale valide și combinații inexistente, propuneri explicite pentru proprietăți dependente, limite la comandă, RAL solicitat fără SKU inventat, surse individuale, geometrie finită pentru definițiile distincte, eliberarea resurselor comune, stâlpi și prinderi din tabele, intersecții și suprapuneri, aplicare atomică, JSON și CSV, kituri și role, istoric, 100 de segmente și izolarea buildului/deploymentului.
+- Buildul folosește 58 de dependențe comune; 54 sunt identice cu sursa. Administrarea tenanturilor, celelalte configuratoare și Firebase Functions/regulile sunt excluse. `reuse-manifest.json` păstrează comparația fișierelor.
+- Browser desktop la 1366×768 și browser mobil la 390×844. Catalogul și proprietățile sunt accesibile direct. Categoria Panouri aluminiu afișează cele 9 intrări; căutarea în categoria porților găsește Home Inclusive 10.228+.
+- AL.101: schimbarea lățimii la 2,4 m urmată imediat de culoarea Verde păstrează ambele alegeri, actualizează cotele și scena. Navigarea și configurarea previzualizării păstrează proiectul existent.
+- Noistop Steel: alegerea lățimii de 3 m din configurația 1×1 m păstrează selecția veche și cere alegerea explicită a uneia dintre înălțimile publicate, 0,6 m sau 0,4 m. Confirmarea setează proprietățile împreună.
+- Mobil: două segmente numerice de 4,8 m la 0° și 90°, ramificație cu pointerul dintr-un nod comun, mutare de nod și restaurare printr-o singură anulare. Cotele nu se micșorează odată cu viewportul. Zona invizibilă a meniului comun de instrumente nu mai blochează Desenează.
+- Proiect de stres încărcat în browser: 100 de segmente, 200 de panouri, 500 m. Randarea s-a încheiat fără erori de consolă. Acesta nu este un benchmark FPS sau o validare pe telefon fizic. Geometriile identice se reutilizează; pentru proiecte mari, cotele 3D se restrâng la segmentul selectat.
+- Pe catalogul `2026-10-02.4`, JSON-ul descărcat din browser este identic cu configurația importată. CSV-ul descărcat este identic byte-for-byte cu exportul calculatorului pentru aceeași stare: cinci panouri AL.101 2,4×1,5 m Verde pe trei segmente, restul fiind semnalat.
+- Modelul de date respinge explicit configurații standard, versiuni incompatibile, produse necunoscute și îmbinări neconfirmate. Nu s-a introdus conversie automată pentru vechile configurații.
 
-## Not yet passed
+Dovezi locale: `output/refactor-mobile-2d.png`, `output/refactor-desktop-product.png`, `output/refactor-v4-example.json`, `output/refactor-v4-browser.json`, `output/refactor-v4-browser.csv`. Fișierele de test/randare sunt excluse din Git.
 
-- Tenant provisioning: anonymous read of `tenantPublic/decorio` returns 404. Production correctly blocks access. Firebase sign-in succeeded, but the provisioning API explicitly rejects this account as unauthorized. Awaiting approval for a temporary administrator grant via the existing provisioning-admin script, or a sign-in with an already authorized account. No admin allowlist was changed.
-- Google sign-in and real private saves, restoration, cross-tenant private access checks, public share creation/restoration and App Check on Decorio.
-- End-to-end manual GitHub workflow: intentionally disabled until the cleaned implementation is on the fork's main branch; GCP identity is restricted to that branch and repository numeric IDs.
-- Full catalogue acceptance: 1077 product pages inventoried, plus 8 industrial models from PDFs. 267 products/models have 391 dimension variants. Most BOMs lack a verified full mounting set. Catalogue coverage is documented per product; exact decorative geometry, all gates and accessory-selection coverage remain incomplete. A schematic shape is not an exact product model.
-- Physical mobile/touch testing and large-scene GPU performance.
-- Gate-to-gate swept-area collision, double-leaf/bifold/sliding gate implementation where documented, and additional mounting/gate catalog evidence review.
+## Puncte rămase deschise
 
-Local screenshots and generated JSON/CSV evidence are in ignored `output/`. Production route observations are in `output/production-routing-checks.json`. Do not promote this draft to a completed demo based solely on passing unit tests.
+- 907 intrări provizorii în scop: 332 au proprietăți implementate și 249 au reconstrucții vizuale active. Celelalte necesită analiză, reconciliere și implementare. Cele 46 definiții schematice nu sunt prezentate drept modele 3D finalizate; interfața folosește fotografia. Aceste limite nu demonstrează absența documentației furnizorului.
+- Verificarea vizuală individuală din față și perspectivă a tuturor modelelor, inclusiv detaliile porților, sistemele industriale, finisajele și accesoriile. Testul de geometrie finită nu înlocuiește această verificare.
+- Montaj complet: pas montat, rosturi, lungimi de stâlpi și prinderi pentru toate sistemele, colțuri/ramificații și compatibilități între sisteme. Există patru modele grupate cu tabele parțiale de stâlpi; nicio listă nu este declarată completă.
+- Poarta cu anvelopă și desen configurabile nu poate fi introdusă automat în proiect fără gol, spațiu de operare și compatibilitate documentate. Acoperirea porților batante duble, bi-fold, culisante și coliziunile dintre două porți rămân de implementat/verificat.
+- Selecția compatibilă a întregii game de accesorii și reconcilierea tuturor kiturilor. Intrările încă neimplementate sunt etichetate ca atare, fără a pune lipsa pe seama furnizorului.
+- Autentificare, App Check, salvări, restaurare, distribuire și izolare între tenanturi în mediul Decorio final. Contul de provisioning a fost respins pentru lipsa autorizării; reverificarea read-only din această revizie a găsit HTTP 404 atât pentru tenantul public Decorio, cât și pentru documentul de autorizare al contului. Nu s-au acordat privilegii noi.
+- Teste pe dispozitive fizice, benchmark de performanță și întregul workflow manual de publicare.
 
-## Follow-up on reported usability issues
+## Infrastructură — verificări anterioare refacerii
 
-- Product and variant selection now applies immediately to the explicitly selected target (all segments by default). Atomic validation preserves the previous project if a selected-segment change would create an undocumented joint. Tests cover scene/BOM changes, connected branches, independent runs, rejection and shared-history restore.
-- Browser confirmed changing mesh to Noistop Wood, changing its module width, and undo restoring the previous variant.
-- Browser confirmed drawing a corner, Escape leaving drawing mode, adding a branch with one shared node (3 segments / 4 nodes), and dragging its endpoint (length changed from 3.80 to 4.05 m).
-- Prevented focus-induced page scroll during pointer coordinates; drawing mode has explicit status and finish control. Re-entering drawing no longer refits the plan.
-- Original FenceScene infrastructure restored with a geometry injection seam; DecorioViewer extends it. Shared undo manager and opt-in panel control styles restored. Full shell integration and exact product-specific decorative meshes remain outstanding.
-- Catalogue dialog now distinguishes dimension coverage from verified 3D fidelity. Counts remain 1085 inventoried entries and 267 entries with dimensions, including one gate.
-- Admin access document and tenantPublic/decorio still returned 404 on this follow-up. No role grant was made.
+Rutarea dedicată, redirecturile `.com`/`.de` cu păstrarea query-ului, antetele noindex și păstrarea rutelor standard/AKS au fost verificate pentru versiunea live `fb6908c`. Reviziile Cloud Run permit rollback. Aceste rezultate nu substituie retestarea după publicarea refacerii.
 
-- Follow-up code `fb6908c` deployed only to the Decorio Cloud Run service; live version.json confirms the commit and noindex. Standard www and AKS fence routes return their original application. Shared admin fix is draft PR https://github.com/office-360design/configurator-360/pull/494 and is not deployed.
+Corecția formularului de provisioning din platforma standard rămâne în PR separat `office-360design/configurator-360#494`; nu a fost publicată de acest refactor. Noua implementare este în fork, PR draft `MashhuMaximilian/configurator-decorio#1`. Actions rămân dezactivate.

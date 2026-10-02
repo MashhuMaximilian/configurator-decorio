@@ -1,28 +1,21 @@
-# Decorio dedicated demo
+# Configurator Decorio
 
-Upstream base: `office-360design/configurator-360@83376ec`.
-Fork: `MashhuMaximilian/configurator-decorio`, branch `codex/decorio-demo`.
-The standard deployment is unchanged. A separate upstream branch fixes the shared tenant admin form error handling. Automatic GitHub Actions remain disabled.
+Fork: `MashhuMaximilian/configurator-decorio`, branch `codex/decorio-demo`. Baza comună: `office-360design/configurator-360@83376ec`. Refacerea curentă folosește shell-ul shared-ui, managerul de istoric, controalele comune și sistemul shared-3d; detaliile sunt în `refactor-audit.md`.
 
-## Local preview
+## Preview local
 
-Node >=20. `npm ci`, `npm run check`, `npm run dev`.
-Open http://127.0.0.1:4173. Local preview supports JSON/CSV export, not cloud saves.
+Node >=20: `npm ci`, `npm run check`, `npm run dev`. Deschide http://127.0.0.1:4173/configurator-garduri/ . Buildul este servit din `dist/site`; rulează `npm run build` după editări. Configurarea și exporturile locale sunt disponibile fără cont.
 
-## Implemented
+## Flux și date
 
-Romanian noindex app; 2D graph with explicit intersection nodes, free drawing, movement, numeric lengths, snapping, deletion, undo/redo; derived 3D and BOM from the same state; fixed modules retain size, unmatched lengths are gaps; rolls aggregate by SKU; kits count once. Product and catalog versions are mandatory in imported and shared state.
+Model → proprietăți separate → previzualizare produs → desenare sau aplicare explicită în proiect. Navigarea în catalog nu schimbă proiectul. JSON v2 păstrează modelul și parametrii; versiunile incompatibile sunt respinse fără conversii tacite. `ResolvedAssembly` alimentează planul, scena și componentele. Nu sunt incluse prețuri, checkout sau cereri de ofertă.
 
-Public product inventory, sources, limitations and coverage are in `catalog/` and `docs/catalog-coverage.md`. The catalog includes both fixed sizes and explicitly published custom dimension ranges. Schematic representations do not certify exact decorative patterns or mounting. Unsupported compatibility is rejected. All BOMs currently remain preliminary; foundations and undocumented mounting components are not inferred.
+`scripts/build-ontology.py` compilează catalogul intermediar și dovezile locale în `catalog/ontology.json`; `catalog/visual-definitions.json` păstrează definițiile vizuale. `npm run catalog:report` produce matricea pe modele. Reconstrucția din surse necesită inventarul HTML/PDF descărcat cu `inventory.py` și `download-evidence.py`, apoi `build-catalog.py`. Documentele brute nu intră în deployment.
 
-## Verification still required before final acceptance
+## Stare și izolarea publicării
 
-See `docs/acceptance.md` for passed checks and remaining work. Remaining: exact product visuals and mounting evidence review, broader gate/accessory selection, Firebase tenant provisioning and authenticated save/share/isolation tests, physical-device and large-scene browser acceptance, manual-workflow validation. Dedicated routing and model/export checks have passed.
+Implementare în lucru: consultă `acceptance.md` și `catalog-coverage.md`. Modelele parțial documentate și cele încă neimplementate sunt diferențiate de o configurație validată; listele de piese sunt preliminare.
 
-## Isolation
+Buildul include doar dependențele Decorio și bibliotecile comune necesare. Nu publică alte configuratoare, administrarea tenanturilor, Firebase Functions sau reguli. Workflowul manual rămâne dedicat Decorio, iar Actions rămân dezactivate. Ultima versiune live anterioară refacerii este `fb6908c`; noua refacere nu a fost publicată.
 
-Build copies only an explicit allowlist of Decorio files and shared Firebase/tenant modules, the platform undo manager and panel controls. The viewer extends the original FenceScene from upstream 83376ec (factory dependency injected); its camera, studio lighting, environment, dimensions and render loop are reused. The full standalone shell is not yet integrated. No other configurator, admin UI, Firebase Functions, rules or deployment workflow is bundled. The HTTP server accepts Decorio hosts, redirects .com/.de preserving the request URI, and adds noindex on all responses. Unknown hosts receive 421.
-
-## Research reproduction
-
-`scripts/inventory.py` captures public category and product pages. `scripts/download-evidence.py` archives public PDF links. Raw copyrighted pages/PDFs are ignored by Git and never deployed. `scripts/build-catalog.py` compiles sourced facts; `npm run catalog:report` updates the coverage report. Do not subscribe an email or bypass a catalog form to retrieve documents.
+Tenantul și salvarea/distribuirea autentificată rămân blocate de drepturile de provisioning ale contului. Nu s-a acordat acces administrativ suplimentar. Backendul platformei standard nu a fost modificat pentru produsele Decorio.
