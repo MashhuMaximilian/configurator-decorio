@@ -56,10 +56,11 @@ export class DecorioViewer extends FenceScene {
  panel(part){
   // Shared presets describe surface appearance, independently of the steel/aluminium substrate.
   this.activeMaterial=/zinc/i.test(part.variant.finish)?'steel.brushed':'aluminium.powderCoated';
-  const {a,b,variant:v,product:p}=part,w=part.kind==='gate'?v.width:Math.hypot(b.x-a.x,b.y-a.y),h=v.height,g=new THREE.Group();g.position.set((a.x+b.x)/2,v.groundClearance||0,(a.y+b.y)/2);g.rotation.y=-Math.atan2(b.y-a.y,b.x-a.x);g.userData.segmentId=part.segmentId;this.group.add(g);const c=v.color||'#5a625c';
+  const {a,b,variant:v,product:p}=part,w=part.kind==='gate'?v.width:Math.hypot(b.x-a.x,b.y-a.y),h=v.height,g=new THREE.Group();g.position.set((a.x+b.x)/2,v.groundClearance||0,(a.y+b.y)/2);g.rotation.y=-Math.atan2(b.y-a.y,b.x-a.x);g.userData.segmentId=part.segmentId;g.userData.elementId=part.elementId||part.segmentId;this.group.add(g);const c=v.color||'#5a625c';
   if(part.visual?.type==='gate-preview'){
    const count=part.visual.leaves,leafWidth=w/count;
-   for(let i=0;i<count;i++){const leaf=new THREE.Group();leaf.position.x=-w/2+(i+.5)*leafWidth;g.add(leaf);const shape={...part.visual.infill,frame:true};if(shape.type==='horizontal')this.horizontal(leaf,leafWidth-.015,h,c,shape);else buildModelVisual(this,leaf,leafWidth-.015,h,c,shape);}
+   for(let i=0;i<count;i++){const leaf=new THREE.Group(),pivot=new THREE.Group(),right=count>1&&i>=count/2,side=right?-1:1;pivot.position.x=-w/2+(i+(right?1:0))*leafWidth;leaf.position.x=side*leafWidth/2;pivot.add(leaf);g.add(pivot);if(part.previewOpen&&count<=2&&part.generator!=='sliding')pivot.rotation.y=-side*(part.handing==='right'?-1:1)*Math.PI/7;const shape={...part.visual.infill,frame:true};if(shape.type==='horizontal')this.horizontal(leaf,leafWidth-.015,h,c,shape);else buildModelVisual(this,leaf,leafWidth-.015,h,c,shape);this.box(leaf,side*(leafWidth/2-.12),h*.52,.055,.14,.025,.025,'#b7bbc0');}
+   if(part.previewOpen&&part.generator==='sliding')for(const leaf of g.children)leaf.position.x+=(part.handing==='right'?-1:1)*w*.15;
    return;
   }
   if(part.visual?.type==='transparent-acoustic'){
@@ -124,7 +125,7 @@ export class DecorioViewer extends FenceScene {
    else {
     const key=(part.resolved?productSignature({modelId:part.resolved.model.id,parameters:part.resolved.parameters}):part.generator)+'|'+Math.hypot(part.b.x-part.a.x,part.b.y-part.a.y).toFixed(6)+'|'+part.kind+'|'+part.handing;
     const template=templates.get(key);
-    if(template){const group=template.clone(true);group.position.set((part.a.x+part.b.x)/2,part.variant.groundClearance||0,(part.a.y+part.b.y)/2);group.rotation.y=-Math.atan2(part.b.y-part.a.y,part.b.x-part.a.x);group.userData.segmentId=part.segmentId;this.group.add(group);}
+    if(template){const group=template.clone(true);group.position.set((part.a.x+part.b.x)/2,part.variant.groundClearance||0,(part.a.y+part.b.y)/2);group.rotation.y=-Math.atan2(part.b.y-part.a.y,part.b.x-part.a.x);group.userData.segmentId=part.segmentId;group.userData.elementId=part.elementId||part.segmentId;this.group.add(group);}
     else{const index=this.group.children.length;this.panel(part);templates.set(key,this.group.children[index]);}
    }
   }

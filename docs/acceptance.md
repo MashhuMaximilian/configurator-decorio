@@ -1,33 +1,38 @@
-# Verificare Decorio — refacere 2026-10-02
+# Verificarea noului builder Decorio — 2026-10-02
 
-**Planul integral nu este finalizat.** Această revizie este verificabilă local; nu înlocuiește încă versiunea publicată. Numerele de inventar, parametri sau teste nu reprezintă acceptarea întregii oferte.
+Această revizie înlocuiește interfața și motorul de plasare anterior. Este o revizie locală, în PR draft, nu o livrare publicată sau un montaj certificat. Verificările vechi sunt păstrate separat în [acceptance-ontology.md](acceptance-ontology.md); nu constituie verificări ale noii interfețe.
 
-## Verificări efectuate
+## Verificat acum
 
-- 39 teste automate: tuple comerciale valide și combinații inexistente, propuneri explicite pentru proprietăți dependente, limite la comandă, RAL solicitat fără SKU inventat, surse individuale, geometrie finită pentru definițiile distincte, eliberarea resurselor comune, stâlpi și prinderi din tabele, intersecții și suprapuneri, aplicare atomică, JSON și CSV, kituri și role, istoric, 100 de segmente și izolarea buildului/deploymentului.
-- Buildul folosește 58 de dependențe comune; 54 sunt identice cu sursa. Administrarea tenanturilor, celelalte configuratoare și Firebase Functions/regulile sunt excluse. `reuse-manifest.json` păstrează comparația fișierelor.
-- Browser desktop la 1366×768 și browser mobil la 390×844. Catalogul și proprietățile sunt accesibile direct. Categoria Panouri aluminiu afișează cele 9 intrări; căutarea în categoria porților găsește Home Inclusive 10.228+.
-- AL.101: schimbarea lățimii la 2,4 m urmată imediat de culoarea Verde păstrează ambele alegeri, actualizează cotele și scena. Navigarea și configurarea previzualizării păstrează proiectul existent.
-- Noistop Steel: alegerea lățimii de 3 m din configurația 1×1 m păstrează selecția veche și cere alegerea explicită a uneia dintre înălțimile publicate, 0,6 m sau 0,4 m. Confirmarea setează proprietățile împreună.
-- Mobil: două segmente numerice de 4,8 m la 0° și 90°, ramificație cu pointerul dintr-un nod comun, mutare de nod și restaurare printr-o singură anulare. Cotele nu se micșorează odată cu viewportul. Zona invizibilă a meniului comun de instrumente nu mai blochează Desenează.
-- Proiect de stres încărcat în browser: 100 de segmente, 200 de panouri, 500 m. Randarea s-a încheiat fără erori de consolă. Acesta nu este un benchmark FPS sau o validare pe telefon fizic. Geometriile identice se reutilizează; pentru proiecte mari, cotele 3D se restrâng la segmentul selectat.
-- Pe catalogul `2026-10-02.4`, JSON-ul descărcat din browser este identic cu configurația importată. CSV-ul descărcat este identic byte-for-byte cu exportul calculatorului pentru aceeași stare: cinci panouri AL.101 2,4×1,5 m Verde pe trei segmente, restul fiind semnalat.
-- Modelul de date respinge explicit configurații standard, versiuni incompatibile, produse necunoscute și îmbinări neconfirmate. Nu s-a introdus conversie automată pentru vechile configurații.
+`npm run check` trece: 63 de teste automate și build izolat cu 69 de dependențe ale aplicației și bibliotecilor comune. Dintre teste, 17 sunt specifice noului motor/scenei; restul verifică ontologia, geometria, modulele reutilizate și izolarea.
 
-Dovezi locale: `output/refactor-mobile-2d.png`, `output/refactor-desktop-product.png`, `output/refactor-v4-example.json`, `output/refactor-v4-browser.json`, `output/refactor-v4-browser.csv`. Fișierele de test/randare sunt excluse din Git.
+- Calculator nou: porțile din catalog ocupă intervale pe laturi și elimină panourile din deschidere; mutarea, schimbarea lățimii/modelului, sensul și ștergerea refac ansamblul.
+- Suprapunerile de porți, depășirea laturii, traversarea unei porți de către o ramificație și suprapunerile de garduri sunt respinse fără modificarea originalului. Ramificațiile în afara porții împart latura și păstrează poziția mondială a porții.
+- Panouri la comandă: 5 m devin 1,66 + 1,67 + 1,67 m, în limitele modelului. Panourile fixe nu se întind. Ajustarea explicită a unei laturi Vega cu poartă de 1,2 m poate produce 11,2 m: patru panouri de 2,5 m și poarta, fără rest.
+- Rolele identice se însumează înaintea rotunjirii cantității de cumpărat. Accesoriile sunt articole comerciale adăugate manual, fără explodarea implicită a ambalajelor sau dublarea automată a kiturilor.
+- Testul exhaustiv de calcul trece prin toate cele 329 de modele de gard/poartă plasabile din catalogul curent. Acesta verifică generarea configurației și cantități finite, nu certifică montajul sau fidelitatea vizuală.
+- Teste de scenă: planul și 3D-ul folosesc aceleași poziții și identități, porțile au identitate separată de latură, rezultatul calculatorului nu este modificat de randare, geometria comună se eliberează. Modelele fără reconstrucție sunt contururi de rezervare.
+- Browser desktop: construire dreptunghi Home Inclusive, alegerea porții pietonale din catalog, plasare prin click pe latură în 2D, selectare, inversare, poziționare numerică prin Enter la 2 m și verificare în 3D, adăugare de accesoriu în lista proiectului, restaurare la reîncărcare.
+- Dovadă locală: `output/builder-gate-project.png`. Proiectele utilizatorului din originile anterioare nu au fost resetate.
 
-## Puncte rămase deschise
+## Ce mai trebuie verificat prin interacțiuni
 
-- 907 intrări provizorii în scop: 332 au proprietăți implementate și 249 au reconstrucții vizuale active. Celelalte necesită analiză, reconciliere și implementare. Cele 46 definiții schematice nu sunt prezentate drept modele 3D finalizate; interfața folosește fotografia. Aceste limite nu demonstrează absența documentației furnizorului.
-- Verificarea vizuală individuală din față și perspectivă a tuturor modelelor, inclusiv detaliile porților, sistemele industriale, finisajele și accesoriile. Testul de geometrie finită nu înlocuiește această verificare.
-- Montaj complet: pas montat, rosturi, lungimi de stâlpi și prinderi pentru toate sistemele, colțuri/ramificații și compatibilități între sisteme. Există patru modele grupate cu tabele parțiale de stâlpi; nicio listă nu este declarată completă.
-- Poarta cu anvelopă și desen configurabile nu poate fi introdusă automat în proiect fără gol, spațiu de operare și compatibilitate documentate. Acoperirea porților batante duble, bi-fold, culisante și coliziunile dintre două porți rămân de implementat/verificat.
-- Selecția compatibilă a întregii game de accesorii și reconcilierea tuturor kiturilor. Intrările încă neimplementate sunt etichetate ca atare, fără a pune lipsa pe seama furnizorului.
-- Autentificare, App Check, salvări, restaurare, distribuire și izolare între tenanturi în mediul Decorio final. Contul de provisioning a fost respins pentru lipsa autorizării; reverificarea read-only din această revizie a găsit HTTP 404 atât pentru tenantul public Decorio, cât și pentru documentul de autorizare al contului. Nu s-au acordat privilegii noi.
-- Teste pe dispozitive fizice, benchmark de performanță și întregul workflow manual de publicare.
+Testul ulterior de resetare a tabului QA de pe portul 4175 a blocat controlul browserului într-o confirmare nativă. Instrumentul nu poate controla fereastra nativă Codex; utilizatorului i s-a cerut închiderea ei. Nu declarăm verificarea finală a desenării libere, drag-ului porții, mobilului și descărcării/reimportării ca fiind efectuată pentru această revizie. Butonul nou „Proiect nou” folosește un dialog în pagină și păstrează posibilitatea de undo, fără confirmarea nativă a shell-ului.
 
-## Infrastructură — verificări anterioare refacerii
+Schimbările de după ultimul screenshot sunt acoperite prin teste de calcul/scenă și build, dar trebuie reverificate în browser. Testele mobile ale editorului vechi nu sunt acceptare pentru noul builder.
 
-Rutarea dedicată, redirecturile `.com`/`.de` cu păstrarea query-ului, antetele noindex și păstrarea rutelor standard/AKS au fost verificate pentru versiunea live `fb6908c`. Reviziile Cloud Run permit rollback. Aceste rezultate nu substituie retestarea după publicarea refacerii.
+## Acoperire și limite exacte
 
-Corecția formularului de provisioning din platforma standard rămâne în PR separat `office-360design/configurator-360#494`; nu a fost publicată de acest refactor. Noua implementare este în fork, PR draft `MashhuMaximilian/configurator-decorio#1`. Actions rămân dezactivate.
+În catalog sunt 372 de modele de gard/poartă în scop. 329 au date utilizabile pentru plasare; dintre acestea 248 au reconstrucție 3D și 81 sunt rezervări de spațiu cu fotografie în catalog. 40 nu au încă parametrii necesari plasării, iar trei au conflict de unități în sursă. Categoria mobile are 20 de modele cu dimensiuni utilizabile; existența parametrilor nu înseamnă validarea bazelor/prinderilor.
+
+Modelele PI 95, Modest și Gardia sunt păstrate în catalog, cu explicație la plasare. Paginile publică deschideri de ordinul miilor cu unitatea „m”; nu convertim tacit în mm. Surse consultate la 2026-10-02:
+
+- [PI 95](https://decorio.ro/product/pi-95-poarta-culisanta-in-consola-8573525), secțiunea Specificații tehnice.
+- [Modest](https://decorio.ro/product/modest-poarta-bordurata-culisanta-in-consola-modest-culisanta), aceeași secțiune.
+- [Gardia](https://decorio.ro/product/gardia-poarta-dublu-fir-culisanta-in-consola-gardia-culisanta), aceeași secțiune.
+
+Planificarea unei porți sau îmbinări fără montaj verificat este permisă cu probleme explicite în listă și CSV. Lățimea publicată nu este declarată automat gol montat. Arcele de operare și mecanismele 3D sunt orientative; cinematică bi-fold, coliziuni de operare, fundații și legături între sisteme necesită documentare. Nicio listă nu este declarată completă.
+
+## Infrastructură
+
+Platforma standard nu a fost modificată. Deploymentul dedicat, noindex și excluderea administrării/altor aplicații sunt verificate automat. Actions rămân dezactivate. Publicarea, provisioningul autorizat, autentificarea, App Check și izolarea salvărilor în mediul final rămân separate și neverificate pentru noul builder. Versiunea live anterioară refacerii rămâne `fb6908c`.
