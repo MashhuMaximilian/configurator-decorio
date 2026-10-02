@@ -8,7 +8,7 @@ Node >=20: `npm ci`, `npm run check`, `npm run dev`. Deschide http://127.0.0.1:4
 
 ## Flux și date
 
-Proiect permanent → alegere gard/poartă/accesoriu din trusă → configurarea piesei → plasare directă → editare și listă de materiale. JSON v3 păstrează laturile, porțile și accesoriile separat. Configurațiile v2 sunt importate explicit, cu păstrarea originalului. Calculatorul alimentează planul, scena și componentele. Experiența și reutilizarea sunt descrise în `construction-experience.md`. Nu sunt incluse prețuri comerciale, checkout sau cereri de ofertă.
+Proiect permanent → alegere gard/poartă/accesoriu din trusă → configurarea piesei → plasare directă → editare și listă de materiale. JSON v3 păstrează laturile, porțile și accesoriile separat. Configurațiile v2 sunt importate explicit, cu păstrarea originalului. Calculatorul alimentează planul, scena și componentele. Experiența și reutilizarea sunt descrise în `construction-experience.md`. Coșul comun are un adaptor local de demo, prețuri fictive RON și pregătirea unui deviz CSV/JSON. Nu sunt incluse prețuri comerciale, checkout sau trimiterea efectivă a cererii.
 
 `scripts/build-ontology.py` compilează catalogul intermediar și dovezile locale în `catalog/ontology.json`; `catalog/visual-definitions.json` păstrează definițiile vizuale. `npm run catalog:report` produce matricea pe modele. Reconstrucția din surse necesită inventarul HTML/PDF descărcat cu `inventory.py` și `download-evidence.py`, apoi `build-catalog.py`. Documentele brute nu intră în deployment.
 

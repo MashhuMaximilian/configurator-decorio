@@ -767,3 +767,87 @@ th {
     text-align: center;
   }
 }
+
+/* Contextual tools stay beside the selected object; properties remain in the drawer. */
+#piece-wheel {
+  position: fixed;
+  z-index: 25;
+  width: 278px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  padding: 8px;
+  border: 1px solid #b8cdc3;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 12px 40px #173e3033;
+}
+#piece-wheel[hidden] {
+  display: none;
+}
+#piece-wheel header {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 6px;
+  font-size: 12px;
+}
+#piece-wheel header button {
+  min-height: 28px;
+  padding: 0 9px;
+}
+#piece-wheel > button {
+  min-height: 43px;
+  border-radius: 13px;
+  padding: 7px;
+  font-size: 12px;
+  line-height: 1.2;
+}
+#demo-price {
+  font-size: 12px;
+  color: #54685e;
+}
+#add-cart {
+  background: #234f40;
+  color: white;
+}
+#project-summary {
+  flex-wrap: wrap;
+}
+.decorio-cart.shared-ui-host {
+  position: static;
+  height: auto;
+  pointer-events: auto;
+}
+.decorio-cart.shared-ui-host .cart-menu {
+  position: static;
+  width: 100%;
+  max-height: none;
+  box-shadow: none;
+  transform: none;
+}
+#run-angle {
+  width: 80px;
+}
+@media (max-width: 700px) {
+  #piece-wheel {
+    width: 258px;
+  }
+  #piece-wheel > button {
+    min-height: 44px;
+  }
+  #project-summary {
+    max-width: calc(100% - 20px);
+    gap: 5px;
+  }
+  #demo-price {
+    width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  body[data-tool="fence"] #project-summary,
+  body[data-tool="gate"] #project-summary {
+    display: none;
+  }
+}

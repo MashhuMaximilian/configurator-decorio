@@ -259,6 +259,7 @@ test("orthogonal drawing follows the cursor projection rather than inflating len
     { x: 0, y: 0 },
     { x: 5, y: 1 },
     c,
+    { ortho: true },
   );
   assert.ok(Math.abs(q.length - 5) < 1e-9);
   assert.equal(q.b.y, 0);
@@ -282,3 +283,5 @@ test("explicit module fitting adjusts gate offsets and perimeter length together
   assert.equal(a.parts.filter((p) => p.kind === "panel").length, 4);
   assert.equal(JSON.stringify(s), original);
 });
+
+test("drawing is free-angle by default while fixed modules preserve the requested direction",()=>{for(const product of [fence,defaultProduct(c,"panouri-bordurate-vega-b")]){const q=drawProposal(emptyProject(c),product,{x:0,y:0},{x:-5,y:3},c);assert.ok(q.b.x<0&&q.b.y>0);assert.ok(Math.abs(q.b.y/q.b.x+3/5)<1e-6);}});

@@ -6,9 +6,9 @@ Proiectul rămâne permanent în scenă. Catalogul este o trusă de piese, nu un
 
 1. **Garduri:** alegi modelul, vezi dimensiunile și culoarea piesei active, modifici opțiunile dacă este nevoie. Click–click sau tragere creează o latură; continui din capătul marcat. Lungimea numerică arată lungimea rezultată înaintea plasării. Încheie/Esc termină traseul.
 2. **Porți:** alegi o poartă din catalog și o apropii de o latură. Previzualizarea rezervă deschiderea și reface panourile învecinate. Click confirmă. Produsele cu același desen sunt prioritizate, fără a pretinde compatibilitate de montaj.
-3. **Selectează:** click pe gard/poartă deschide proprietățile elementului; poți înlocui modelul, schimba dimensiunile sau culoarea, muta poarta, inversa sensul și șterge. Un colț se trage pentru redimensionare. Gardul unei laturi poate fi aplicat explicit pe întreg perimetrul.
+3. **Selectează:** click pe gard/poartă deschide meniul contextual în scenă. „Proprietăți” deschide separat panoul dimensional; poți înlocui modelul, schimba dimensiunile sau culoarea, muta poarta, inversa sensul și șterge. Un colț se trage pentru redimensionare. Gardul unei laturi poate fi aplicat explicit pe întreg perimetrul.
 4. **Panouri întregi:** pentru sistemele fixe există o acțiune explicită care ajustează lungimea laturii și pozițiile porților împreună. Resturile nu sunt ascunse prin întinderea geometriei.
-5. **Accesorii:** alegi un articol și cantitatea comercială. Apare în lista proiectului și CSV; montajul și includerea într-un kit se confirmă. Nu inventăm geometrie sau preț.
+5. **Accesorii:** alegi un articol și cantitatea comercială. Apare în lista proiectului și CSV; montajul și includerea într-un kit se confirmă. Nu inventăm geometrie; prețurile demonstrative sunt etichetate separat.
 6. **Anulează/Refă:** o plasare, tragere sau aplicare este o operație. Previzualizarea nu intră în proiect, istoric sau salvare. „Proiect nou” oferă export și resetare recuperabilă prin undo.
 
 Plan 2D și 3D sunt vederi ale aceluiași ansamblu. Camera nu este reîncadrată continuu în timpul desenării. Rotița apropie, butonul drept rotește în 3D/deplasează planul, butonul mijlociu deplasează; pe tactil, două degete sunt rezervate navigației. Mobilul are trusa persistentă și spațiu separat pentru scenă și sertarele de configurare.
@@ -27,3 +27,12 @@ Schema 3 și cheia locală `decorio-fence:v3:builder-draft` păstrează separat 
 Planificarea este distinctă de validarea montajului. Panourile la comandă respectă limitele catalogului; rosturile, stâlpii și prinderile necunoscute sunt semnalate. Produsele fără reconstrucție vizuală sunt contururi portocalii etichetate, nu garduri generice. Nu sunt incluse calcule structurale, pante, prețuri comerciale sau checkout.
 
 Starea verificărilor și limitele sunt în [acceptance.md](acceptance.md). Acest document descrie mecanicile implementate, nu înlocuiește verificarea manuală restantă.
+
+## Actualizare: comenzi în scenă, unghiuri și coș
+
+- Meniul contextual urmărește piesa și camera, rămâne în limitele scenei și funcționează în plan, 3D și pe mobil. Comenzile nu mai ocupă inspectorul de proprietăți.
+- Unghiul este liber implicit. „Colțuri drepte” este opțional; câmpul numeric acceptă orice direcție. Snap-ul la panouri întregi modifică lungimea, nu direcția.
+- Copierea panourilor resetează întreaga rotație locală, nu doar Euler Y: un quaternion clonat peste 90° poate avea Euler X/Z egale cu π. Testul de regresie verifică toate cadranele.
+- Coșul reutilizează `shared-ui/src/components/cartMenu.js`, cu un adaptor local de demo. Păstrează copii independente ale proiectelor, editare fără dublare și ștergere. Cheia `decorio:demo-cart:v1` este separată de coșul autentificat al platformei.
+- `demo-commerce.js` aplică tariful fictiv versionat tuturor liniilor BOM; sumele sunt RON și calculele monetare se rotunjesc la bani. Nicio valoare nu este prezentată drept preț Decorio. Numai componentele cunoscute sunt însumate; fără TVA, montaj sau transport calculat.
+- „Pregătește cererea de ofertă” descarcă devizul CSV, dosarul JSON și proiectele individuale reimportabile. Nu trimite mesaje și nu apelează backendul real `requestCartQuotation`. Trimiterea comercială cere tenant, autentificare, destinatar și prețuri validate.

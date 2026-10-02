@@ -21,6 +21,11 @@
   <body>
     <main id="builder">
       <div id="world" aria-label="Proiectul de gard — scenă interactivă"></div>
+      <nav
+        id="piece-wheel"
+        aria-label="Acțiuni pentru piesa selectată"
+        hidden
+      ></nav>
       <nav id="view-tools" aria-label="Vedere">
         <button data-view="3d" aria-pressed="true">3D</button
         ><button data-view="2d">Plan 2D</button
@@ -93,8 +98,7 @@
         ><button id="cancel-tool" aria-label="Renunță la plasare">×</button>
       </div>
       <div id="drawing-options" hidden>
-        <label
-          ><input id="ortho" type="checkbox" checked /> Colțuri drepte</label
+        <label><input id="ortho" type="checkbox" /> Colțuri drepte</label
         ><label
           ><input id="module-snap" type="checkbox" checked /> Panouri
           întregi</label
@@ -106,12 +110,11 @@
             step="0.01"
             value="5" /></label
         ><label
-          >Direcție<select id="run-angle">
-            <option value="0">→</option>
-            <option value="90">↓</option>
-            <option value="180">←</option>
-            <option value="-90">↑</option>
-          </select></label
+          >Unghi (°)<input
+            id="run-angle"
+            type="number"
+            step="1"
+            value="0" /></label
         ><small id="numeric-proposal"></small
         ><button id="place-length">Plasează</button
         ><button id="finish">Încheie gardul · Esc</button>
@@ -122,6 +125,8 @@
         ><button id="open-list">
           Lista proiectului <span id="list-count">0</span></button
         ><button id="issues-button" hidden></button>
+        <span id="demo-price"></span><button id="add-cart">Adaugă în coș</button
+        ><button id="open-cart">Coș demo · 0</button>
       </div>
       <nav id="build-tools" aria-label="Trusa de construcție">
         <button data-tool="select" aria-pressed="true">

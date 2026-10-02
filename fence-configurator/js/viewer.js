@@ -125,7 +125,7 @@ export class DecorioViewer extends FenceScene {
    else {
     const key=(part.resolved?productSignature({modelId:part.resolved.model.id,parameters:part.resolved.parameters}):part.generator)+'|'+Math.hypot(part.b.x-part.a.x,part.b.y-part.a.y).toFixed(6)+'|'+part.kind+'|'+part.handing;
     const template=templates.get(key);
-    if(template){const group=template.clone(true);group.position.set((part.a.x+part.b.x)/2,part.variant.groundClearance||0,(part.a.y+part.b.y)/2);group.rotation.y=-Math.atan2(part.b.y-part.a.y,part.b.x-part.a.x);group.userData.segmentId=part.segmentId;group.userData.elementId=part.elementId||part.segmentId;this.group.add(group);}
+    if(template){const group=template.clone(true);group.position.set((part.a.x+part.b.x)/2,part.variant.groundClearance||0,(part.a.y+part.b.y)/2);group.rotation.set(0,-Math.atan2(part.b.y-part.a.y,part.b.x-part.a.x),0);group.userData.segmentId=part.segmentId;group.userData.elementId=part.elementId||part.segmentId;this.group.add(group);}
     else{const index=this.group.children.length;this.panel(part);templates.set(key,this.group.children[index]);}
    }
   }

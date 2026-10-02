@@ -19,7 +19,6 @@ import {
   resizeRun,
   removeElement,
   addAccessory,
-  csv,
   distance,
   addRun,
 } from "./builder-engine.js";
@@ -35,6 +34,17 @@ import { BuilderScene } from "./builder-scene.js";
 import { SharedUndoManager } from "../../shared-ui/src/history/undoManager.js";
 import { mountStandaloneConfiguratorShell } from "../../shared-ui/src/standaloneShell.js";
 import { bindPanelRange } from "../../shared-ui/src/components/panelControls.js";
+import { renderCartMenu } from "../../shared-ui/src/components/cartMenu.js";
+import {
+  priceAssembly,
+  cartSnapshot,
+  quoteCsv,
+  money,
+  PRICE_NOTICE,
+} from "./demo-commerce.js";
+const CART_KEY = "decorio:demo-cart:v1";
+let demoCart = [],
+  editingCartKey = null;
 const $ = (s) => document.querySelector(s),
   el = (t, text, cls) => {
     const e = document.createElement(t);
@@ -163,6 +173,7 @@ function setTool(value) {
   movingGate = null;
   cancelPreview();
   selected = null;
+  $("#piece-wheel").hidden = true;
   $("#inspector").hidden = true;
   scene.setTool(value);
   document.body.dataset.tool = value;
@@ -230,6 +241,12 @@ function refresh(fit = false) {
     state.gates.length +
     " porți";
   $("#list-count").textContent = assembly.items.length;
+  $("#demo-price").textContent =
+    "Total demo: " + money(priceAssembly(assembly, catalog).total);
+  $("#add-cart").disabled = !assembly.items.length;
+  $("#add-cart").textContent = editingCartKey
+    ? "Actualizează în coș"
+    : "Adaugă în coș";
   $("#issues-button").hidden = !state.segments.length;
   $("#issues-button").textContent =
     assembly.totalGaps > 0
@@ -240,7 +257,7 @@ function refresh(fit = false) {
   $("#welcome").hidden =
     state.segments.length > 0 || tool !== "select" || !$("#catalog").hidden;
   shell?.setProjectName(state.name);
-  if (!$("#inspector").hidden) renderInspector();
+  if (selected || !$("#inspector").hidden) renderInspector();
   syncBrush();
   help();
 }
@@ -318,7 +335,13 @@ function hover(point, event) {
         resolveProject(q.next, catalog).parts.filter((p) => p.kind === "panel")
           .length - assembly.parts.filter((p) => p.kind === "panel").length;
       preview(q.next, {
-        title: q.length.toFixed(2) + " m · " + count + " panouri",
+        title:
+          q.length.toFixed(2) +
+          " m · " +
+          ((Math.atan2(q.b.y - a.y, q.b.x - a.x) * 180) / Math.PI).toFixed(1) +
+          "° · " +
+          count +
+          " panouri",
         text: "Click sau eliberează pentru plasare. Dimensiunile produselor rămân reale.",
       });
       return;
@@ -409,10 +432,11 @@ function select(target) {
   selected = target;
   inspectingBrush = false;
   $("#catalog").hidden = true;
-  $("#inspector").hidden = !selected;
+  $("#inspector").hidden = true;
   refresh();
 }
 function openCatalog(kind, { replace = null } = {}) {
+  $("#piece-wheel").hidden = true;
   category = kind;
   replaceTarget = replace;
   limit = 40;
@@ -656,6 +680,8 @@ function renderInspector() {
   cleanups = [];
   $("#properties").replaceChildren();
   $("#element-actions").replaceChildren();
+  $("#piece-wheel").replaceChildren();
+  $("#piece-wheel").hidden = true;
   if (!inspectingBrush && selected?.type === "accessory-catalog") {
     const m = modelById(catalog, selected.id);
     showPiece(
@@ -811,7 +837,7 @@ function renderInspector() {
     );
     if (!m.custom && !["chainlink", "roll-welded"].includes(m.legacyGenerator))
       actions.append(
-        actionButton("Ajustează latura și porțile la panouri întregi", () => {
+        actionButton("▥ Ajustează la module", () => {
           const next = fitRunToModules(state, run.id, catalog);
           commit(next);
           toast(
@@ -846,17 +872,17 @@ function renderInspector() {
       );
     }
     actions.append(
-      actionButton("Schimbă gardul pe această latură", () =>
+      actionButton("⇄ Schimbă gardul", () =>
         openCatalog("panel", { replace: selected }),
       ),
-      actionButton("Același gard pe toate laturile", () => {
+      actionButton("▦ Aplică peste tot", () => {
         commit(replaceAllFences(state, selectionOf(run), catalog));
         toast(
           "Gardul a fost aplicat pe toate laturile. Poți anula această operație.",
         );
       }),
-      actionButton("Adaugă o poartă aici", () => openCatalog("gate")),
-      actionButton("Continuă gardul din capăt", () => {
+      actionButton("⊓ Adaugă poartă", () => openCatalog("gate")),
+      actionButton("＋ Continuă gardul", () => {
         brush = selectionOf(run);
         setTool("fence");
         start = { x: b.x, y: b.y };
@@ -879,7 +905,7 @@ function renderInspector() {
           ),
         { min: 0 },
       ),
-      actionButton("Inversează sensul deschiderii", () =>
+      actionButton("↔ Inversează poarta", () =>
         commit({
           ...state,
           gates: state.gates.map((g) =>
@@ -889,13 +915,13 @@ function renderInspector() {
           ),
         }),
       ),
-      actionButton("Mută poarta cu cursorul", () => {
+      actionButton("✥ Mută poarta", () => {
         brush = selectionOf(gate);
         setTool("gate");
         movingGate = gate.id;
         handing = gate.handing;
       }),
-      actionButton("Schimbă modelul porții", () =>
+      actionButton("⇄ Schimbă poarta", () =>
         openCatalog("gate", { replace: selected }),
       ),
     );
@@ -922,6 +948,50 @@ function renderInspector() {
   source.target = "_blank";
   source.rel = "noopener";
   actions.append(source);
+  if (!inspectingBrush && ["run", "gate"].includes(selected?.type)) {
+    const wheel = $("#piece-wheel");
+    const title = el(
+      "strong",
+      selected.type === "gate" ? "Poartă selectată" : "Latură selectată",
+    );
+    const close = actionButton("×", () => select(null));
+    close.setAttribute("aria-label", "Deselectează piesa");
+    const heading = el("header");
+    heading.append(title, close);
+    wheel.append(heading);
+    wheel.append(
+      actionButton("⚙ Proprietăți", () => {
+        $("#inspector").hidden = false;
+        wheel.hidden = true;
+      }),
+    );
+    for (const button of [...actions.children].filter(
+      (e) => e.tagName === "BUTTON",
+    ))
+      wheel.append(button);
+    wheel.hidden = !$("#catalog").hidden || !$("#inspector").hidden;
+    positionWheel();
+  }
+}
+function positionWheel() {
+  const wheel = $("#piece-wheel");
+  if (wheel.hidden || !scene || !selected) return;
+  const point = scene.selectionScreenPoint(selected);
+  if (!point) {
+    wheel.hidden = true;
+    return;
+  }
+  const world = $("#world").getBoundingClientRect();
+  const width = wheel.offsetWidth,
+    height = wheel.offsetHeight;
+  wheel.style.left =
+    Math.max(world.left + 8, Math.min(world.right - width - 8, point.x + 20)) +
+    "px";
+  wheel.style.top =
+    Math.max(
+      world.top + 64,
+      Math.min(world.bottom - height - 8, point.y - height / 2),
+    ) + "px";
 }
 function showPiece(m, context, note) {
   $("#inspector-context").textContent = context;
@@ -955,22 +1025,26 @@ function showList() {
           state.gates.length +
           " porți",
       ),
-      el(
-        "p",
-        "Listă preliminară. Prețurile se completează în ofertă după confirmarea produselor și montajului.",
-        "muted",
-      ),
+      el("p", PRICE_NOTICE, "muted"),
     );
     const table = el("table"),
       head = el("tr");
-    for (const t of ["Piesă", "Cantitate", "Observații"])
+    for (const t of [
+      "Piesă",
+      "Cantitate",
+      "Preț demo / unitate",
+      "Total demo",
+      "Observații",
+    ])
       head.append(el("th", t));
     table.append(head);
-    for (const item of assembly.items) {
+    for (const item of priceAssembly(assembly, catalog).lines) {
       const row = el("tr");
       for (const text of [
         item.label,
         item.quantity + " " + item.unit,
+        money(item.unitPrice),
+        money(item.total),
         item.notes,
       ])
         row.append(el("td", text));
@@ -1013,7 +1087,7 @@ function showList() {
         download(
           "decorio-componente.csv",
           "text/csv;charset=utf-8",
-          csv(assembly, state),
+          quoteCsv([cartSnapshot(state, assembly, catalog)]),
         ),
       ),
       actionButton("Export proiect JSON", () =>
@@ -1035,6 +1109,157 @@ function showList() {
     host.append(details);
   });
 }
+function updateCartCount() {
+  $("#open-cart").textContent = "Coș demo · " + demoCart.length;
+}
+function showCart() {
+  modal("Coșul proiectelor · demo", (host) => {
+    host.append(
+      el("p", PRICE_NOTICE),
+      el(
+        "p",
+        "Coș salvat în acest browser. Fiecare proiect păstrează configurația și lista de piese.",
+        "muted",
+      ),
+    );
+    const shared = el("div", undefined, "shared-ui-host decorio-cart");
+    // Reuse the platform cart view. This demo adapter never invokes the real quotation endpoint.
+    const template = document.createElement("template");
+    template.innerHTML = renderCartMenu(
+      "ro-RO",
+      demoCart.map((e) => ({
+        key: e.key,
+        name: e.name,
+        productId: "fence",
+        costAmount: e.pricing.total,
+        currency: "RON",
+      })),
+      { open: true },
+    );
+    const quote = template.content.querySelector('[data-action="cart-quote"]');
+    quote.dataset.action = "demo-quote";
+    quote.textContent = "Pregătește cererea de ofertă";
+    shared.append(template.content);
+    shared.onclick = safe((event) => {
+      const button = event.target.closest("[data-action]");
+      if (!button) return;
+      const key = button.dataset.cartKey;
+      if (button.dataset.action === "demo-quote") return showQuote();
+      if (button.dataset.action === "cart-edit") {
+        const entry = demoCart.find((e) => e.key === key);
+        commit(assertProject(structuredClone(entry.project), catalog), {
+          fit: true,
+        });
+        editingCartKey = key;
+        setTool("select");
+        refresh();
+        $("#dialog").close();
+        toast(
+          "Editezi copia din coș. Apasă Actualizează în coș când ai terminat.",
+        );
+        return;
+      }
+      const next =
+        button.dataset.action === "cart-empty"
+          ? []
+          : demoCart.filter((e) => e.key !== key);
+      localStorage.setItem(CART_KEY, JSON.stringify(next));
+      demoCart = next;
+      if (!demoCart.some((e) => e.key === editingCartKey))
+        editingCartKey = null;
+      updateCartCount();
+      refresh();
+      showCart();
+    });
+    host.append(shared);
+  });
+}
+function showQuote() {
+  modal("Pregătește cererea de ofertă", (host) => {
+    host.append(
+      el(
+        "p",
+        "Descarcă devizul și configurațiile pentru verificare. În această demonstrație nu se trimite o solicitare către Decorio.",
+      ),
+      el("p", PRICE_NOTICE),
+      el(
+        "strong",
+        "Total demonstrativ: " +
+          money(demoCart.reduce((n, e) => n + e.pricing.total, 0)),
+      ),
+    );
+    host.append(
+      actionButton("Descarcă devizul CSV", () =>
+        download(
+          "decorio-deviz-DEMO.csv",
+          "text/csv;charset=utf-8",
+          quoteCsv(demoCart),
+        ),
+      ),
+      actionButton("Descarcă dosarul cererii JSON", () =>
+        download(
+          "decorio-cerere-DEMO.json",
+          "application/json",
+          JSON.stringify(
+            {
+              type: "decorio-demo-quote",
+              version: 1,
+              notice: PRICE_NOTICE,
+              projects: demoCart,
+            },
+            null,
+            2,
+          ),
+        ),
+      ),
+    );
+    for (const entry of demoCart) {
+      const details = el("details");
+      details.append(
+        el("summary", entry.name + " · " + money(entry.pricing.total)),
+        el(
+          "p",
+          "Listă preliminară: " +
+            entry.issues.length +
+            " observații de verificat, incluse în deviz.",
+        ),
+      );
+      details.append(
+        actionButton("Descarcă acest proiect pentru reimport", () =>
+          download(
+            "decorio-proiect.json",
+            "application/json",
+            JSON.stringify(entry.project, null, 2),
+          ),
+        ),
+      );
+      host.append(details);
+    }
+    host.append(actionButton("Înapoi la coș", showCart));
+  });
+}
+click("#open-cart", showCart);
+click("#add-cart", () => {
+  if (!assembly.items.length)
+    throw Error("Adaugă întâi garduri, porți sau accesorii în proiect.");
+  if (!editingCartKey && demoCart.length >= 30)
+    throw Error("Coșul poate păstra cel mult 30 de proiecte.");
+  const entry = cartSnapshot(
+    state,
+    assembly,
+    catalog,
+    editingCartKey || undefined,
+  );
+  const next = editingCartKey
+    ? demoCart.map((e) => (e.key === editingCartKey ? entry : e))
+    : [...demoCart, entry];
+  localStorage.setItem(CART_KEY, JSON.stringify(next));
+  demoCart = next;
+  editingCartKey = null;
+  updateCartCount();
+  refresh();
+  showCart();
+});
 function rectangle() {
   if (modelById(catalog, brush.modelId).kind !== "panel")
     brush = defaultProduct(catalog, "d-94a19ed2e5ef");
@@ -1091,6 +1316,25 @@ async function init() {
     throw Error("Această aplicație este rezervată Decorio.");
   catalog = await fetch("./ontology.json").then((r) => r.json());
   state = emptyProject(catalog);
+  try {
+    const savedCart = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+    if (!Array.isArray(savedCart) || savedCart.length > 30)
+      throw Error("Coș invalid");
+    demoCart = savedCart.map((entry) => {
+      const project = assertProject(entry.project, catalog);
+      return cartSnapshot(
+        project,
+        resolveProject(project, catalog),
+        catalog,
+        entry.key,
+      );
+    });
+  } catch {
+    toast(
+      "Coșul local nu a putut fi restaurat. Fișierul salvat nu a fost suprascris.",
+    );
+  }
+  updateCartCount();
   brush = defaultProduct(catalog, "d-94a19ed2e5ef");
   try {
     const saved = localStorage.getItem(KEY);
@@ -1111,13 +1355,14 @@ async function init() {
       help();
     },
   });
+  scene.controls.addEventListener("change", positionWheel);
+  window.addEventListener("resize", positionWheel);
   setTool("select");
   refresh(true);
   if (!local)
     try {
-      const { requireTenantConfiguratorAccess } = await import(
-        "../../shared-ui/src/tenantBootstrap.js"
-      );
+      const { requireTenantConfiguratorAccess } =
+        await import("../../shared-ui/src/tenantBootstrap.js");
       const t = await requireTenantConfiguratorAccess("fence");
       cloudReady = t?.slug === "decorio" && t.exists && t.status === "active";
     } catch {}
@@ -1128,7 +1373,7 @@ async function init() {
     brandSrc: catalog.logoUrl || "/shared-ui/assets/360CONFIGURATOR.png",
     brandAlt: "Decorio",
     storagePrefix: "decorio:fence:v3",
-    fixedPreferences: { locale: "ro-RO", units: "metric" },
+    fixedPreferences: { locale: "ro-RO", units: "metric", currency: "RON" },
     capabilities: {
       cart: false,
       bookDemo: false,
@@ -1145,6 +1390,7 @@ async function init() {
     callbacks: {
       captureState: () => structuredClone(state),
       restoreState: (snapshot) => {
+        editingCartKey = null;
         state = importProject(snapshot, catalog);
         history.clear();
         future = [];
@@ -1158,6 +1404,7 @@ async function init() {
         persist();
       },
       resetConfiguration: () => {
+        editingCartKey = null;
         commit(emptyProject(catalog), { fit: true });
         setTool("select");
         return true;
@@ -1167,9 +1414,8 @@ async function init() {
         return history.undo();
       },
       getShareUrl: async () => {
-        const { createShareUrl } = await import(
-          "../../shared-ui/src/shareState.js"
-        );
+        const { createShareUrl } =
+          await import("../../shared-ui/src/shareState.js");
         return createShareUrl({ productType: "fence", state });
       },
       onPreferenceChange: (key, value) => {
@@ -1208,6 +1454,7 @@ click("#new-project", () =>
       actionButton(
         "Începe de la zero",
         () => {
+          editingCartKey = null;
           commit(emptyProject(catalog), { fit: true });
           brush = defaultProduct(catalog, "d-94a19ed2e5ef");
           setTool("select");
@@ -1225,7 +1472,10 @@ click("#close-catalog", () => {
   replaceTarget = null;
   refresh();
 });
-click("#close-inspector", () => ($("#inspector").hidden = true));
+click("#close-inspector", () => {
+  $("#inspector").hidden = true;
+  if (selected) renderInspector();
+});
 click("#fit", () => scene.fit());
 click("#edit-brush", () => {
   inspectingBrush = true;
@@ -1297,6 +1547,7 @@ click("#old-project", () =>
       actionButton(
         "Deschide copia",
         () => {
+          editingCartKey = null;
           commit(importProject(oldDraft, catalog), { fit: true });
           setTool("select");
           $("#dialog").close();
@@ -1320,6 +1571,7 @@ $("#import-json").onchange = async (e) => {
             "Importăm o copie a gardului și porților în noul format. Originalul rămâne neschimbat.",
           ),
           actionButton("Importă copia", () => {
+            editingCartKey = null;
             commit(importProject(input, catalog), { fit: true });
             setTool("select");
             $("#dialog").close();
@@ -1327,6 +1579,7 @@ $("#import-json").onchange = async (e) => {
         ),
       );
     } else {
+      editingCartKey = null;
       commit(importProject(input, catalog), { fit: true });
       setTool("select");
       $("#dialog").close();

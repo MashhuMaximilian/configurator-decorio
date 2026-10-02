@@ -84,6 +84,31 @@ export class BuilderScene extends DecorioViewer {
       if (!this.down) this.handlers.cancel();
     });
   }
+  selectionScreenPoint(selected) {
+    const gate =
+      selected.type === "gate"
+        ? this.state.gates.find((g) => g.id === selected.id)
+        : null;
+    const run = this.state.segments.find(
+      (s) => s.id === (gate?.segmentId || selected.id),
+    );
+    if (!run) return null;
+    const a = this.state.nodes.find((n) => n.id === run.a),
+      b = this.state.nodes.find((n) => n.id === run.b);
+    const offset = gate
+      ? gate.offset + gateSpan(resolveProduct(this.catalog, gate)) / 2
+      : Math.hypot(b.x - a.x, b.y - a.y) / 2;
+    const p = projectPoint(this.state, run.id, offset);
+    this.camera.updateMatrixWorld();
+    const v = new THREE.Vector3(p.x, this.view === "2d" ? 0 : 0.7, p.y).project(
+      this.camera,
+    );
+    const r = this.renderer.domElement.getBoundingClientRect();
+    return {
+      x: r.left + ((v.x + 1) * r.width) / 2,
+      y: r.top + ((1 - v.y) * r.height) / 2,
+    };
+  }
   setAnchor(point) {
     disposeObjectResources(this.anchorGroup, { materialFilter: () => true });
     this.anchorGroup.clear();

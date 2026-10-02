@@ -321,7 +321,7 @@ export function drawProposal(
   a,
   target,
   catalog,
-  { ortho = true, snapModules = true, exact = false } = {},
+  { ortho = false, snapModules = true, exact = false } = {},
 ) {
   const r = resolveProduct(catalog, product);
   let angle = Math.atan2(target.y - a.y, target.x - a.x),
