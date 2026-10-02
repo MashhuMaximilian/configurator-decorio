@@ -33,3 +33,5 @@ Local screenshots and generated JSON/CSV evidence are in ignored `output/`. Prod
 - Original FenceScene infrastructure restored with a geometry injection seam; DecorioViewer extends it. Shared undo manager and opt-in panel control styles restored. Full shell integration and exact product-specific decorative meshes remain outstanding.
 - Catalogue dialog now distinguishes dimension coverage from verified 3D fidelity. Counts remain 1085 inventoried entries and 267 entries with dimensions, including one gate.
 - Admin access document and tenantPublic/decorio still returned 404 on this follow-up. No role grant was made.
+
+- Follow-up code `fb6908c` deployed only to the Decorio Cloud Run service; live version.json confirms the commit and noindex. Standard www and AKS fence routes return their original application. Shared admin fix is draft PR https://github.com/office-360design/configurator-360/pull/494 and is not deployed.
