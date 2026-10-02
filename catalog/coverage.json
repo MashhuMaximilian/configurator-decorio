@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-02.1",
+  "version": "2026-10-02.2",
   "reviewedAt": "2026-10-02",
   "families": [
     {
@@ -434,6 +434,7 @@
       "limitations": [
         "Kit complet: componența cantitativă și regulile de capăt/colț necesită confirmare. Nu se adaugă separat componente presupuse incluse.",
         "Dimensiunile produsului sunt documentate; montajul complet și compatibilitatea accesoriilor necesită confirmare.",
+        "Conflict: fișa produsului publică 2510 mm, iar fișa VEGA 2D Super atașată publică 2500 mm. Lățimea de calcul necesită confirmare.",
         "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
       ],
       "source": {
@@ -486,6 +487,7 @@
       "referenceOnly": 5,
       "limitations": [
         "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate.",
+        "Unitate contradictorie: pagina indică 2000 m, desenul catalogului indică 2000 mm. Nu validăm tacit corecția.",
         "Dimensiuni publicate. Finisajul și montajul se confirmă. Reprezentare schematică.",
         "Anvelopă schematică în limitele publicate. Modelul decorativ, dimensiunile minime nepublicate, finisajul și montajul se confirmă cu Decorio. Nu reprezintă un produs standard de stoc."
       ],

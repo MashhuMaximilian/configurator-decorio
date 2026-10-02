@@ -74,6 +74,31 @@ for raw in D['products']:
  if kind=='panel' and not p['variants']:p['status']='needs-data'
  products.append(p)
  f=families.setdefault(family,{'id':family,'name':label,'source':{'url':'https://decorio.ro'+cat,'retrievedAt':'2026-10-02'},'status':'inventoried','limitations':['Vezi limitele fiecărui produs.']})
+# Record product-page/PDF conflicts rather than silently selecting a measurement.
+documents=json.loads((R/'catalog/documents.json').read_text())
+for p in products:
+ f={norm(k):v for k,v in p['specifications'].items()}
+ for v in p['variants']:
+  for key,field in [('meshX','dimensiune ochi orizontal'),('meshY','dimensiune ochi vertical')]:
+   value=measure(f.get(field,''))
+   if value:v[key]=value
+  mesh=re.fullmatch(r'\s*(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)\s*mm\s*',f.get('dimensiune ochi',''))
+  if mesh:v['meshX'],v['meshY']=[float(x.replace(',','.'))*.001 for x in mesh.groups()]
+  specific=f.get('culoare','')
+  if specific and ',' not in specific and ' si ' not in norm(specific):
+   ral=re.search(r'RAL\s*(\d{4})',specific,re.I)
+   if ral:
+    v['finish']='RAL'+ral[1];v['color']={'6005':'#174936','7016':'#343b3d','9005':'#242626','9010':'#eeeee5'}.get(ral[1],v['color'])
+    v['label']=f"{v['width']:g} × {v['height']:g} m · {v['finish']}"
+ attached=[d for d in documents if p['source']['url'] in d['pages']]
+ pdf=next((d for d in attached if d['file']=='0c02e0f6-fcd4-47ff-a58a-0c07a6df808a.pdf'),None)
+ if pdf and measure(f.get('lungime','')) and measure(f['lungime'])!=2.5:
+  p['conflicts']=[{'field':'width','website':f['lungime'],'pdf':'2500 mm','source':{'url':pdf['url'],'page':2,'retrievedAt':'2026-10-02'}}]
+  p['variants']=[];p['status']='needs-data';p['limitations']=['Conflict: fișa produsului publică 2510 mm, iar fișa VEGA 2D Super atașată publică 2500 mm. Lățimea de calcul necesită confirmare.']
+ if norm(p['name']).startswith('plusar') and f.get('lungime panou')=='2000 m':
+  p['conflicts']=[{'field':'width','website':'2000 m','pdf':'2000 mm','source':{'url':'https://cdn.decorio.ro/8d9bcd39-af8c-4711-8c97-019658bf5c59.pdf','page':2,'retrievedAt':'2026-10-02'}}]
+  p['limitations']=['Unitate contradictorie: pagina indică 2000 m, desenul catalogului indică 2000 mm. Nu validăm tacit corecția.']
+
 # Continuous dimensions are allowed only when the product page explicitly gives ranges/maxima.
 def bounds(value):
  value=norm(value or '').strip()
@@ -122,7 +147,7 @@ for model, widths, heights in [('UR 350',[.2,.3,.5,.7,.8,1,1.2,1.5],[.8,1.1,2.2]
  variants=[{'id':f'{int(w*1000)}-{int(h*1000)}','width':w,'height':h,'depth':.019,'finish':'RAL7037','color':'#85898a','label':f'{w:g} × {h:g} m · RAL 7037','meshX':.025 if model=='UR 325' else .05,'meshY':.1 if model=='UR 300' else .05} for w in widths for h in heights if h!=1.1 or w in [.7,1.2,1.5]]
  products.append({'id':'troax-'+model.lower().replace(' ','-'),'name':'Troax '+model,'family':'partitionare-depozite','kind':'panel','generator':'solid' if model=='UR SP' else 'industrial','inScope':True,'status':'partial','source':warehouse_source,'variants':variants,'specifications':{},'limitations':['Stâlpii, fixarea în pardoseală și distanțele de siguranță necesită proiect de montaj.']})
 products.append({'id':'troax-single-hinged','name':'Troax – ușă batantă simplă pentru compartimentări','family':'partitionare-depozite','kind':'gate','generator':'swing','inScope':True,'status':'partial','source':dict(warehouse_source,page=7),'compatibleWith':['troax-ur-350','troax-ux-450','troax-ur-325','troax-ur-300','troax-ur-sp'],'specifications':{},'limitations':['Alegerea încuietorii și accesoriilor de siguranță se confirmă.'],'variants':[{'id':str(w),'width':w-.02,'opening':w,'height':2.1,'depth':.03,'finish':'RAL7037','color':'#85898a','label':f'Gol {w:g} m · foaie {w-.02:g} × 2,1 m','leaves':1} for w in [1,1.2]]})
-catalog={'version':'2026-10-02.1','reviewedAt':'2026-10-02','families':sorted(families.values(),key=lambda f:f['name']),'products':products,'policy':'Only explicit documented variants; no inferred product compatibility or commercial prices.'}
+catalog={'version':'2026-10-02.2','reviewedAt':'2026-10-02','families':sorted(families.values(),key=lambda f:f['name']),'products':products,'policy':'Only explicit documented variants; no inferred product compatibility or commercial prices.'}
 (R/'catalog/catalog.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n')
 # Keep inventory facts, not full marketing-page copies, in version control.
 (R/'catalog/inventory.json').write_text(json.dumps({'reviewedAt':D['reviewedAt'],'categoryPages':len(D['categories']),'failures':D['failures'],'products':[{k:v for k,v in p.items() if k!='text'} for p in D['products']]},ensure_ascii=False,indent=2)+'\n')
