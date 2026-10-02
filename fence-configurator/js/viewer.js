@@ -10,6 +10,7 @@ export class DecorioViewer extends FenceScene {
  constructor(host){
   super(host);
   this.group=this.modelGroup;
+  for(const item of this.floorGroup.children)item.visible=item.name==='ground';
   this.surface.materials.register('decorio.steel',{type:'standard',roughness:.55,metalness:.55});
   this.surface.materials.register('decorio.stone',{type:'standard',roughness:.95,metalness:0});
   this.surface.materials.register('decorio.transparent-acoustic',{type:'physical',roughness:.15,metalness:0,transparent:true,opacity:.25,depthWrite:false});
@@ -109,7 +110,7 @@ export class DecorioViewer extends FenceScene {
    g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve),new THREE.LineBasicMaterial({color:'#c58a3b'})));
   }
  }
- render(assembly,state,{fit=false,selected=''}={}){
+ render(assembly,state,{fit=false,selected='',ghostIds=[]}={}){
   this.clear();const templates=new Map();for(const part of assembly.parts){
    if(part.kind!=='gap'&&!part.visual)continue;
    if(!['gap','post'].includes(part.kind)&&part.visual.status!=='reconstructed')continue;
@@ -127,6 +128,7 @@ export class DecorioViewer extends FenceScene {
     else{const index=this.group.children.length;this.panel(part);templates.set(key,this.group.children[index]);}
    }
   }
+  for(const group of this.group.children)if(ghostIds.includes(group.userData.segmentId))group.traverse(o=>{if(o.material){o.material=o.material.clone();o.material.transparent=true;o.material.opacity=.38;o.material.depthWrite=false;}});
   const bounds=new THREE.Box3().setFromObject(this.group);
   if(bounds.isEmpty())bounds.setFromCenterAndSize(new THREE.Vector3(),new THREE.Vector3(8,3,8));
   this.currentBuild={bounds:{box:bounds,center:bounds.getCenter(new THREE.Vector3()),size:bounds.getSize(new THREE.Vector3())},runSegments:state.segments.filter(s=>state.segments.length<=20||s.id===selected).map(s=>{
@@ -134,7 +136,7 @@ export class DecorioViewer extends FenceScene {
    return {points:[new THREE.Vector3(a.x,0,a.y),new THREE.Vector3(b.x,0,b.y)],length:Math.hypot(b.x-a.x,b.y-a.y)};
   })};
   if(!state.segments.length&&assembly.parts[0]?.a){const p=assembly.parts[0];this.currentBuild.runSegments=[{points:[new THREE.Vector3(p.a.x,0,p.a.y),new THREE.Vector3(p.b.x,0,p.b.y)],length:p.variant.width}];}
-  this.updateDimensions({showDimensions:state.options.dimensions,height:Math.max(.1,...assembly.parts.map(p=>p.variant?.height||0))});
+  this.updateDimensions({showDimensions:state.options.dimensions&&assembly.parts.length>0&&!this.host.classList.contains('mini-view'),height:Math.max(.1,...assembly.parts.map(p=>p.variant?.height||0))});
   if(selected){const selectionBounds=new THREE.Box3();for(const group of this.group.children)if(group.userData.segmentId===selected)selectionBounds.expandByObject(group);if(!selectionBounds.isEmpty()){const helper=new THREE.Box3Helper(selectionBounds,0xc48432);this.surface.geometry.adopt(helper.geometry,{kind:'decorio.selection'});helper.raycast=()=>{};this.group.add(helper);}}
   this.surface.invalidate();
   this.renderer.domElement.dataset.models=JSON.stringify([...new Set(assembly.parts.map(p=>p.resolved?.model.id).filter(Boolean))]);
