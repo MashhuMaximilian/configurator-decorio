@@ -18,7 +18,7 @@ OIDC trust is restricted to GitHub repository ID `1401293739`, owner ID `5071766
 
 Cloud Run has `internal-and-cloud-load-balancing` ingress, no default URL, and public invocation only through the allowed load-balancer path. Nginx accepts the three Decorio hostnames; .com and .de redirect to .ro with the request URI, allowing browser fragment inheritance. All responses have `X-Robots-Tag`; the page also has a robots meta tag. No SEO helper overrides it.
 
-Existing wildcard certificate entries are ACTIVE in `configurators-cert-map`; no certificate or wildcard DNS change is needed. The live URL map is `configurators-web-map`. Routing changes must add exact Decorio hosts and preserve all existing entries. A pre-change map was exported locally to `/tmp/decorio-urlmap-before.yaml`. Production routing is not yet activated.
+Existing wildcard certificate entries are ACTIVE in `configurators-cert-map`; no certificate or wildcard DNS change is needed. The live URL map is `configurators-web-map`. Routing changes must add exact Decorio hosts and preserve all existing entries. A pre-change map was exported locally to `/tmp/decorio-urlmap-before.yaml`. Exact Decorio routing is active. Existing default service, host rules and path matchers were compared after the update and remained unchanged. Standard and AKS fence pages still return their original app.
 
 ## Rollback
 
