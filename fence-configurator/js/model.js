@@ -198,3 +198,18 @@ export function csv(assembly,state){
  const rows=[['Proiect',state.name],['Stare',assembly.complete?'Complet':'Listă preliminară / incompletă'],[],['Cod produs','Denumire și variantă','Cantitate','Unitate','Observații','Sursă'],...assembly.items.map(r=>[r.code,r.label,r.quantity,r.unit,r.notes,r.source.url+(r.source.page?'#page='+r.source.page:'')]),[],['De confirmat'],...assembly.issues.map(i=>[i.segmentId,i.message])];
  return '\uFEFF'+rows.map(row=>row.map(escape).join(';')).join('\r\n');
 }
+
+/** Atomically change the selected target, preserving geometry and validating gates. */
+export function applyProduct(state,selected,selection,scope,catalog){
+ const next=clone(state);
+ if(!['all','connected','segment'].includes(scope))throw Error('Țintă de aplicare necunoscută.');
+ const edge=next.segments.find(s=>s.id===selected);
+ if(scope!=='all'&&!edge)throw Error('Selectează un segment din plan.');
+ const ids=new Set(scope==='all'?next.segments.map(s=>s.id):[selected]);
+ if(scope==='connected'){
+  const nodes=new Set([edge.a,edge.b]);let changed=true;
+  while(changed){changed=false;for(const s of next.segments)if(!ids.has(s.id)&&(nodes.has(s.a)||nodes.has(s.b))){ids.add(s.id);nodes.add(s.a);nodes.add(s.b);changed=true;}}
+ }
+ for(const s of next.segments)if(ids.has(s.id)){delete s.dimensions;Object.assign(s,selection);}
+ return assertState(next,catalog);
+}

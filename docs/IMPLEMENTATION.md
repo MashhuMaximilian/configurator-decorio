@@ -2,7 +2,7 @@
 
 Upstream base: `office-360design/configurator-360@83376ec`.
 Fork: `MashhuMaximilian/configurator-decorio`, branch `codex/decorio-demo`.
-Upstream checkout and its deployment are unchanged. Automatic GitHub Actions remain disabled.
+The standard deployment is unchanged. A separate upstream branch fixes the shared tenant admin form error handling. Automatic GitHub Actions remain disabled.
 
 ## Local preview
 
@@ -21,7 +21,7 @@ See `docs/acceptance.md` for passed checks and remaining work. Remaining: exact 
 
 ## Isolation
 
-Build copies only an explicit allowlist of Decorio files and six shared Firebase/tenant modules. No other configurator, admin UI, Firebase Functions, rules or deployment workflow is bundled. The HTTP server accepts Decorio hosts, redirects .com/.de preserving the request URI, and adds noindex on all responses. Unknown hosts receive 421.
+Build copies only an explicit allowlist of Decorio files and shared Firebase/tenant modules, the platform undo manager and panel controls. The viewer extends the original FenceScene from upstream 83376ec (factory dependency injected); its camera, studio lighting, environment, dimensions and render loop are reused. The full standalone shell is not yet integrated. No other configurator, admin UI, Firebase Functions, rules or deployment workflow is bundled. The HTTP server accepts Decorio hosts, redirects .com/.de preserving the request URI, and adds noindex on all responses. Unknown hosts receive 421.
 
 ## Research reproduction
 

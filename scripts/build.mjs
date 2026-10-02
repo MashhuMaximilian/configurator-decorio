@@ -5,14 +5,17 @@ const dest = new URL('dist/site/', root);
 await rm(dest, { recursive:true, force:true });
 await mkdir(dest,{recursive:true});
 const files=['fence-configurator/index.html','fence-configurator/decorio.css',
- ...['decorio-app','model','viewer','editor'].map(n=>'fence-configurator/js/'+n+'.js'),
+ ...['decorio-app','model','viewer','editor','scene'].map(n=>'fence-configurator/js/'+n+'.js'),
  ...['firebaseAuth','firebaseAppCheck','savedConfigurations','shareState','tenantBootstrap','tenantDomains'].map(n=>'shared-ui/src/'+n+'.js'),
- 'shared-ui/firebase-app-check.json'];
+ 'shared-ui/firebase-app-check.json','shared-ui/src/history/undoManager.js','shared-ui/styles/panelControls.css'];
 for(const file of files){const output=new URL(file,dest);await mkdir(new URL('./',output),{recursive:true});await cp(new URL(file,root),output);}
 await mkdir(new URL('vendor/',dest),{recursive:true});
 await cp(new URL('node_modules/three/build/three.module.js',root),new URL('vendor/three.module.js',dest));
 await mkdir(new URL('vendor/addons/controls/',dest),{recursive:true});
-await cp(new URL('node_modules/three/examples/jsm/controls/OrbitControls.js',root),new URL('vendor/addons/controls/OrbitControls.js',dest));
+for(const file of ['controls/OrbitControls.js','lights/RectAreaLightUniformsLib.js','lights/RectAreaLightTexturesLib.js','renderers/CSS2DRenderer.js']) {
+ const target=new URL('vendor/addons/'+file,dest);await mkdir(new URL('./',target),{recursive:true});
+ await cp(new URL('node_modules/three/examples/jsm/'+file,root),target);
+}
 await cp(new URL('catalog/catalog.json',root),new URL('fence-configurator/catalog.json',dest));
 await cp(new URL('catalog/coverage.json',root),new URL('fence-configurator/coverage.json',dest));
 await writeFile(new URL('robots.txt',dest),'User-agent: *\nDisallow: /\n');

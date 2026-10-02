@@ -1,15 +1,18 @@
 <!doctype html>
-<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#233d33"><title>Decorio — Proiectează împrejmuirea</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./decorio.css"><script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/addons/"}}</script></head>
+<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#233d33"><title>Decorio — Proiectează împrejmuirea</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/shared-ui/styles/panelControls.css"><link rel="stylesheet" href="./decorio.css"><script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/addons/"}}</script></head>
 <body>
 <header class="header"><a class="brand" href="/" aria-label="Decorio configurator"><span class="brand-symbol">▥</span>decorio<span class="brand-dot">.</span></a><div class="header-divider"></div><span class="header-title">STUDIO DE ÎMPREJMUIRI</span><span class="demo-label">DEMO</span><div class="header-actions"><button id="open-projects" aria-label="Proiectele mele"><span class="desktop-label">Proiectele mele</span><span class="mobile-label" aria-hidden="true">▣</span></button><button id="login">Intră în cont</button><button id="share" class="primary">Distribuie ↗</button></div></header>
 <main class="workspace">
-<aside class="sidebar">
+<aside class="sidebar shared-panel-controls">
  <div class="intro"><p class="eyebrow">CONFIGURATOR 3D</p><h1>Locul tău. <br>Limitele tale.</h1><p>Alege sistemul. Desenează traseul.<br>Vezi proiectul prinzând contur.</p></div>
  <nav class="steps" aria-label="Etape configurare"><button class="active" data-step="catalog"><b>01</b> Sistem</button><button data-step="layout"><b>02</b> Traseu</button><button data-step="bom"><b>03</b> Piese</button></nav>
- <section id="catalog-panel" class="panel">
+ <section id="catalog-panel" class="panel panel-section">
   <label>Familie de produse<select id="family"></select></label>
   <label class="search-label">Caută în catalog<input id="search" type="search" placeholder="Model, cod sau denumire…"></label>
   <div class="filter-row"><label class="check"><input id="only-configurable" type="checkbox" checked> Cu dimensiuni documentate</label><span id="product-count"></span></div>
+  <p class="muted">Inventar extins; modelele 3D sunt schematice. Debifează filtrul pentru a vedea și produsele fără geometrie disponibilă.</p>
+  <label>Aplică automat alegerea pe<select id="apply-scope"><option value="all">Întregul proiect</option><option value="connected">Traseul conectat selectat</option><option value="segment">Doar segmentul selectat</option></select></label>
+  <p id="selection-status" class="notice" role="status">Produsul și varianta alese actualizează automat traseul. Lungimile se păstrează.</p>
   <label>Produs<select id="product" size="6" aria-label="Produs"></select></label>
   <div class="product-detail"><h2 id="product-name"></h2><p id="product-status" class="tag"></p><p id="product-notes"></p><a id="product-source" target="_blank" rel="noopener noreferrer">Vezi documentația ↗</a></div>
   <details><summary>Datele produsului</summary><dl id="product-specs"></dl><div id="kit-included"></div></details>
@@ -20,9 +23,10 @@
   <button id="draw-product" class="secondary wide">Desenează cu acest produs →</button>
   <button id="coverage" class="text-button">Vezi acoperirea întregului catalog</button>
  </section>
- <section id="layout-panel" class="panel" hidden>
+ <section id="layout-panel" class="panel panel-section" hidden>
   <h2>Desenează în plan</h2><p class="muted">Apasă două puncte pentru un segment. Continuă dintr-un nod existent pentru colțuri și ramificații.</p>
-  <div class="button-grid"><button id="draw" class="primary">＋ Desenează</button><button id="select">↖ Selectează</button></div>
+  <div class="button-grid"><button id="draw" aria-pressed="false" class="primary">＋ Desenează</button><button id="select" aria-pressed="true">↖ Încheie / selectează</button></div>
+  <p id="drawing-status" role="status" class="muted">Selectare activă · apasă un segment sau trage un punct.</p>
   <label class="check"><input id="snap" type="checkbox" checked> Aliniere pe grilă de 10 cm</label><label class="check"><input id="ortho" type="checkbox"> Doar orizontal / vertical</label>
   <label>Segment<select id="segment-select"></select></label>
   <label>Lungime segment (m)<input id="segment-length" type="number" min="0.1" max="500" step="0.01"></label><button id="set-length" class="secondary wide">Actualizează lungimea</button>
@@ -30,7 +34,7 @@
   <button id="delete-segment" class="danger wide">Șterge segmentul selectat</button>
   <details class="gate-panel"><summary>Porți compatibile</summary><p class="muted">Sunt disponibile doar combinațiile cu compatibilitate și gol de montaj documentate.</p><label>Poartă<select id="gate-product"></select></label><label>Poziție de la început (m)<input id="gate-offset" type="number" min="0" step="0.1" value="0"></label><label>Deschidere<select id="gate-hand"><option value="left">Stânga</option><option value="right">Dreapta</option></select></label><button id="add-gate" class="secondary wide">Adaugă poartă</button><div id="gate-list"></div></details>
  </section>
- <section id="bom-panel" class="panel" hidden><p class="eyebrow">LISTĂ DE COMPONENTE</p><h2>De la idee la piese.</h2><p id="bom-status" class="notice"></p><div id="bom-items"></div><h3>De confirmat</h3><ul id="issues"></ul><button id="export-csv" class="primary wide">Descarcă lista CSV ↓</button></section>
+ <section id="bom-panel" class="panel panel-section" hidden><p class="eyebrow">LISTĂ DE COMPONENTE</p><h2>De la idee la piese.</h2><p id="bom-status" class="notice"></p><div id="bom-items"></div><h3>De confirmat</h3><ul id="issues"></ul><button id="export-csv" class="primary wide">Descarcă lista CSV ↓</button></section>
  <footer class="sidebar-footer">Tehnologie <b>360Configurator</b><span>Proiectare pe teren plan</span></footer>
 </aside>
 <section class="canvas-area">

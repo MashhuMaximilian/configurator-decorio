@@ -1,19 +1,14 @@
 import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-export class DecorioViewer{
+import {FenceScene} from './scene.js';
+// Use the platform fence camera, environment, lighting, renderer and dimensions.
+export class DecorioViewer extends FenceScene {
  constructor(host){
-  this.host=host;this.scene=new THREE.Scene();this.scene.background=new THREE.Color('#e8e9e3');
-  this.renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=THREE.PCFSoftShadowMap;this.renderer.outputColorSpace=THREE.SRGBColorSpace;host.append(this.renderer.domElement);
-  this.camera=new THREE.PerspectiveCamera(42,1,.05,2000);this.camera.position.set(13,11,16);
-  this.controls=new OrbitControls(this.camera,this.renderer.domElement);this.controls.enableDamping=true;this.controls.maxPolarAngle=Math.PI/2-.03;
-  this.scene.add(new THREE.HemisphereLight('#ffffff','#b9bdab',2.2));this.sun=new THREE.DirectionalLight('#fff3dd',3);this.sun.position.set(8,18,12);this.sun.castShadow=true;this.sun.shadow.mapSize.set(2048,2048);Object.assign(this.sun.shadow.camera,{left:-40,right:40,top:40,bottom:-40,far:100});this.scene.add(this.sun);
-  const floor=new THREE.Mesh(new THREE.PlaneGeometry(1200,1200),new THREE.MeshStandardMaterial({color:'#e4e6de',roughness:1}));floor.rotation.x=-Math.PI/2;floor.position.y=-.02;floor.receiveShadow=true;this.scene.add(floor);
-  const grid=new THREE.GridHelper(200,200,'#bec4b8','#d7dcd0');grid.position.y=-.015;grid.material.transparent=true;grid.material.opacity=.6;this.scene.add(grid);
-  this.group=new THREE.Group();this.scene.add(this.group);this.labels=[];
-  this.resize=new ResizeObserver(()=>{const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;this.renderer.setSize(w,h);this.camera.aspect=w/h;this.camera.updateProjectionMatrix();});this.resize.observe(host);
-  this.renderer.setAnimationLoop(()=>{this.controls.update();this.renderer.render(this.scene,this.camera);this.layoutLabels();});
+  super(host);
+  this.group=this.modelGroup;
+  this.setPreferences({units:'metric',locale:'ro-RO'});
+  this.applyEnvironment({sunPosition:50});
  }
- clear(){this.group.traverse(o=>{o.geometry?.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>m.dispose());});this.group.clear();for(const l of this.labels)l.el.remove();this.labels=[];}
+ clear(){this.group.traverse(o=>{o.geometry?.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>m.dispose());});this.group.clear();}
  box(group,x,y,z,w,h,d,color){const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color,roughness:.7,metalness:.3}));mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;group.add(mesh);return mesh;}
  wires(group,w,h,v,type){
   const points=[];const pitchX=v.meshX||.05,pitchY=v.meshY||.2;
@@ -56,10 +51,21 @@ export class DecorioViewer{
    else if(part.kind==='gap'){const geo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(part.a.x,.045,part.a.y),new THREE.Vector3(part.b.x,.045,part.b.y)]);const l=new THREE.Line(geo,new THREE.LineDashedMaterial({color:'#c26242',dashSize:.13,gapSize:.08}));l.computeLineDistances();this.group.add(l);}
    else this.panel(part);
   }
-  if(state.options.dimensions)for(const s of state.segments){const a=state.nodes.find(n=>n.id===s.a),b=state.nodes.find(n=>n.id===s.b),el=document.createElement('span');el.className='dimension-label';el.textContent=Math.hypot(b.x-a.x,b.y-a.y).toFixed(2)+' m';this.host.append(el);this.labels.push({el,point:new THREE.Vector3((a.x+b.x)/2,2.7,(a.y+b.y)/2)});}
+  const bounds=new THREE.Box3().setFromObject(this.group);
+  if(bounds.isEmpty())bounds.setFromCenterAndSize(new THREE.Vector3(),new THREE.Vector3(8,3,8));
+  this.currentBuild={bounds:{box:bounds,center:bounds.getCenter(new THREE.Vector3()),size:bounds.getSize(new THREE.Vector3())},runSegments:state.segments.map(s=>{
+   const a=state.nodes.find(n=>n.id===s.a),b=state.nodes.find(n=>n.id===s.b);
+   return {points:[new THREE.Vector3(a.x,0,a.y),new THREE.Vector3(b.x,0,b.y)],length:Math.hypot(b.x-a.x,b.y-a.y)};
+  })};
+  this.updateDimensions({showDimensions:state.options.dimensions,height:Math.max(.1,...assembly.parts.map(p=>p.variant?.height||0))});
   if(fit)this.fit(state);
  }
- fit(state){const box=new THREE.Box3();for(const n of state.nodes)box.expandByPoint(new THREE.Vector3(n.x,1,n.y));if(box.isEmpty())box.setFromCenterAndSize(new THREE.Vector3(),new THREE.Vector3(8,3,8));const c=box.getCenter(new THREE.Vector3()),size=Math.max(5,box.getSize(new THREE.Vector3()).length());this.controls.target.copy(c);const aspect=this.host.clientWidth/Math.max(1,this.host.clientHeight),factor=Math.max(1,1/aspect);this.camera.position.copy(c).add(new THREE.Vector3(size*.85,size*.65,size*.95).multiplyScalar(factor));this.controls.update();}
- layoutLabels(){for(const {el,point} of this.labels){const p=point.clone().project(this.camera);el.style.display=p.z<1?'':'none';el.style.left=(p.x*.5+.5)*this.host.clientWidth+'px';el.style.top=(-p.y*.5+.5)*this.host.clientHeight+'px';}}
- setLight(value){this.sun.position.set(Math.cos(value)*18,12,Math.sin(value)*18);}
+ fit(){
+  if(!this.currentBuild)return;
+  this.fitCamera();
+  const aspect=this.host.clientWidth/Math.max(1,this.host.clientHeight);
+  if(aspect<1)this.camera.position.sub(this.controls.target).multiplyScalar(1/aspect).add(this.controls.target);
+  this.controls.update();
+ }
+ setLight(value){this.applyEnvironment({sunPosition:value/6.28*100});}
 }

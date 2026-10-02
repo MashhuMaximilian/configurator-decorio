@@ -10,3 +10,9 @@
 #product-specs{font-size:12px;line-height:1.5}#product-specs dt{font-weight:600;margin-top:8px}#product-specs dd{margin:0;color:#667065}
 
 .mobile-label{display:none}@media(max-width:740px){#open-projects .desktop-label{display:none}#open-projects .mobile-label{display:inline}.header{gap:8px}.header-actions #open-projects{padding:8px}.brand-symbol{margin-right:5px}}
+
+/* Shared panel primitives, with Decorio brand tokens. */
+.shared-panel-controls{--shared-panel-accent:#42604d;--shared-panel-accent-dark:#233d33;--shared-panel-ink:#24352d;--shared-panel-border:#d8dfd1}
+.shared-panel-controls .panel-section{padding:22px 24px}
+.fence-label-layer .dimension-label{position:static;pointer-events:none;white-space:nowrap}
+#drawing-status{min-height:2.8em}#draw[aria-pressed="true"],#select[aria-pressed="true"]{outline:2px solid #42604d;outline-offset:2px}
