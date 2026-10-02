@@ -1,0 +1,636 @@
+{
+  "version": "2026-10-02.1",
+  "reviewedAt": "2026-10-02",
+  "families": [
+    {
+      "id": "accesorii-electronice",
+      "name": "Accesorii electronice",
+      "status": "inventoried",
+      "products": 34,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/accesorii-electronice",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "accesorii-gard-santier",
+      "name": "Accesorii gard santier",
+      "status": "inventoried",
+      "products": 19,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/accesorii-gard-santier",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "accesorii-montaj-panouri-rigide",
+      "name": "Accesorii montaj panouri rigide",
+      "status": "inventoried",
+      "products": 46,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-gard/accesorii-montaj-panouri-rigide",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "accesorii-montaj-plase-la-rola",
+      "name": "Accesorii montaj plase la rola",
+      "status": "inventoried",
+      "products": 15,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-gard/accesorii-montaj-plase-la-rola",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "accesorii-stalpi-si-securitate",
+      "name": "Accesorii stalpi si securitate",
+      "status": "inventoried",
+      "products": 97,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-gard/accesorii-stalpi-si-securitate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "amortizoare",
+      "name": "Amortizoare",
+      "status": "inventoried",
+      "products": 21,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/amortizoare",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "balamale",
+      "name": "Balamale",
+      "status": "inventoried",
+      "products": 45,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/balamale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "balustrade-si-protectii-acoperis",
+      "name": "Balustrade si protectii acoperis",
+      "status": "inventoried",
+      "products": 1,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/balustrade-si-protectii-acoperis",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "boxe-rezidentiale-si-comerciale",
+      "name": "Boxe rezidentiale si comerciale",
+      "status": "inventoried",
+      "products": 1,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/partitionari-industriale-si-logistice/boxe-rezidentiale-si-comerciale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "componente-incuietori",
+      "name": "Componente incuietori",
+      "status": "inventoried",
+      "products": 38,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/componente-incuietori",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "contravantuiri",
+      "name": "Contravantuiri",
+      "status": "inventoried",
+      "products": 9,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-gard/contravantuiri",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "control-acces",
+      "name": "Control acces",
+      "status": "inventoried",
+      "products": 1,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/control-acces",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "echipamente-montare-stalpi",
+      "name": "Echipamente montare stalpi",
+      "status": "inventoried",
+      "products": 1,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/stalpi-metalici-si-accesorii-gard/echipamente-montare-stalpi",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "edge-protection-system",
+      "name": "Edge protection system",
+      "status": "inventoried",
+      "products": 6,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/edge-protection-system",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gabioane-ornamentale",
+      "name": "Gabioane ornamentale",
+      "status": "inventoried",
+      "products": 1,
+      "variants": 1,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/gabioane-si-grilaje/gabioane-ornamentale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gard-mobil-evenimente",
+      "name": "Gard mobil evenimente",
+      "status": "inventoried",
+      "products": 7,
+      "variants": 7,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/gard-mobil-evenimente",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gard-mobil-santier",
+      "name": "Gard mobil santier",
+      "status": "inventoried",
+      "products": 17,
+      "variants": 13,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/gard-mobil-santier",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gard-opac-santier",
+      "name": "Gard opac santier",
+      "status": "inventoried",
+      "products": 2,
+      "variants": 2,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/gard-opac-santier",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "garduri-din-gabioane",
+      "name": "Garduri din gabioane",
+      "status": "inventoried",
+      "products": 1,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/gabioane-si-grilaje/garduri-din-gabioane",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "grilaje",
+      "name": "Grilaje",
+      "status": "inventoried",
+      "products": 1,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/gabioane-si-grilaje/grilaje",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "incuietori",
+      "name": "Incuietori",
+      "status": "inventoried",
+      "products": 66,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/incuietori",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "machine-guarding",
+      "name": "Machine guarding",
+      "status": "inventoried",
+      "products": 4,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/partitionari-industriale-si-logistice/machine-guarding",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "opritoare",
+      "name": "Opritoare",
+      "status": "inventoried",
+      "products": 29,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/opritoare",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-aluminiu",
+      "name": "Panouri aluminiu",
+      "status": "inventoried",
+      "products": 9,
+      "variants": 9,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-aluminiu",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-bordurate",
+      "name": "Panouri bordurate",
+      "status": "inventoried",
+      "products": 58,
+      "variants": 56,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-bordurate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-cu-bare",
+      "name": "Panouri cu bare",
+      "status": "inventoried",
+      "products": 8,
+      "variants": 13,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-cu-bare",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-dublu-fir",
+      "name": "Panouri dublu fir",
+      "status": "inventoried",
+      "products": 67,
+      "variants": 44,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-dublu-fir",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-fonoabsorbante",
+      "name": "Panouri fonoabsorbante",
+      "status": "inventoried",
+      "products": 6,
+      "variants": 13,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-fonoabsorbante",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-rezidentiale",
+      "name": "Panouri rezidentiale",
+      "status": "inventoried",
+      "products": 57,
+      "variants": 56,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-rezidentiale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-speciale",
+      "name": "Panouri speciale",
+      "status": "inventoried",
+      "products": 10,
+      "variants": 25,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-speciale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "partitionare-depozite",
+      "name": "Partitionare depozite",
+      "status": "inventoried",
+      "products": 10,
+      "variants": 70,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/partitionari-industriale-si-logistice/partitionare-depozite",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "plase-impletite",
+      "name": "Plase impletite",
+      "status": "inventoried",
+      "products": 13,
+      "variants": 11,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/plase/plase-impletite",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "plase-innodate",
+      "name": "Plase innodate",
+      "status": "inventoried",
+      "products": 8,
+      "variants": 8,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/plase/plase-innodate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "plase-pentru-constructii",
+      "name": "Plase pentru constructii",
+      "status": "inventoried",
+      "products": 5,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/plase/plase-pentru-constructii",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "plase-sudate",
+      "name": "Plase sudate",
+      "status": "inventoried",
+      "products": 43,
+      "variants": 33,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/plase/plase-sudate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-batante-auto",
+      "name": "Porti batante auto",
+      "status": "inventoried",
+      "products": 56,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-batante-auto",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-batante-pietonale",
+      "name": "Porti batante pietonale",
+      "status": "inventoried",
+      "products": 63,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-batante-pietonale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-bi-fold",
+      "name": "Porti bi fold",
+      "status": "inventoried",
+      "products": 22,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-bi-fold",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-culisante-in-consola",
+      "name": "Porti culisante in consola",
+      "status": "inventoried",
+      "products": 48,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-culisante-in-consola",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-industriale",
+      "name": "Porti industriale",
+      "status": "inventoried",
+      "products": 7,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-industriale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-santier",
+      "name": "Porti santier",
+      "status": "inventoried",
+      "products": 13,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/porti-santier",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "scari-metalice",
+      "name": "Scari metalice",
+      "status": "inventoried",
+      "products": 2,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/scari-metalice",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "socluri-prefabricate",
+      "name": "Socluri prefabricate",
+      "status": "inventoried",
+      "products": 8,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/stalpi-metalici-si-accesorii-gard/socluri-prefabricate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "stalpi-pvc",
+      "name": "Stalpi pvc",
+      "status": "inventoried",
+      "products": 75,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/stalpi-metalici-si-accesorii-gard/stalpi-pvc",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "stalpi-zincati",
+      "name": "Stalpi zincati",
+      "status": "inventoried",
+      "products": 33,
+      "variants": 0,
+      "limitations": [
+        "Vezi limitele fiecărui produs."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/stalpi-metalici-si-accesorii-gard/stalpi-zincati",
+        "retrievedAt": "2026-10-02"
+      }
+    }
+  ]
+}

@@ -1,216 +1,46 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Configure a modular fence online in 3D. Adjust layout, dimensions, panels, finishes, gates and installation options in real time." />
-  <meta name="robots" content="index, follow" />
-  <title>3D Fence Configurator | 360Configurator</title>
-  <link rel="icon" href="data:," />
-  <link rel="stylesheet" href="../shared-ui/styles/standalone.css?v=tenant-branding-1" />
-  <link rel="stylesheet" href="../shared-ui/styles/panelControls.css?v=panel-controls-2" />
-  <link rel="stylesheet" href="./styles.css?v=panel-controls-2" />
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
-      }
-    }
-  </script>
-  <script type="module">
-    import { applyConfiguratorSeo } from '../shared-ui/src/configuratorSeo.js?v=platform-18';
-    applyConfiguratorSeo('fence');
-  </script>
-</head>
+<html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#233d33"><title>Decorio — Proiectează împrejmuirea</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./decorio.css"><script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/addons/"}}</script></head>
 <body>
-  <main class="app-shell">
-    <section class="viewer-panel" aria-label="Fence 3D viewer" data-fence-i18n-aria-label="viewer.aria">
-      <div class="viewer-stage">
-        <div id="canvasHost" aria-label="Interactive 3D fence model" data-fence-i18n-aria-label="viewer.canvasAria"></div>
-      </div>
-    </section>
-
-    <aside class="sidebar shared-panel-controls shared-settings-panel shared-settings-panel--light" aria-label="Fence settings" data-fence-i18n-aria-label="sidebar.aria">
-      <section class="panel-section intro-section">
-        <p class="eyebrow" data-fence-i18n="sidebar.eyebrow">Outdoor boundaries</p>
-        <h1 data-fence-i18n="sidebar.title">Fence settings</h1>
-        <p class="section-copy" data-fence-i18n="sidebar.copy">Configure the fence layout, bay system, infill, finish, gates and installation from one panel.</p>
-      </section>
-
-      <section class="accordion-section is-open" data-accordion="layout">
-        <button class="accordion-toggle" type="button" aria-expanded="true">
-          <span data-fence-i18n="section.layout">Layout & dimensions</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="accordion-panel">
-          <span class="select-label" data-fence-i18n="layout.type">Fence layout</span>
-          <div class="choice-grid layout-grid">
-            <button type="button" class="choice-card selected" data-layout="straight" aria-pressed="true">
-              <svg viewBox="0 0 76 42" aria-hidden="true"><path d="M8 29h60M10 13v22M66 13v22M38 13v22"/></svg>
-              <span data-fence-i18n="layout.straight">Straight run</span>
-            </button>
-            <button type="button" class="choice-card" data-layout="l" aria-pressed="false">
-              <svg viewBox="0 0 76 42" aria-hidden="true"><path d="M10 13v20h54M10 13v22M36 26v9M64 26v9"/></svg>
-              <span data-fence-i18n="layout.l">L-shaped</span>
-            </button>
-            <button type="button" class="choice-card" data-layout="u" aria-pressed="false">
-              <svg viewBox="0 0 76 42" aria-hidden="true"><path d="M10 9v25h54V9M10 34h54M37 26v8"/></svg>
-              <span data-fence-i18n="layout.u">U-shaped</span>
-            </button>
-            <button type="button" class="choice-card" data-layout="closed" aria-pressed="false">
-              <svg viewBox="0 0 76 42" aria-hidden="true"><path d="M12 31 9 12l50-3 8 23-55-1ZM59 9l8 23"/></svg>
-              <span data-fence-i18n="layout.closed">Closed perimeter · 4 sides</span>
-            </button>
-            <button type="button" class="choice-card" data-layout="closed5" aria-pressed="false">
-              <svg viewBox="0 0 76 42" aria-hidden="true"><path d="M11 30 9 14 36 7 67 17 56 34 11 30Z"/></svg>
-              <span data-fence-i18n="layout.closed5">Closed perimeter · 5 sides</span>
-            </button>
-          </div>
-
-          <div class="control-list top-gap">
-            <label class="range-control" data-control="runA">
-              <span class="control-label"><b id="runALabel" data-fence-i18n="dimension.runA">Run A</b><output>8.0 m</output></span>
-              <span class="range-row"><input type="range" /><input class="number-input" type="number" /></span>
-            </label>
-            <label class="range-control" id="runBControl" data-control="runB" hidden>
-              <span class="control-label"><b id="runBLabel" data-fence-i18n="dimension.runB">Run B</b><output>5.0 m</output></span>
-              <span class="range-row"><input type="range" /><input class="number-input" type="number" /></span>
-            </label>
-            <label class="range-control" id="runCControl" data-control="runC" hidden>
-              <span class="control-label"><b id="runCLabel" data-fence-i18n="dimension.runC">Run C</b><output>5.0 m</output></span>
-              <span class="range-row"><input type="range" /><input class="number-input" type="number" /></span>
-            </label>
-            <label class="range-control" id="runDControl" data-control="runD" hidden>
-              <span class="control-label"><b id="runDLabel" data-fence-i18n="dimension.closed5RunD">Side DE</b><output>5.0 m</output></span>
-              <span class="range-row"><input type="range" /><input class="number-input" type="number" /></span>
-            </label>
-            <label class="range-control" id="angleBControl" data-control="angleB" hidden>
-              <span class="control-label"><b data-fence-i18n="dimension.angleB">Angle at B</b><output>90°</output></span>
-              <span class="range-row"><input type="range" /><input class="number-input" type="number" /></span>
-            </label>
-            <div class="info-card calculated-side-card" id="closingRunInfo" hidden>
-              <span id="closingRunLabel" data-fence-i18n="dimension.closedRunD">Side DA · calculated</span>
-              <strong id="closingRunValue">—</strong>
-              <small id="closingRunHelp" data-fence-i18n="dimension.closedHelp">DA updates automatically to close the perimeter.</small>
-            </div>
-            <label class="range-control" data-control="height">
-              <span class="control-label"><b data-fence-i18n="dimension.height">Fence height</b><output>1.80 m</output></span>
-              <span class="range-row"><input type="range" /><input class="number-input" type="number" /></span>
-            </label>
-            <label class="range-control" data-control="targetBayWidth">
-              <span class="control-label"><b data-fence-i18n="dimension.bayWidth">Target bay width</b><output>2.00 m</output></span>
-              <span class="range-row"><input type="range" /><input class="number-input" type="number" /></span>
-            </label>
-          </div>
-          <div class="info-card"><span data-fence-i18n="dimension.baySystem">Bay system</span><strong id="bayInfo">4 bays · 2.0 m average bay</strong></div>
-        </div>
-      </section>
-
-      <section class="accordion-section" data-accordion="panels">
-        <button class="accordion-toggle" type="button" aria-expanded="false">
-          <span data-fence-i18n="section.panels">Panels & finish</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="accordion-panel" hidden>
-          <span class="select-label" data-fence-i18n="panel.style">Panel system</span>
-          <div class="choice-grid panel-grid">
-            <button type="button" class="choice-card selected" data-panel-style="vertical" aria-pressed="true"><span class="panel-preview preview-vertical"></span><span data-fence-i18n="panel.vertical">Vertical slats</span></button>
-            <button type="button" class="choice-card" data-panel-style="horizontal" aria-pressed="false"><span class="panel-preview preview-horizontal"></span><span data-fence-i18n="panel.horizontal">Horizontal slats</span></button>
-            <button type="button" class="choice-card" data-panel-style="privacy" aria-pressed="false"><span class="panel-preview preview-privacy"></span><span data-fence-i18n="panel.privacy">Solid privacy</span></button>
-            <button type="button" class="choice-card" data-panel-style="mesh" aria-pressed="false"><span class="panel-preview preview-mesh"></span><span data-fence-i18n="panel.mesh">Welded mesh</span></button>
-          </div>
-
-          <label class="range-control top-gap" id="gapControl" data-control="infillGap">
-            <span class="control-label"><b data-fence-i18n="panel.gap">Slat gap</b><output>35 mm</output></span>
-            <span class="range-row"><input type="range" /><input class="number-input" type="number" /></span>
-          </label>
-
-          <span class="select-label top-gap" data-fence-i18n="finish.label">Finish</span>
-          <div class="finish-row">
-            <button class="finish-swatch selected" type="button" data-finish="anthracite" style="--swatch:#343a40"><i></i><span data-fence-i18n="finish.anthracite">Anthracite</span></button>
-            <button class="finish-swatch" type="button" data-finish="black" style="--swatch:#181b1e"><i></i><span data-fence-i18n="finish.black">Black</span></button>
-            <button class="finish-swatch" type="button" data-finish="white" style="--swatch:#e7e7e2"><i></i><span data-fence-i18n="finish.white">Traffic white</span></button>
-            <button class="finish-swatch" type="button" data-finish="bronze" style="--swatch:#5e5145"><i></i><span data-fence-i18n="finish.bronze">Bronze grey</span></button>
-            <button class="finish-swatch" type="button" data-finish="wood" style="--swatch:#9b6539"><i></i><span data-fence-i18n="finish.wood">Wood tone</span></button>
-          </div>
-        </div>
-      </section>
-
-      <section class="accordion-section" data-accordion="access">
-        <button class="accordion-toggle" type="button" aria-expanded="false">
-          <span data-fence-i18n="section.access">Access & installation</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="accordion-panel" hidden>
-          <div class="gate-manager-head">
-            <div>
-              <span class="select-label" data-fence-i18n="gate.title">Gates</span>
-              <small data-fence-i18n="gate.help">Add pedestrian or driveway gates to any available fence bay.</small>
-            </div>
-            <button id="addGateButton" class="secondary-action gate-add-button" type="button" data-fence-i18n="gate.add">Add gate</button>
-          </div>
-          <div id="gateList" class="gate-list" aria-live="polite"></div>
-          <p id="gateEmptyState" class="gate-empty" data-fence-i18n="gate.empty">No gates added.</p>
-          <p id="gateCapacityMessage" class="gate-capacity" hidden data-fence-i18n="gate.capacity">All available bays are occupied by gates.</p>
-
-          <label class="select-label top-gap" for="foundationType" data-fence-i18n="foundation.label">Post foundation</label>
-          <select id="foundationType"><option value="concrete" selected data-fence-i18n="foundation.concrete">Concrete footings</option><option value="baseplate" data-fence-i18n="foundation.baseplate">Base plates & anchors</option></select>
-        </div>
-      </section>
-
-      <section class="accordion-section" data-accordion="display">
-        <button class="accordion-toggle" type="button" aria-expanded="false">
-          <span data-fence-i18n="section.display">Model display</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="accordion-panel" hidden>
-          <label class="toggle-row">
-            <span><b data-fence-i18n="display.scenery">Context scenery</b><small data-fence-i18n="display.sceneryHelp">Show ground, path and landscaping for scale</small></span>
-            <input id="sceneryToggle" type="checkbox" /><i></i>
-          </label>
-        </div>
-      </section>
-
-      <section class="accordion-section summary-section" data-accordion="summary">
-        <button class="accordion-toggle" type="button" aria-expanded="false">
-          <span data-fence-i18n="section.summary">Summary & pricing</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-        <div class="accordion-panel" hidden>
-          <div class="summary-total-card"><span data-fence-i18n="summary.totalLabel">Indicative configured total</span><strong id="summaryTotal">—</strong><small data-fence-i18n="summary.totalHelp">Demo estimate before taxes. Final engineering, site survey and quotation required.</small></div>
-          <div class="summary-price-breakdown" id="summaryPriceBreakdown"></div>
-          <div class="summary-metrics" id="summaryMetrics"></div>
-          <div class="summary-bom-preview"><div class="summary-subheading"><b data-fence-i18n="summary.bom">Bill of materials</b><span id="headerBomSummary">—</span></div><div id="summaryBomList" class="summary-bom-list"></div></div>
-          <div class="summary-actions"><button type="button" class="secondary-action" id="bomExportInlineButton" data-fence-i18n="summary.export">Export BOM CSV</button><button type="button" class="primary-action" id="bomOpenButton" data-fence-i18n="summary.fullBom">Full bill of materials</button></div>
-        </div>
-      </section>
-    </aside>
-
-    <button id="fenceSidebarToggle" class="shared-settings-toggle shared-settings-toggle--light" type="button" aria-label="Hide fence settings" aria-expanded="true" title="Hide fence settings" data-fence-i18n-aria-label="sidebar.hide" data-fence-i18n-title="sidebar.hide">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
-  </main>
-
-  <section class="environment-panel" id="environmentPanel" hidden aria-label="Light and orientation controls">
-    <div class="environment-panel__header"><strong data-fence-i18n="environment.title">Light & orientation</strong><button id="environmentClose" type="button" aria-label="Close" data-fence-i18n-aria-label="bom.close">×</button></div>
-    <label class="environment-control"><span><b data-fence-i18n="environment.sun">Sun position</b><output id="sunPositionValue">48%</output></span><input id="sunPositionControl" type="range" min="0" max="100" step="1" value="48" /></label>
-    <label class="environment-control"><span><b data-fence-i18n="environment.north">North direction</b><output id="northDirectionValue">0°</output></span><input id="northDirectionControl" type="range" min="0" max="359" step="1" value="0" /></label>
-    <label class="toggle-row environment-toggle"><span><b data-fence-i18n="environment.night">Night preview</b><small data-fence-i18n="environment.nightHelp">Switch to a low-light architectural preview</small></span><input id="nightPreviewToggle" type="checkbox" /><i></i></label>
-  </section>
-
-  <dialog class="bom-panel" id="bomPanel">
-    <header class="bom-header"><div><h2 data-fence-i18n="bom.title">Fence bill of materials</h2><p data-fence-i18n="bom.copy">Indicative quantities generated from the current fence geometry.</p></div><button class="bom-close" id="bomClose" type="button" aria-label="Close" data-fence-i18n-aria-label="bom.close">×</button></header>
-    <div class="bom-scroll-region">
-      <div class="bom-disclaimer" data-fence-i18n="bom.disclaimer">Commercial preview only. Foundations, wind loading, local regulations and site conditions require project-specific verification.</div>
-      <div class="bom-table-wrap"><table class="bom-table"><thead><tr><th data-fence-i18n="bom.item">Item</th><th data-fence-i18n="bom.quantity">Quantity</th><th data-fence-i18n="bom.unit">Unit</th><th data-fence-i18n="bom.unitPrice">Unit price</th><th data-fence-i18n="bom.total">Total</th></tr></thead><tbody id="bomTableBody"></tbody></table></div>
-      <div class="bom-total-row"><span data-fence-i18n="summary.totalLabel">Indicative configured total</span><strong id="bomDialogTotal">—</strong></div>
-    </div>
-    <footer class="bom-footer"><button type="button" class="secondary-action" id="bomExportDialogButton" data-fence-i18n="summary.export">Export BOM CSV</button><button type="button" class="primary-action" id="bomDoneButton" data-fence-i18n="bom.done">Done</button></footer>
-  </dialog>
-
-  <script type="module" src="./js/sharedShell.js?v=tenant-branding-1"></script>
-  <script type="module" src="./js/app.js?v=tenant-domains-1"></script>
-</body>
-</html>
-
+<header class="header"><a class="brand" href="/" aria-label="Decorio configurator"><span class="brand-symbol">▥</span>decorio<span class="brand-dot">.</span></a><div class="header-divider"></div><span class="header-title">STUDIO DE ÎMPREJMUIRI</span><span class="demo-label">DEMO</span><div class="header-actions"><button id="open-projects">Proiectele mele</button><button id="login">Intră în cont</button><button id="share" class="primary">Distribuie ↗</button></div></header>
+<main class="workspace">
+<aside class="sidebar">
+ <div class="intro"><p class="eyebrow">CONFIGURATOR 3D</p><h1>Locul tău.<br>Limitele tale.</h1><p>Alege sistemul. Desenează traseul.<br>Vezi proiectul prinzând contur.</p></div>
+ <nav class="steps" aria-label="Etape configurare"><button class="active" data-step="catalog"><b>01</b> Sistem</button><button data-step="layout"><b>02</b> Traseu</button><button data-step="bom"><b>03</b> Piese</button></nav>
+ <section id="catalog-panel" class="panel">
+  <label>Familie de produse<select id="family"></select></label>
+  <label class="search-label">Caută în catalog<input id="search" type="search" placeholder="Model, cod sau denumire…"></label>
+  <div class="filter-row"><label class="check"><input id="only-configurable" type="checkbox" checked> Cu dimensiuni documentate</label><span id="product-count"></span></div>
+  <label>Produs<select id="product" size="6" aria-label="Produs"></select></label>
+  <div class="product-detail"><h2 id="product-name"></h2><p id="product-status" class="tag"></p><p id="product-notes"></p><a id="product-source" target="_blank" rel="noopener noreferrer">Vezi documentația ↗</a></div>
+  <label>Variantă<select id="variant"></select></label>
+  <div id="custom-dimensions" hidden><p class="muted">Dimensiuni la comandă. Sunt verificate limitele publicate; montajul și disponibilitatea se confirmă.</p><div class="button-grid"><label>Lățime modul (m)<input id="module-width" type="number" step="0.01"></label><label>Înălțime (m)<input id="module-height" type="number" step="0.01"></label></div><p id="size-limits" class="muted"></p></div>
+  <button id="apply-all" class="secondary wide">Aplică pe întregul traseu</button>
+  <button id="apply-product" class="primary wide">Aplică pe segmentul selectat</button>
+  <button id="draw-product" class="secondary wide">Desenează cu acest produs →</button>
+  <button id="coverage" class="text-button">Vezi acoperirea întregului catalog</button>
+ </section>
+ <section id="layout-panel" class="panel" hidden>
+  <h2>Desenează în plan</h2><p class="muted">Apasă două puncte pentru un segment. Continuă dintr-un nod existent pentru colțuri și ramificații.</p>
+  <div class="button-grid"><button id="draw" class="primary">＋ Desenează</button><button id="select">↖ Selectează</button></div>
+  <label class="check"><input id="snap" type="checkbox" checked> Aliniere pe grilă de 10 cm</label><label class="check"><input id="ortho" type="checkbox"> Doar orizontal / vertical</label>
+  <label>Segment<select id="segment-select"></select></label>
+  <label>Lungime segment (m)<input id="segment-length" type="number" min="0.1" max="500" step="0.01"></label><button id="set-length" class="secondary wide">Actualizează lungimea</button>
+  <div id="node-controls" hidden><h3>Punct selectat</h3><div class="button-grid"><label>X (m)<input id="node-x" type="number" step="0.1"></label><label>Y (m)<input id="node-y" type="number" step="0.1"></label></div><button id="move-node">Mută punctul</button><button id="delete-node" class="danger">Șterge punctul</button></div>
+  <button id="delete-segment" class="danger wide">Șterge segmentul selectat</button>
+  <details class="gate-panel"><summary>Porți compatibile</summary><p class="muted">Sunt disponibile doar combinațiile cu compatibilitate și gol de montaj documentate.</p><label>Poartă<select id="gate-product"></select></label><label>Poziție de la început (m)<input id="gate-offset" type="number" min="0" step="0.1" value="0"></label><label>Deschidere<select id="gate-hand"><option value="left">Stânga</option><option value="right">Dreapta</option></select></label><button id="add-gate" class="secondary wide">Adaugă poartă</button><div id="gate-list"></div></details>
+ </section>
+ <section id="bom-panel" class="panel" hidden><p class="eyebrow">LISTĂ DE COMPONENTE</p><h2>De la idee la piese.</h2><p id="bom-status" class="notice"></p><div id="bom-items"></div><h3>De confirmat</h3><ul id="issues"></ul><button id="export-csv" class="primary wide">Descarcă lista CSV ↓</button></section>
+ <footer class="sidebar-footer">Tehnologie <b>360Configurator</b><span>Proiectare pe teren plan</span></footer>
+</aside>
+<section class="canvas-area">
+ <div class="project-bar"><div><span class="eyebrow">PROIECTUL TĂU</span><input id="project-name" aria-label="Nume proiect" value="Proiect Decorio" maxlength="120"></div><div class="view-switch" role="group" aria-label="Mod vizualizare"><button data-view="3d" class="active">3D</button><button data-view="2d">Plan 2D</button></div></div>
+ <div id="viewer" aria-label="Vizualizare 3D a împrejmuirii"><div class="scene-watermark">DECORIO / STUDIO</div></div>
+ <div id="editor" hidden><svg id="plan" viewBox="0 0 900 650" aria-label="Editor traseu 2D" role="application" tabindex="0"></svg><div class="editor-help">Click pentru puncte · Trage un nod pentru a-l muta · Escape încheie traseul</div></div>
+ <div class="scene-tools"><button id="undo" title="Anulează ultima modificare">↶ <span>Undo</span></button><button id="redo" title="Refă modificarea">↷</button><button id="fit">⌖ <span>Încadrează</span></button><button id="dimensions" aria-pressed="true">↔ <span>Cote</span></button><label class="light-control">☀<input id="light" aria-label="Direcția luminii" type="range" min="0" max="6.28" step="0.1" value="1"></label><button id="reset">Proiect nou</button></div>
+ <div class="summary-strip"><div><small>LUNGIME TOTALĂ</small><strong id="total-length">0 <em>m</em></strong></div><div><small>SEGMENTE</small><strong id="segment-count">0</strong></div><div><small>COMPONENTE</small><strong id="item-count">0</strong></div><div class="summary-note"><span class="status-dot"></span> Cantități preliminare<br><small>Montajul se confirmă pentru amplasament.</small></div><button id="show-bom" class="primary">Vezi piesele →</button></div>
+ <div class="project-actions"><button id="export-json">Export proiect</button><label class="file-button">Import proiect<input id="import-json" type="file" accept="application/json,.json" hidden></label><button id="save">Salvează în cont</button><span id="connection-status">Verificare conexiune…</span></div>
+</section>
+</main><div id="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="dialog"><div class="dialog-header"><h2 id="dialog-title"></h2><button id="close-dialog" aria-label="Închide">×</button></div><div id="dialog-content"></div></dialog>
+<script type="module" src="./js/decorio-app.js"></script>
+</body></html>

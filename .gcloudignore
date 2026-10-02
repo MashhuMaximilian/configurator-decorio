@@ -1,0 +1,8 @@
+*
+!Dockerfile.cloudrun
+!Dockerfile.cloudrun.dockerignore
+!cloudrun/
+!cloudrun/**
+!dist/
+!dist/site/
+!dist/site/**
