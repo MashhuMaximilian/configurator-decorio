@@ -17,7 +17,7 @@ Public product inventory, sources, limitations and coverage are in `catalog/` an
 
 ## Verification still required before final acceptance
 
-Exact product visual fidelity and mounting evidence review across all families; gate operating-space collision checks; accessory selection; Firebase tenant provisioning and real authenticated save/share/restore tests; production origin isolation; desktop/mobile and large-layout acceptance; dedicated cloud routing and rollback verification.
+See `docs/acceptance.md` for passed checks and remaining work. Remaining: exact product visuals and mounting evidence review, broader gate/accessory selection, Firebase tenant provisioning and authenticated save/share/isolation tests, physical-device and large-scene browser acceptance, manual-workflow validation. Dedicated routing and model/export checks have passed.
 
 ## Isolation
 
