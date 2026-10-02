@@ -8,3 +8,9 @@ test('public build contains the reachable shared runtime and no administration o
 test('deployment has only manual trigger and dedicated fixed destination',()=>{const s=read('.github/workflows/deploy-decorio.yml');assert.match(s,/workflow_dispatch:/);assert.doesNotMatch(s,/\n  (push|pull_request|schedule):/);assert.match(s,/SERVICE: configurator-decorio/);assert.match(s,/MashhuMaximilian\/configurator-decorio/);assert.doesNotMatch(s,/firebase deploy|configurators-web-test/);});
 
 test('entry redirects stay relative behind Cloud Run TLS termination',()=>{const s=read('cloudrun/nginx.conf');assert.match(s,/absolute_redirect off;/);assert.match(s,/port_in_redirect off;/);});
+
+test('every built runtime dependency has a public nginx static route',()=>{
+ const deps=JSON.parse(read('dist/dependencies.json'));
+ const routes=[...read('cloudrun/nginx.conf').matchAll(/location (\/[a-z0-9-]+\/) \{ try_files \$uri =404; \}/g)].map(m=>m[1]);
+ for(const path of deps)assert.ok(routes.some(prefix=>('/'+path).startsWith(prefix)),`Unserved dependency: ${path}`);
+});
