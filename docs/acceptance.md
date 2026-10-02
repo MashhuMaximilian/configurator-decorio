@@ -15,7 +15,7 @@ This is an implementation draft, not final acceptance of the entire Decorio plan
 
 ## Not yet passed
 
-- Tenant provisioning: anonymous read of `tenantPublic/decorio` returns 404. Production correctly blocks access. A Firebase tenant-administrator login is needed; gcloud login does not sign in to the website.
+- Tenant provisioning: anonymous read of `tenantPublic/decorio` returns 404. Production correctly blocks access. Firebase sign-in succeeded, but the provisioning API explicitly rejects this account as unauthorized. Awaiting approval for a temporary administrator grant via the existing provisioning-admin script, or a sign-in with an already authorized account. No admin allowlist was changed.
 - Google sign-in and real private saves, restoration, cross-tenant private access checks, public share creation/restoration and App Check on Decorio.
 - End-to-end manual GitHub workflow: intentionally disabled until the cleaned implementation is on the fork's main branch; GCP identity is restricted to that branch and repository numeric IDs.
 - Full catalogue acceptance: 1077 product pages inventoried, plus 8 industrial models from PDFs. 267 products/models have 391 dimension variants. Most BOMs lack a verified full mounting set. Catalogue coverage is documented per product; exact decorative geometry, all gates and accessory-selection coverage remain incomplete. A schematic shape is not an exact product model.
