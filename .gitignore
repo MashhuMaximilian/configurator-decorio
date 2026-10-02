@@ -89,3 +89,11 @@ commit_message.md
 
 # Temporary Google GitHub Actions credentials
 gha-creds-*.json
+
+# Downloaded source documents are reproducible from sources.json
+catalog/sources/*.pdf
+catalog/sources/*.txt
+catalog/sources/*.html
+output/
+
+catalog/sources/*.json

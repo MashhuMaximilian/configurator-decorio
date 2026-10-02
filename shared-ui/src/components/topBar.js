@@ -93,9 +93,9 @@ export function renderTopBar({ brandSrc, brandAlt, projectName, state, capabilit
           </a>
           ${tenantBranded ? renderPlatformAttribution(state.currentDomainLocale || locale) : ''}
         </div>
-        <button class="book-demo-button" type="button" data-action="book-demo" aria-label="Book a demo">
+        ${capabilities.bookDemo === false ? '' : `<button class="book-demo-button" type="button" data-action="book-demo" aria-label="Book a demo">
           <span class="book-demo-button__label">Book a demo</span>
-        </button>
+        </button>`}
       </div>
 
       <div class="project-name-shell ${authenticated ? '' : 'is-guest'}">
@@ -107,15 +107,15 @@ export function renderTopBar({ brandSrc, brandAlt, projectName, state, capabilit
       <div class="site-header__actions">
         ${newConfigurationButton(locale, !canNewConfiguration)}
         ${saveButton(locale, !canSave)}
-        ${iconButton({ action: 'view-ar', label: labels.viewAr, icon: sharedIcon('ar'), disabled: !canViewAR })}
+        ${capabilities.ar === false ? '' : iconButton({ action: 'view-ar', label: labels.viewAr, icon: sharedIcon('ar'), disabled: !canViewAR })}
         ${iconButton({ action: 'undo', label: labels.undo, icon: sharedIcon('undo'), disabled: !canUndo })}
         ${iconButton({ action: 'reset', label: labels.reset, icon: sharedIcon('reset'), disabled: !canReset })}
         ${shareButton(locale, !canShare)}
-        ${cartButton(locale, state.cartCount, state.cartOpen)}
-        ${iconButton({ action: 'account', label: labels.account, icon: sharedIcon('account') })}
-        <button class="topbar-icon-button language-button" type="button" data-action="language" data-tooltip="${escapeHtml(language.nativeName)}" aria-label="${escapeHtml(language.nativeName)}" aria-expanded="false">
+        ${capabilities.cart === false ? '' : cartButton(locale, state.cartCount, state.cartOpen)}
+        ${iconButton({ action: 'account', label: labels.account, icon: sharedIcon('account'), disabled: capabilities.authentication === false })}
+        ${capabilities.language === false ? '' : `<button class="topbar-icon-button language-button" type="button" data-action="language" data-tooltip="${escapeHtml(language.nativeName)}" aria-label="${escapeHtml(language.nativeName)}" aria-expanded="false">
           <span class="language-flag" data-language-button-flag aria-hidden="true">${language.flag}</span>
-        </button>
+        </button>`}
       </div>
 
       ${renderAccountMenu(state, { profile: capabilities.profile !== false })}

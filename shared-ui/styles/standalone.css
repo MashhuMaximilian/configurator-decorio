@@ -633,6 +633,9 @@ body.shared-ui-dark-mode { background: #0f172a !important; }
   gap: 10px;
 }
 .shared-ui-host .tools-toolbar--left { left: var(--shared-tools-offset-x, 12px); }
+.shared-ui-host .tools-toolbar { pointer-events: none; }
+.shared-ui-host .tools-toolbar .tool-launcher,
+.shared-ui-host .tools-toolbar__panel.is-open { pointer-events: auto; }
 .shared-ui-host .tools-toolbar--right { right: var(--shared-tools-offset-x, 12px); }
 .shared-ui-host .tools-toolbar--down { flex-direction: column; }
 .shared-ui-host .tools-toolbar--up { flex-direction: column-reverse; }

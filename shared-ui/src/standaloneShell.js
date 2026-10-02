@@ -248,7 +248,7 @@ export class StandaloneConfiguratorShell {
     this.productId = normalizeProductId(this.options.productId || this.options.productType);
     this.embedPreview = new URLSearchParams(window.location.search).get('embed') === 'preview';
     document.body.classList.toggle('configurator-embed-preview', this.embedPreview);
-    if (!this.embedPreview) {
+    if (!this.embedPreview && this.options.capabilities.analytics !== false) {
       void recordConfiguratorAccessOnce(this.productId).catch((error) => {
         console.warn('Configurator access analytics could not be recorded.', error);
       });
@@ -283,6 +283,7 @@ export class StandaloneConfiguratorShell {
 
     // Guests always start in their own unsaved book. Do not hydrate the previous
     // account's project name/id before Firebase tells us which user is active.
+    if (this.options.fixedPreferences) Object.assign(this.state, this.options.fixedPreferences);
     this.projectName = this.getGuestProjectName();
     this.lastSavedProjectName = '';
     this.currentSavedConfigurationId = '';
@@ -374,7 +375,12 @@ export class StandaloneConfiguratorShell {
   }
 
   getGuestProjectName() {
-    return `${this.options.productType}#1`;
+    return this.options.defaultProjectName || `${this.options.productType}#1`;
+  }
+
+  setProjectName(name) {
+    this.projectName = String(name || this.getGuestProjectName()).slice(0, 120);
+    this.sync();
   }
 
   getProjectMetaKey(uid) {
@@ -512,6 +518,7 @@ export class StandaloneConfiguratorShell {
   }
 
   async refreshCartFromBackend(uid = this.authUser?.uid, { force = false } = {}) {
+    if (this.options.capabilities.cart === false) return;
     const expectedUid = String(uid || '');
     if (!expectedUid || expectedUid !== String(this.authUser?.uid || '')) return false;
     if (!force && Date.now() - this.cartLastRemoteSyncAt < 5000) return true;
@@ -998,7 +1005,7 @@ export class StandaloneConfiguratorShell {
         },
         capabilities: this.options.capabilities,
       })}
-      ${renderCartMenu(this.state.locale, this.cartRenderItems(), { open: this.cartOpen, busy: this.cartBusy, totalText: this.cartTotalText() })}
+      ${this.options.capabilities.cart === false ? '' : renderCartMenu(this.state.locale, this.cartRenderItems(), { open: this.cartOpen, busy: this.cartBusy, totalText: this.cartTotalText() })}
       ${renderActionFeedback(this.state.locale)}
       ${renderLanguageSwitchLoading(this.state.locale)}
       ${renderToolsMenu(this.toolsOpen, { ...this.options.tools, locale: this.state.locale })}
@@ -1015,6 +1022,10 @@ export class StandaloneConfiguratorShell {
     this.feedback = this.host.querySelector('[data-save-feedback]');
     this.feedbackText = this.host.querySelector('[data-save-feedback-text]');
     this.languageSwitchLoading = this.host.querySelector('[data-language-switch-loading]');
+    for (const field of this.host.querySelectorAll('[data-path]')) {
+      if (Object.hasOwn(this.options.fixedPreferences || {}, field.dataset.path)) field.disabled = true;
+      if (this.options.capabilities.cart === false && field.dataset.path === 'currency') field.closest('label')?.setAttribute('hidden', '');
+    }
   }
 
   bindEvents() {
@@ -1388,6 +1399,7 @@ export class StandaloneConfiguratorShell {
   }
 
   async initializeAuthentication() {
+    if (this.options.capabilities.authentication === false) { this.authInitialized = true; this.sync(); return; }
     try {
       await this.applyPendingDomainAuthentication();
       this.authUnsubscribe = await observeGoogleAuth((user, error) => {
@@ -1519,6 +1531,7 @@ export class StandaloneConfiguratorShell {
   }
 
   async applyGuestRegionDefaults() {
+    if (this.options.fixedPreferences) { Object.assign(this.state, this.options.fixedPreferences); return; }
     let region = this.readGuestRegionPreference();
     if (!region) {
       const tenantSlug = getTenantSlugForHostname(window.location.hostname);
@@ -2100,7 +2113,7 @@ export class StandaloneConfiguratorShell {
       };
 
       const preferenceChanges = [];
-      if (LANGUAGE_PROFILES[profile.preferredLanguage] && this.state.locale !== profile.preferredLanguage) {
+      if (!Object.hasOwn(this.options.fixedPreferences || {}, 'locale') && LANGUAGE_PROFILES[profile.preferredLanguage] && this.state.locale !== profile.preferredLanguage) {
         this.state.locale = profile.preferredLanguage;
         preferenceChanges.push(['locale', profile.preferredLanguage]);
       }
@@ -2108,7 +2121,7 @@ export class StandaloneConfiguratorShell {
         this.state.currency = profile.defaultCurrency;
         preferenceChanges.push(['currency', profile.defaultCurrency]);
       }
-      if (['metric', 'imperial'].includes(profile.defaultMeasurementSystem) && this.state.units !== profile.defaultMeasurementSystem) {
+      if (!Object.hasOwn(this.options.fixedPreferences || {}, 'units') && ['metric', 'imperial'].includes(profile.defaultMeasurementSystem) && this.state.units !== profile.defaultMeasurementSystem) {
         this.state.units = profile.defaultMeasurementSystem;
         preferenceChanges.push(['units', profile.defaultMeasurementSystem]);
       }
@@ -2274,6 +2287,7 @@ export class StandaloneConfiguratorShell {
       this.options.callbacks.onPreferenceChange?.('darkMode', this.state.darkMode, this.state);
       this.sync();
     } else if (action === 'select-language') {
+      if (Object.hasOwn(this.options.fixedPreferences || {}, 'locale')) return;
       const nextLocale = actionTarget.dataset.locale;
       const profile = LANGUAGE_PROFILES[nextLocale];
       if (profile && nextLocale !== this.state.locale) {
@@ -2396,6 +2410,7 @@ export class StandaloneConfiguratorShell {
     if (event.target.matches('[data-project-name]')) {
       if (!this.authUser?.uid) return;
       this.projectName = event.target.value;
+      this.options.callbacks.onProjectNameChange?.(this.projectName);
       this.markDirty();
       this.persistMeta();
       this.syncProjectNameWidth();
@@ -2426,6 +2441,10 @@ export class StandaloneConfiguratorShell {
 
     const field = event.target.closest('[data-path]');
     if (!field) return;
+    if (Object.hasOwn(this.options.fixedPreferences || {}, field.dataset.path)) {
+      field.value = this.options.fixedPreferences[field.dataset.path];
+      return;
+    }
     this.state[field.dataset.path] = field.value;
     this.persistPreferences();
     if (['currency', 'units'].includes(field.dataset.path)) this.persistCurrentGuestRegionManualOverride();

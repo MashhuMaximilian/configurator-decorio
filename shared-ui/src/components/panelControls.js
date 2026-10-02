@@ -32,6 +32,8 @@ export function bindPanelAccordions(root) {
 export function bindPanelRange(control, {
   format = String,
   immediateOnInput = false,
+  clamp = true,
+  onInvalid = () => {},
   onChange = () => {},
 } = {}) {
   const range = control.querySelector('input[type="range"]');
@@ -45,6 +47,7 @@ export function bindPanelRange(control, {
 
     const min = Number(source?.min ?? range?.min ?? number?.min ?? -Infinity);
     const max = Number(source?.max ?? range?.max ?? number?.max ?? Infinity);
+    if (!clamp && (parsed < min || parsed > max)) { onInvalid(parsed, {min,max}); return; }
     const value = Math.min(max, Math.max(min, parsed));
 
     if (range) {

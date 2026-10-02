@@ -1,0 +1,1697 @@
+{
+  "AL.100": {
+    "type": "horizontal",
+    "boardHeight": 0.12,
+    "gap": 0.065,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "AL.101": {
+    "type": "horizontal",
+    "boardHeight": 0.09,
+    "gap": 0.018,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "AL.102": {
+    "type": "horizontal",
+    "boardHeight": 0.06,
+    "gap": 0.06,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "AL.103": {
+    "type": "horizontal",
+    "boardHeight": 0.045,
+    "gap": 0.025,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ],
+    "group": 3,
+    "groupGap": 0.07
+  },
+  "AL.104": {
+    "type": "horizontal",
+    "boardHeight": 0.16,
+    "gap": 0.016,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "AL.105": {
+    "type": "horizontal",
+    "boardHeight": 0.14,
+    "gap": 0.025,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ],
+    "pattern": [
+      0.14,
+      0.035,
+      0.035
+    ]
+  },
+  "AL.106": {
+    "type": "horizontal",
+    "boardHeight": 0.065,
+    "gap": 0.012,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "AL.202": {
+    "type": "horizontal",
+    "boardHeight": 0.12,
+    "gap": 0.002,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 2,
+        "printedPage": 5,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.104": {
+    "type": "horizontal",
+    "boardHeight": 0.09,
+    "gap": 0.045,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.105": {
+    "type": "horizontal",
+    "boardHeight": 0.06,
+    "gap": 0.06,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.106": {
+    "type": "horizontal",
+    "boardHeight": 0.04,
+    "gap": 0.025,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.107": {
+    "type": "horizontal",
+    "boardHeight": 0.035,
+    "gap": 0.018,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ],
+    "group": 3,
+    "groupGap": 0.07
+  },
+  "10.114": {
+    "type": "horizontal",
+    "boardHeight": 0.2,
+    "gap": 0.1,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 4,
+        "printedPage": 7,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.228": {
+    "type": "horizontal",
+    "boardHeight": 0.23,
+    "gap": 0.025,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 2,
+        "printedPage": 5,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.228+": {
+    "type": "horizontal",
+    "boardHeight": 0.23,
+    "gap": 0.003,
+    "depth": 0.035,
+    "frame": true,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-home-inclusive-10-228-plus-panou-home-inclusive-10-228-plus",
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.229": {
+    "type": "horizontal",
+    "boardHeight": 0.1,
+    "gap": 0.016,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 2,
+        "printedPage": 5,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.230": {
+    "type": "horizontal",
+    "boardHeight": 0.08,
+    "gap": 0.04,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 2,
+        "printedPage": 5,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.233": {
+    "type": "horizontal",
+    "boardHeight": 0.04,
+    "gap": 0.015,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 2,
+        "printedPage": 5,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.200V1": {
+    "type": "horizontal",
+    "boardHeight": 0.5,
+    "gap": 0.003,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 2,
+        "printedPage": 5,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.200V2": {
+    "type": "horizontal",
+    "boardHeight": 0.25,
+    "gap": 0.003,
+    "depth": 0.035,
+    "frame": false,
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/4756f6c3-f96a-4080-abf7-86b364f5030d.pdf",
+        "page": 2,
+        "printedPage": 5,
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Secțiunile profilelor, rosturile și repetițiile sunt reconstruite vizual; nu sunt cote de fabricație."
+    ]
+  },
+  "10.01": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-01-panou-classic-10-01",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "647f2488aaa6c0ace8b99466de42892a9f06684bd0de60d24f193c19993e4f02"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1591-1777382139010-1591-1777106901361-f6f4c089-c260-4757-95d4-34f7dea8057b-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.035,
+    "barDepth": 0.02,
+    "gap": 0.075,
+    "shape": "square",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.02": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-02-panou-classic-10-02",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "a070bc45a33c0133fd654a0ba09bb539c7d096d27ffb140911d6f6333f2038f2"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1595-1777382149576-1595-1777106904296-2ba90c0d-a682-4d55-b615-d9e2376da75b-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.02,
+    "barDepth": 0.02,
+    "gap": 0.075,
+    "shape": "square",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.04": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-04-panou-classic-10-04",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "94ba602564ca63493a0618fd864008118ff861447ba03cc27fab79acde430efe"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1599-1777382160375-1599-1777106907196-3a813af7-527a-40f5-a560-5fbe9e6e7645-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.018,
+    "barDepth": 0.018,
+    "gap": 0.1,
+    "shape": "round",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.05": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-05-panou-classic-10-05",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "a4ed21180bc843240dd8b37199f15d6eeb7ee2676111c7e31c53bd4b097cb417"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1602-1777382167979-1602-1777106909298-0173aac2-9346-402c-8853-3acebbdc9f04-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.02,
+    "barDepth": 0.02,
+    "gap": 0.075,
+    "shape": "square",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.06": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-06-panou-classic-10-06",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "1d2cee38b2cd3aa30643ac10a637b5d5bb023665d6b903f8267559f0449e76ef"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1604-1777382173538-1604-1777106910804-95ac710a-3238-4694-8bc2-bb5b5d1597d0-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.02,
+    "barDepth": 0.02,
+    "gap": 0.075,
+    "shape": "diamond",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.16": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-16-panou-classic-10-16",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "11bffbb53293bcbcc0d1f8c469bc04e81120617e368e0b2c84b74b76a35ffe75"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1607-1777382181495-1607-1777106912944-2da15a94-fe9b-4f3a-9914-342921861b7c-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.07,
+    "barDepth": 0.02,
+    "gap": 0.055,
+    "shape": "square",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.17": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-17-panou-classic-10-17",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "fd181c336499c018621240b7d3cadede927423a3d5dd9ddd3d8495664ce3f150"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1610-1777382189429-1610-1777106915221-9207986c-59e3-4c3c-8aa3-da182c0b7546-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.07,
+    "barDepth": 0.02,
+    "gap": 0.075,
+    "shape": "square",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.70": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-70-panou-classic-10-70",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "d08d16748957545506f5b0a7d92ee5cc7a2f9c1a4a653f353be315722dee51f5"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1613-1777382197283-1613-1777106917441-3330044d-8cf6-4cbf-939f-4dd44dcef8a7-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.04,
+    "barDepth": 0.027,
+    "gap": 0.055,
+    "shape": "square",
+    "frame": true,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.71": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-71-panou-classic-10-71",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "9f8360ab5811fa523f676816bbbe8953a576f4063af7393bd51a4f821f4ebfeb"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1617-1777382207699-1617-1777106920292-b41cb608-f815-4e00-805d-d3e6eeb57ed7-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.02,
+    "barDepth": 0.02,
+    "gap": 0.075,
+    "shape": "square",
+    "frame": true,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.72": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-72-panou-classic-10-72",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "cc5708106366482cec9b57d167a62350af8a32355b844c4d0b911cc04285d90d"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1621-1777382218297-1621-1777106923155-9e381f3e-59ca-4b00-aa31-04064e36aa16-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.07,
+    "barDepth": 0.02,
+    "gap": 0.07,
+    "shape": "square",
+    "frame": true,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.76": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-76-panou-classic-10-76",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "322299349b5bbef2adce485a2e54feaba271c383dd8fffe2442767af81a98b71"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1635-1777382255284-1635-1777106933549-e7b9876a-9b72-42f4-8e10-e10b3afe1abd-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.04,
+    "barDepth": 0.027,
+    "gap": 0.025,
+    "shape": "square",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.78": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-78-panou-classic-10-78",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "3b74ec3c275fe553023496ab78914f6281ae58877acef28c36f4af8c0b35cf31"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1639-1777382267107-1639-1777106936288-9c08745e-7236-4f56-8be6-2424388e10f6-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.02,
+    "barDepth": 0.06,
+    "gap": 0.055,
+    "shape": "square",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.TT": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-10-tt-panou-classic-10-tt",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "7ef4e34522b35f3e99745d68b0eda0824fac3d9b28bc5d2d1831c8bd1ec6c5df"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1626-1777382231699-1626-1777106926736-e9dfb8c6-c136-4a3a-b77e-a69f1ee6fcab-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.09,
+    "barDepth": 0.03,
+    "gap": 0.004,
+    "shape": "fold",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "AL.00": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-aluminiu-al-00-panou-aluminiu-al-00",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "e3fc9bcf402d804540732488c46be3d832877fbd7bc0ec385a2cd2883923e770"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/277-1777378890621-277-1777105932398-150535dc-0651-49b7-9dfe-5388f766b3c5-800x800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.02,
+    "barDepth": 0.065,
+    "gap": 0.014,
+    "shape": "square",
+    "frame": false,
+    "rails": [
+      0.16,
+      0.84
+    ]
+  },
+  "10.130": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-infinity-10-130-infinity10-130",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "e6800626ad17738df13268f2d0769cc219461ed7178cfe293aea7e4c4cda96b8"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/861-1777380119473-861-1777106322629-726aca5f-6a55-4777-a997-582ea25ad63d-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.04,
+    "barDepth": 0.06,
+    "gap": 0.04,
+    "shape": "square",
+    "base": true,
+    "rails": []
+  },
+  "10.131": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-infinity-10-131-infinity10-131",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "2e98217a1405cc0fb84a43680df17a9fba2a200722e11a5175c2257b4bff9f2a"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/873-1777380161010-873-1777106333049-262a5b32-5057-46b8-8f92-5301c81c893d-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.04,
+    "barDepth": 0.06,
+    "gap": 0.05,
+    "shape": "square",
+    "base": true,
+    "rails": []
+  },
+  "10.132": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-infinity-10-132-infinity10-132",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "c6c175f7ae4c4868473cbeafdec8f50ffc41c3fef361f4470739166cb5011e37"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/875-1777380167993-875-1777106334955-4c73df38-b1a4-4c7f-bcc2-64d64c34912d-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.04,
+    "barDepth": 0.06,
+    "gap": 0.06,
+    "shape": "square",
+    "base": true,
+    "rails": []
+  },
+  "VA.55": {
+    "type": "framedMesh",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-classic-va-55-panou-classic-va-55",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "54924c5324c789bddefdf8fc5eebdc98e58b46985d9ff847981a79c7fffa70c1"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/1630-1777382242032-1630-1777106929612-24db097a-1a89-4f6b-8649-813b0f443c4a-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "meshX": 0.05,
+    "meshY": 0.2
+  },
+  "10.103": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-103-panou-modern-10-103",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "f4f25345bf34805ed57fbbc27c6e69e9217a54af40dd83d2cd13f72ac2691990"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/970-1777380562254-970-1777106424092-eaebbc00-d00f-42a2-8729-cc77a6a3870e-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.02,
+    "barDepth": 0.02,
+    "gap": 0.09,
+    "frame": true,
+    "topBand": "cross",
+    "bandHeight": 0.25,
+    "rails": []
+  },
+  "10.115": {
+    "type": "vertical",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-115-panou-modern-10-115",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "afaec1efc3d0546e6589b3aa6e4c2d6f1c3d9627bd9fddc12c0a125be47b7774"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/981-1777380593533-981-1777106433605-8f9b9131-689d-4d89-a014-8ef4d88546ef-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.02,
+    "barDepth": 0.02,
+    "gap": 0.09,
+    "frame": true,
+    "topBand": "cross",
+    "bandHeight": 0.2,
+    "rails": []
+  },
+  "10.100": {
+    "type": "framedMesh",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-100-panou-modern-10-100",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "2b00628df4a98370147df4dd2489412c5483511ae977446afa03867e8dbda5c8"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/967-1777380552200-967-1777106421252-b7a830ce-46a5-4493-8535-8a5b978781b7-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "meshX": 0.06,
+    "meshY": 0.1,
+    "doubleFrame": true
+  },
+  "10.101": {
+    "type": "sheet",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-101-panou-modern-10-101",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "9bf81803d51154cd7e64fc6ac73d625e0207691744fe783e27db32df575b4b83"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/968-1777380555237-968-1777106422252-cfdc3b96-589b-4d3d-a30f-1f51b520470a-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "regions": "central",
+    "frame": true
+  },
+  "10.102": {
+    "type": "sheet",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-102-panou-modern-10-102",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "0a8d97fe6ced2ef314eebb8ae9e1fc6f1eedc2d9cd00447bde0c897797abee76"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/969-1777380558694-969-1777106423225-0eb1c194-478c-4815-b638-29fef47408c7-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "regions": "central",
+    "frame": false
+  },
+  "10.108": {
+    "type": "sheet",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-108-panou-modern-10-108",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "ef2e2ccd4a6502b126f14c2c116308a570cd7f231d3882cb223001514aafdeea"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/975-1777380576986-975-1777106428337-29127140-3f52-4cf2-88f6-06dab1c971a4-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "regions": "vertical-centre",
+    "frame": false
+  },
+  "10.109": {
+    "type": "sheet",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-109-panou-modern-10-109",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "1b2ebb6e447f43c97078ce80ba5195ee18bd968a04f8111b4794c57dea07d618"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/976-1777380580260-976-1777106429313-7da37269-056b-43bb-8acf-8702255f8ed7-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "regions": "three-horizontal",
+    "frame": false
+  },
+  "10.110": {
+    "type": "sheet",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-110-panou-modern-10-110",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "e00c6be16e0338096d6fa1dc49e81a5d903c4059d7546aaa611fdd780db84cf3"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/977-1777380583128-977-1777106430095-cfb8ee2e-e5be-4e74-9785-860f38eaa679-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "regions": "solid-three",
+    "frame": false
+  },
+  "10.111": {
+    "type": "sheet",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-111-panou-modern-10-111",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "1a6111491ec96cb8b47d1f0510509bc984392295c4087013aa47405b8a650db4"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/978-1777380585339-978-1777106431063-667c8e7c-09be-45dc-9bc3-bcb031c67ec4-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "regions": "full",
+    "frame": false
+  },
+  "10.112": {
+    "type": "sheet",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-modern-10-112-panou-modern-10-112",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "2eab8047ea5d108f31ab48812238d1aebe972ec08f025cc346df2ad31f9da47c"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/979-1777380588473-979-1777106432002-64e08c1a-5a8e-4cac-a3f9-3b90ff536723-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "regions": "full",
+    "frame": true
+  },
+  "10.31": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-31-panou-lux-10-31",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "6607dd89ab4c6e1b224b3bd79ab892a228d0173c58bb53fa853f7994c74020f4"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/754-1777379690012-754-1777106181514-b55a26f8-65a9-4be2-89c9-a0c78770d9d0-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.18,
+    "finial": "spear",
+    "halfBars": true,
+    "hearts": 3,
+    "baskets": true,
+    "scrollsTop": true,
+    "scrollsBottom": true
+  },
+  "10.33": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-33-panou-lux-10-33",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "63ea52d315f21c10afd7dff91344d4efb28d696d652d0f291e99888f209f493c"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/755-1777379692860-755-1777106182236-32017d7e-bd5d-44fd-a79a-badac66faad2-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0,
+    "finial": "spear",
+    "halfBars": true,
+    "baskets": true,
+    "scrollsTop": true
+  },
+  "10.34": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-34-panou-lux-10-34",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "a8d7a4644d470c7b9b6cba943b74242ad9958ee470a523a62e732e71b11b0dae"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/756-1777379695410-756-1777106183054-add19635-4d6e-4800-a89f-a2a5a8b68ae7-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0,
+    "finial": "drop",
+    "hearts": 3,
+    "baskets": true
+  },
+  "10.39": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-39-panou-lux-10-39",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "be88ab9aa44765364dfc8e3966af615e46d84414fbc95e01db9819a8974bdd62"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/757-1777379698009-757-1777106183824-76d4763f-ad42-4d9b-b814-bfb6aa6a16e2-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.18,
+    "finial": "drop",
+    "halfBars": true,
+    "hearts": 3,
+    "baskets": true,
+    "topDouble": true,
+    "scrollsTop": true
+  },
+  "10.45": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-45-panou-lux-10-45",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "9247da5e22dff23294b90c730810f6731ac7d529658bae8ce33e0fbeb21ba253"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/758-1777379700565-758-1777106184578-b712bcf7-9c2e-4518-aead-ab99a96ec2fc-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.14,
+    "finial": "drop",
+    "collars": true
+  },
+  "10.46": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-46-panou-lux-10-46",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "9217577323e841333f59336f5aced0a5add37579b00f0e489d4247bd43f0c0c8"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/759-1777379702906-759-1777106185350-cefe4cf0-8f1d-47f0-a3bd-b559fab739ea-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.14,
+    "finial": "drop",
+    "twist": true
+  },
+  "10.48": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-48-panou-lux-10-48",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "5b4e6511ce462dc7f1159822e94b68648510c5751c91cbeb72a5de724847d44a"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/760-1777379705434-760-1777106186194-18ec5ea1-3bed-41db-a176-906713efec55-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.18,
+    "finial": "drop",
+    "hearts": 1,
+    "topDouble": true,
+    "scrollsTop": true,
+    "scrollsBottom": true
+  },
+  "10.51": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-51-panou-lux-10-51",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "91f8ef00072a3978a52c114fdb6809f288942efdce18d181fe09358350366b89"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/761-1777379708298-761-1777106187014-7addfae2-da48-4914-aefb-84ba27c62628-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0,
+    "frame": true,
+    "topBand": "square"
+  },
+  "10.52": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-52-panou-lux-10-52",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "8db43883909fed310fbbae24e2e2b29830b4d51243e0f1ff4a12c4bc8044aa2d"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/762-1777379711051-762-1777106187863-7c9ffce2-744e-43cc-ae7c-bdf8f19287a8-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0,
+    "frame": true,
+    "topBand": "greek"
+  },
+  "10.53": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-53-panou-lux-10-53",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "e54fc36a3ddd4d32670704c07bccee7d36087f482df3061a7690c4f6618e0de2"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/763-1777379713692-763-1777106188665-1d728e0a-5358-4730-97e3-7d887dc238c3-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0,
+    "frame": true,
+    "topBand": "notch"
+  },
+  "10.54": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-54-panou-lux-10-54",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "8bf8f5bf01012b456a013bda44a0fe1771ec070845b3407e94cff89fe39cf2e4"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/764-1777379716425-764-1777106189525-eb5ae97f-60b0-400c-bfe0-69dd3c2387ec-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0,
+    "frame": true,
+    "topBand": "open"
+  },
+  "10.56": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-56-panou-lux-10-56",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "9d2c021f1885ecf0f900e1b8cb8578c86060f6bd9f89d44042499ebe61dac994"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/765-1777379719186-765-1777106190276-9d5260e2-304e-46e7-8978-ad17cda850bc-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.18,
+    "finial": "spear",
+    "topDouble": true,
+    "medallion": true,
+    "collars": true
+  },
+  "10.57": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-57-panou-lux-10-57",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "38e7bda221737449a177ef8f6a5c8848b955042de6f0966e74879486f95b6327"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/766-1777379721753-766-1777106191103-293a93db-895b-41c6-8350-ec74a8963120-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.18,
+    "finial": "spear",
+    "topDouble": true,
+    "medallion": true
+  },
+  "10.58": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-58-panou-lux-10-58",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "61264a56f19e6a004f3020a89a644861a26b709ee396178178074e5bbb8b791d"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/767-1777379724293-767-1777106191855-680b2001-57fe-4394-882e-98ee8d5ebcc5-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.18,
+    "finial": "spear",
+    "topDouble": true,
+    "centreKnot": true
+  },
+  "10.59": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-59-panou-lux-10-59",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "ac695e6e782684c079711af577b76bcde59a017da4405ec7eb9c8eabb40120aa"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/768-1777379726966-768-1777106192592-820dcf45-8c6c-4070-85e2-7d2dc7d46f92-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.18,
+    "finial": "club",
+    "topDouble": true,
+    "medallion": true,
+    "clubMid": true
+  },
+  "10.60": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-60-panou-lux-10-60",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "522b179a895349de774df312837d8726e976d32ab6c717c92d8a99d30f4285d3"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/769-1777379729535-769-1777106193370-ad03a95f-8bfe-482f-b29a-dede311892bf-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0,
+    "finial": "club",
+    "topDouble": true,
+    "clubMid": true
+  },
+  "10.61": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-61-panou-lux-10-61",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "0e9aabb99f8019f05580d3829479469f1eb525e350b997a68e3ab7afd714e13c"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/770-1777379732101-770-1777106194190-5b19d46f-6dc0-4927-97cf-9386c354cbc8-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0,
+    "finial": "ball",
+    "topDouble": true,
+    "ringBand": true,
+    "clubMid": true
+  },
+  "10.62": {
+    "type": "ornamental",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/panou-rezidential-lux-10-62-panou-lux-10-62",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "e116f1b15147a83959915f65bf282caf96655ea1aba0e28607e05c233d8ed757"
+      }
+    ],
+    "referenceImage": "https://cdn.decorio.ro/771-1777379734845-771-1777106194960-1e7657bd-9d09-4cab-adcf-3201339e3732-1800x1800.webp",
+    "estimated": [
+      "Detaliile necotate ale desenului sunt reconstruite vizual; nu reprezintă cote de fabricație."
+    ],
+    "barWidth": 0.016,
+    "barDepth": 0.016,
+    "gap": 0.09,
+    "arch": 0.18,
+    "finial": "ball"
+  },
+  "d-eaf2ce65ec04": {
+    "type": "vertical",
+    "barWidth": 0.018,
+    "barDepth": 0.03,
+    "shape": "rectangle",
+    "frame": false,
+    "gap": 0.1,
+    "rails": [
+      0.14,
+      0.84
+    ],
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/op-318-panou-cu-bare-18x30-mm-industrial-op-318",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "fde1976692c322f4af17c3fcd19a37e76dab6632e68738509b90476a7f2f85e4"
+      }
+    ],
+    "estimated": [
+      "Distanța dintre bare și poziția traverselor sunt reconstruite vizual; nu sunt folosite la calculul montajului."
+    ]
+  },
+  "d-7a3339795ec3": {
+    "type": "vertical",
+    "barWidth": 0.025,
+    "barDepth": 0.025,
+    "shape": "diamond",
+    "frame": false,
+    "gap": 0.1,
+    "rails": [
+      0.14,
+      0.84
+    ],
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/opc-25-panou-cu-bare-25x25-mm-caro-industrial-opc-25",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "3077961bf19ab7e8b844936b9832d398dcc4597ec0bad0a3edfcb5c2be8197e0"
+      }
+    ],
+    "estimated": [
+      "Distanța dintre bare și poziția traverselor sunt reconstruite vizual; nu sunt folosite la calculul montajului."
+    ]
+  },
+  "d-3a14e8e07447": {
+    "type": "vertical",
+    "barWidth": 0.025,
+    "barDepth": 0.025,
+    "shape": "round",
+    "frame": false,
+    "gap": 0.1,
+    "rails": [
+      0.14,
+      0.84
+    ],
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/opr-25-panou-cu-bare-25-mm-industrial-opr-25",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "06b19f95ddefeaced5b941920f3c1a8fb6adf0aba841fbf92cba72c4ee68685d"
+      }
+    ],
+    "estimated": [
+      "Distanța dintre bare și poziția traverselor sunt reconstruite vizual; nu sunt folosite la calculul montajului."
+    ]
+  },
+  "d-610895dd863c": {
+    "type": "vertical",
+    "barWidth": 0.025,
+    "barDepth": 0.025,
+    "shape": "rectangle",
+    "frame": false,
+    "gap": 0.1,
+    "rails": [
+      0.14,
+      0.84
+    ],
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/opzh-253-panou-cu-bare-25x25-mm-industrial-opzh-253",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "b18f8f76d988b7450e70161fdd32a429ccefcb366f9d87bb9fbd45189ca5c09e"
+      }
+    ],
+    "estimated": [
+      "Distanța dintre bare și poziția traverselor sunt reconstruite vizual; nu sunt folosite la calculul montajului."
+    ]
+  },
+  "d-a61420101974": {
+    "type": "vertical",
+    "barWidth": 0.025,
+    "barDepth": 0.025,
+    "shape": "rectangle",
+    "frame": true,
+    "gap": 0.1,
+    "rails": [
+      0.14,
+      0.84
+    ],
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/opz-252-panou-cu-bare-25x25-mm-industrial-opz-252",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "99ab94dd2569d99ec3ac35be93dbbafeab414fcc6952ab0db1266f7a3f5d3d7f"
+      }
+    ],
+    "estimated": [
+      "Distanța dintre bare și poziția traverselor sunt reconstruite vizual; nu sunt folosite la calculul montajului."
+    ]
+  },
+  "d-84d8845b5071": {
+    "type": "vertical",
+    "barWidth": 0.025,
+    "barDepth": 0.025,
+    "shape": "rectangle",
+    "frame": false,
+    "gap": 0.1,
+    "rails": [
+      0.14,
+      0.84
+    ],
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/opo-251-panou-cu-bare-25x25-mm-industrial-opo-251",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "ee466cda403403fe4aedcc4fb740c410808b90819417fa7b70597f0398297465"
+      }
+    ],
+    "estimated": [
+      "Distanța dintre bare și poziția traverselor sunt reconstruite vizual; nu sunt folosite la calculul montajului."
+    ]
+  },
+  "d-bf5cc099c7bf": {
+    "type": "vertical",
+    "barWidth": 0.02,
+    "barDepth": 0.02,
+    "shape": "rectangle",
+    "frame": false,
+    "gap": 0.1,
+    "rails": [
+      0.14,
+      0.84
+    ],
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/opo-201-panou-cu-bare-20x20-mm-industrial-opo-201",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "2a23e143eff9c9fda25f3e75522686bb28808eb7ad6372836fd7b0c564900b47"
+      }
+    ],
+    "estimated": [
+      "Distanța dintre bare și poziția traverselor sunt reconstruite vizual; nu sunt folosite la calculul montajului."
+    ]
+  },
+  "d-9438530acf67": {
+    "type": "vertical",
+    "barWidth": 0.025,
+    "barDepth": 0.025,
+    "shape": "round",
+    "frame": false,
+    "gap": 0.1,
+    "rails": [
+      0.1,
+      0.78
+    ],
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/nature-panou-cu-bare-rezidential-panou-nature",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "5b0af7c9184cd678c79cce06def3105b80baf6767d46b7f7970efe56e728492c"
+      }
+    ],
+    "estimated": [
+      "Distanța dintre bare și poziția traverselor sunt reconstruite vizual; nu sunt folosite la calculul montajului."
+    ],
+    "irregular": true
+  },
+  "d-82482ed5e3a3": {
+    "type": "noistop",
+    "construction": "essential",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/Catalog_Noistop.pdf",
+        "page": 6,
+        "retrievedAt": "2026-10-02"
+      },
+      {
+        "url": "https://cdn.decorio.ro/1804-1777383052339-1804-1777107232686-93c7a374-2518-4404-8be8-8b3dec6e310d-1500x1225.webp",
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Pasul grilei, șipcile și secțiunile cadrului sunt reconstruite din fotografii; grosimea totală și dimensiunile modulelor provin din catalog."
+    ]
+  },
+  "d-9e48ebc2173c": {
+    "type": "noistop",
+    "construction": "wood",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/Catalog_Noistop.pdf",
+        "page": 11,
+        "retrievedAt": "2026-10-02"
+      },
+      {
+        "url": "https://cdn.decorio.ro/936-1777380427630-936-1777106390697-a49a5d57-2cde-44bb-a76a-1b19e9099d94-1017x1017.webp",
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Pasul grilei, șipcile și secțiunile cadrului sunt reconstruite din fotografii; grosimea totală și dimensiunile modulelor provin din catalog."
+    ]
+  },
+  "d-d947554912f5": {
+    "type": "noistop",
+    "construction": "steel",
+    "status": "reconstructed",
+    "sources": [
+      {
+        "url": "https://cdn.decorio.ro/Catalog_Noistop.pdf",
+        "page": 9,
+        "retrievedAt": "2026-10-02"
+      },
+      {
+        "url": "https://cdn.decorio.ro/929-1777380393573-929-1777106383080-4da3d090-237b-488d-876c-e6b8899b66eb-720x720.webp",
+        "retrievedAt": "2026-10-02"
+      }
+    ],
+    "estimated": [
+      "Pasul grilei, șipcile și secțiunile cadrului sunt reconstruite din fotografii; grosimea totală și dimensiunile modulelor provin din catalog."
+    ]
+  },
+  "d-4013e15e6ae1": {
+    "type": "gabion-cage",
+    "status": "reconstructed",
+    "estimated": [
+      "Pasul ochiurilor este estimat vizual. Kitul este afișat fără umplutură; prinderile incluse rămân componente ale kitului."
+    ],
+    "sources": [
+      {
+        "url": "https://decorio.ro/product/set-gabion-1200x600x120-mm-8572786",
+        "retrievedAt": "2026-10-02",
+        "section": "Specificații tehnice / denumire produs",
+        "sha256": "aaef180b9fd8853001f3048e9b37d1aeea3bb93bde73f5560c793089394f351b"
+      }
+    ]
+  }
+}

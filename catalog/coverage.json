@@ -1,0 +1,745 @@
+{
+  "version": "2026-10-02.2",
+  "reviewedAt": "2026-10-02",
+  "families": [
+    {
+      "id": "accesorii-electronice",
+      "name": "Accesorii electronice",
+      "status": "reference-only",
+      "products": 34,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 34,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/accesorii-electronice",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "accesorii-gard-santier",
+      "name": "Accesorii gard santier",
+      "status": "reference-only",
+      "products": 19,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 19,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/accesorii-gard-santier",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "accesorii-montaj-panouri-rigide",
+      "name": "Accesorii montaj panouri rigide",
+      "status": "reference-only",
+      "products": 46,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 46,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-gard/accesorii-montaj-panouri-rigide",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "accesorii-montaj-plase-la-rola",
+      "name": "Accesorii montaj plase la rola",
+      "status": "reference-only",
+      "products": 15,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 15,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-gard/accesorii-montaj-plase-la-rola",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "accesorii-stalpi-si-securitate",
+      "name": "Accesorii stalpi si securitate",
+      "status": "reference-only",
+      "products": 97,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 97,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-gard/accesorii-stalpi-si-securitate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "amortizoare",
+      "name": "Amortizoare",
+      "status": "reference-only",
+      "products": 21,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 21,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/amortizoare",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "balamale",
+      "name": "Balamale",
+      "status": "reference-only",
+      "products": 45,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 45,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/balamale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "balustrade-si-protectii-acoperis",
+      "name": "Balustrade si protectii acoperis",
+      "status": "out-of-scope",
+      "products": 1,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 1,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/balustrade-si-protectii-acoperis",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "boxe-rezidentiale-si-comerciale",
+      "name": "Boxe rezidentiale si comerciale",
+      "status": "reference-only",
+      "products": 1,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 1,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/partitionari-industriale-si-logistice/boxe-rezidentiale-si-comerciale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "componente-incuietori",
+      "name": "Componente incuietori",
+      "status": "reference-only",
+      "products": 38,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 38,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/componente-incuietori",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "contravantuiri",
+      "name": "Contravantuiri",
+      "status": "reference-only",
+      "products": 9,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 9,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-gard/contravantuiri",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "control-acces",
+      "name": "Control acces",
+      "status": "reference-only",
+      "products": 1,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 1,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/control-acces",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "echipamente-montare-stalpi",
+      "name": "Echipamente montare stalpi",
+      "status": "out-of-scope",
+      "products": 1,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 1,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/stalpi-metalici-si-accesorii-gard/echipamente-montare-stalpi",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "edge-protection-system",
+      "name": "Edge protection system",
+      "status": "out-of-scope",
+      "products": 6,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 6,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/edge-protection-system",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gabioane-ornamentale",
+      "name": "Gabioane ornamentale",
+      "status": "partial",
+      "products": 1,
+      "withGeometry": 1,
+      "variants": 1,
+      "referenceOnly": 0,
+      "limitations": [
+        "Umplutura de piatră, fixarea și stabilitatea ansamblului necesită confirmare."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/gabioane-si-grilaje/gabioane-ornamentale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gard-mobil-evenimente",
+      "name": "Gard mobil evenimente",
+      "status": "partial",
+      "products": 7,
+      "withGeometry": 7,
+      "variants": 7,
+      "referenceOnly": 0,
+      "limitations": [
+        "Dimensiunile produsului sunt documentate; montajul complet și compatibilitatea accesoriilor necesită confirmare."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/gard-mobil-evenimente",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gard-mobil-santier",
+      "name": "Gard mobil santier",
+      "status": "partial",
+      "products": 17,
+      "withGeometry": 13,
+      "variants": 13,
+      "referenceOnly": 4,
+      "limitations": [
+        "Dimensiunile produsului sunt documentate; montajul complet și compatibilitatea accesoriilor necesită confirmare.",
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate.",
+        "Kit complet: componența cantitativă și regulile de capăt/colț necesită confirmare. Nu se adaugă separat componente presupuse incluse."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/gard-mobil-santier",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gard-opac-santier",
+      "name": "Gard opac santier",
+      "status": "partial",
+      "products": 2,
+      "withGeometry": 2,
+      "variants": 2,
+      "referenceOnly": 0,
+      "limitations": [
+        "Dimensiunile produsului sunt documentate; montajul complet și compatibilitatea accesoriilor necesită confirmare."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/gard-opac-santier",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "garduri-din-gabioane",
+      "name": "Garduri din gabioane",
+      "status": "reference-only",
+      "products": 1,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 1,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/gabioane-si-grilaje/garduri-din-gabioane",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "grilaje",
+      "name": "Grilaje",
+      "status": "out-of-scope",
+      "products": 1,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 1,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/gabioane-si-grilaje/grilaje",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "incuietori",
+      "name": "Incuietori",
+      "status": "reference-only",
+      "products": 66,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 66,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/incuietori",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "machine-guarding",
+      "name": "Machine guarding",
+      "status": "partial",
+      "products": 6,
+      "withGeometry": 2,
+      "variants": 12,
+      "referenceOnly": 4,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate.",
+        "Sunt modelate lățimile standard de capăt 200 și 1500 mm menționate explicit. Alte șase lățimi nu sunt enumerate în sursă. Consolele, ancorele și distanțele de siguranță necesită proiect."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/partitionari-industriale-si-logistice/machine-guarding",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "opritoare",
+      "name": "Opritoare",
+      "status": "reference-only",
+      "products": 29,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 29,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/accesorii-porti/opritoare",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-aluminiu",
+      "name": "Panouri aluminiu",
+      "status": "partial",
+      "products": 9,
+      "withGeometry": 9,
+      "variants": 9,
+      "referenceOnly": 0,
+      "limitations": [
+        "Anvelopă schematică în limitele publicate. Modelul decorativ, dimensiunile minime nepublicate, finisajul și montajul se confirmă cu Decorio. Nu reprezintă un produs standard de stoc."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-aluminiu",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-bordurate",
+      "name": "Panouri bordurate",
+      "status": "partial",
+      "products": 58,
+      "withGeometry": 56,
+      "variants": 56,
+      "referenceOnly": 2,
+      "limitations": [
+        "Kit complet: componența cantitativă și regulile de capăt/colț necesită confirmare. Nu se adaugă separat componente presupuse incluse.",
+        "Dimensiunile produsului sunt documentate; montajul complet și compatibilitatea accesoriilor necesită confirmare."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-bordurate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-cu-bare",
+      "name": "Panouri cu bare",
+      "status": "partial",
+      "products": 8,
+      "withGeometry": 8,
+      "variants": 13,
+      "referenceOnly": 0,
+      "limitations": [
+        "Anvelopă schematică în limitele publicate. Modelul decorativ, dimensiunile minime nepublicate, finisajul și montajul se confirmă cu Decorio. Nu reprezintă un produs standard de stoc.",
+        "Dimensiuni publicate. Finisajul și montajul se confirmă. Reprezentare schematică."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-cu-bare",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-dublu-fir",
+      "name": "Panouri dublu fir",
+      "status": "partial",
+      "products": 67,
+      "withGeometry": 44,
+      "variants": 44,
+      "referenceOnly": 23,
+      "limitations": [
+        "Kit complet: componența cantitativă și regulile de capăt/colț necesită confirmare. Nu se adaugă separat componente presupuse incluse.",
+        "Dimensiunile produsului sunt documentate; montajul complet și compatibilitatea accesoriilor necesită confirmare.",
+        "Conflict: fișa produsului publică 2510 mm, iar fișa VEGA 2D Super atașată publică 2500 mm. Lățimea de calcul necesită confirmare.",
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-dublu-fir",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-fonoabsorbante",
+      "name": "Panouri fonoabsorbante",
+      "status": "partial",
+      "products": 6,
+      "withGeometry": 6,
+      "variants": 31,
+      "referenceOnly": 0,
+      "limitations": [
+        "Anvelopă schematică în limitele publicate. Modelul decorativ, dimensiunile minime nepublicate, finisajul și montajul se confirmă cu Decorio. Nu reprezintă un produs standard de stoc.",
+        "Module individuale. Suprapunerea, placarea cu lemn, stâlpii și fixarea trebuie confirmate.",
+        "Module simple. Suprapunerea pe înălțime, stâlpii și fixarea necesită un proiect de montaj."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-fonoabsorbante",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-rezidentiale",
+      "name": "Panouri rezidentiale",
+      "status": "partial",
+      "products": 57,
+      "withGeometry": 56,
+      "variants": 56,
+      "referenceOnly": 1,
+      "limitations": [
+        "Anvelopă schematică în limitele publicate. Modelul decorativ, dimensiunile minime nepublicate, finisajul și montajul se confirmă cu Decorio. Nu reprezintă un produs standard de stoc.",
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-rezidentiale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "panouri-speciale",
+      "name": "Panouri speciale",
+      "status": "partial",
+      "products": 10,
+      "withGeometry": 5,
+      "variants": 25,
+      "referenceOnly": 5,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate.",
+        "Unitate contradictorie: pagina indică 2000 m, desenul catalogului indică 2000 mm. Nu validăm tacit corecția.",
+        "Dimensiuni publicate. Finisajul și montajul se confirmă. Reprezentare schematică.",
+        "Anvelopă schematică în limitele publicate. Modelul decorativ, dimensiunile minime nepublicate, finisajul și montajul se confirmă cu Decorio. Nu reprezintă un produs standard de stoc."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/panouri/panouri-speciale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "partitionare-depozite",
+      "name": "Partitionare depozite",
+      "status": "partial",
+      "products": 10,
+      "withGeometry": 6,
+      "variants": 70,
+      "referenceOnly": 4,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate.",
+        "Stâlpii, fixarea în pardoseală și distanțele de siguranță necesită proiect de montaj.",
+        "Alegerea încuietorii și accesoriilor de siguranță se confirmă."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/partitionari-industriale-si-logistice/partitionare-depozite",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "plase-impletite",
+      "name": "Plase impletite",
+      "status": "partial",
+      "products": 13,
+      "withGeometry": 11,
+      "variants": 11,
+      "referenceOnly": 2,
+      "limitations": [
+        "Dimensiunile produsului sunt documentate; montajul complet și compatibilitatea accesoriilor necesită confirmare.",
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/plase/plase-impletite",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "plase-innodate",
+      "name": "Plase innodate",
+      "status": "partial",
+      "products": 8,
+      "withGeometry": 8,
+      "variants": 8,
+      "referenceOnly": 0,
+      "limitations": [
+        "Dimensiunile produsului sunt documentate; montajul complet și compatibilitatea accesoriilor necesită confirmare."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/plase/plase-innodate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "plase-pentru-constructii",
+      "name": "Plase pentru constructii",
+      "status": "out-of-scope",
+      "products": 5,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 5,
+      "limitations": [
+        "Produs inventariat, în afara sistemelor de împrejmuire configurate în acest demo."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/plase/plase-pentru-constructii",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "plase-sudate",
+      "name": "Plase sudate",
+      "status": "partial",
+      "products": 43,
+      "withGeometry": 33,
+      "variants": 33,
+      "referenceOnly": 10,
+      "limitations": [
+        "Dimensiunile produsului sunt documentate; montajul complet și compatibilitatea accesoriilor necesită confirmare.",
+        "Conflict între lungimea rolei din titlu și fișa produsului. Este necesară confirmarea Decorio.",
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/plase/plase-sudate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-batante-auto",
+      "name": "Porti batante auto",
+      "status": "reference-only",
+      "products": 56,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 56,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-batante-auto",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-batante-pietonale",
+      "name": "Porti batante pietonale",
+      "status": "reference-only",
+      "products": 63,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 63,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-batante-pietonale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-bi-fold",
+      "name": "Porti bi fold",
+      "status": "reference-only",
+      "products": 22,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 22,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-bi-fold",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-culisante-in-consola",
+      "name": "Porti culisante in consola",
+      "status": "reference-only",
+      "products": 48,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 48,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-culisante-in-consola",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-industriale",
+      "name": "Porti industriale",
+      "status": "reference-only",
+      "products": 7,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 7,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/porti/porti-industriale",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "porti-santier",
+      "name": "Porti santier",
+      "status": "reference-only",
+      "products": 13,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 13,
+      "limitations": [
+        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/porti-santier",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "scari-metalice",
+      "name": "Scari metalice",
+      "status": "out-of-scope",
+      "products": 2,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 2,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/organizare-santier/scari-metalice",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "socluri-prefabricate",
+      "name": "Socluri prefabricate",
+      "status": "reference-only",
+      "products": 8,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 8,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/stalpi-metalici-si-accesorii-gard/socluri-prefabricate",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "stalpi-pvc",
+      "name": "Stalpi pvc",
+      "status": "reference-only",
+      "products": 75,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 75,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/stalpi-metalici-si-accesorii-gard/stalpi-pvc",
+        "retrievedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "stalpi-zincati",
+      "name": "Stalpi zincati",
+      "status": "reference-only",
+      "products": 33,
+      "withGeometry": 0,
+      "variants": 0,
+      "referenceOnly": 33,
+      "limitations": [
+        "Accesoriu inventariat. Cantitatea și compatibilitatea se confirmă pentru sistemul ales."
+      ],
+      "source": {
+        "url": "https://decorio.ro/category/stalpi-metalici-si-accesorii-gard/stalpi-zincati",
+        "retrievedAt": "2026-10-02"
+      }
+    }
+  ]
+}
