@@ -100,6 +100,17 @@ for p in products:
    p['variants']=[{'id':f'h{round(h*1000)}','width':w['max'],'height':h,'depth':.04,'finish':'de-confirmat','color':'#75807a','label':f"{w['max']:g} × {h:g} m · finisaj de confirmat"} for h in heights]
    p['status']='partial';p['limitations']=['Dimensiuni publicate. Finisajul și montajul se confirmă. Reprezentare schematică.']
 
+# Noistop Essential has explicit dimensions in the table on PDF page 6.
+p=next((p for p in products if norm(p['name']).startswith('noistop essential')),None)
+if p:
+ p['variants']=[{'id':f'{int(w*1000)}-{int(h*1000)}-{ral}','width':w,'height':h,'depth':.06,'finish':ral,'color':color,'label':f'{w:g} × {h:g} m · {ral}'} for w in [.6,1.2,2.4] for h in [.5,.9,1] for ral,color in [('RAL9005','#222625'),('RAL7016','#383e40')]]
+ p.update(status='partial',source={'url':'https://cdn.decorio.ro/Catalog_Noistop.pdf','page':6,'retrievedAt':'2026-10-02'},limitations=['Module individuale. Suprapunerea, placarea cu lemn, stâlpii și fixarea trebuie confirmate.'])
+# Machine guarding: only the explicitly stated smallest/largest standard widths.
+for model,depth,post in [('ST20',.019,{'name':'Stâlp Troax 60 × 40 mm','system':'Smart Fix'}),('ST30',.03,{'name':'Stâlp Troax 80 × 80 mm','system':'Strong Fix'})]:
+ src={'url':'https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf','page':7 if model=='ST20' else 8,'retrievedAt':'2026-10-02'}
+ variants=[{'id':f'{int(w*1000)}-{int(h*1000)}','width':w,'height':h,'depth':depth,'groundClearance':.15,'finish':'RAL7037','color':'#85898a','meshX':.02,'meshY':.1,'label':f'{w:g} × {h:g} m · RAL7037','post':dict(post,height=round(h+.15,2),source=src,notes='Fixarea în pardoseală și consolele nu sunt cuantificate.')} for w in [.2,1.5] for h in [1.25,2.05,2.35]]
+ products.append({'id':'troax-'+model.lower(),'name':'Troax '+model+' – protecție utilaje','family':'machine-guarding','kind':'panel','generator':'industrial','inScope':True,'status':'partial','source':src,'specifications':{},'variants':variants,'limitations':['Sunt modelate lățimile standard de capăt 200 și 1500 mm menționate explicit. Alte șase lățimi nu sunt enumerate în sursă. Consolele, ancorele și distanțele de siguranță necesită proiect.']})
+
 # Exact modular gabion kit, inventoried as ornamental but usable as a single illustrative module, not a retaining structure.
 p=next((p for p in products if p['sku']=='8572786'),None)
 if p:

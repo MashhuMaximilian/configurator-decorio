@@ -28,7 +28,7 @@ export class DecorioViewer{
   const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(points,3));group.add(new THREE.LineSegments(geometry,new THREE.LineBasicMaterial({color:v.color||'#555d5a'})));
  }
  panel(part){
-  const {a,b,variant:v,product:p}=part,w=Math.hypot(b.x-a.x,b.y-a.y),h=v.height,g=new THREE.Group();g.position.set((a.x+b.x)/2,0,(a.y+b.y)/2);g.rotation.y=-Math.atan2(b.y-a.y,b.x-a.x);this.group.add(g);const c=v.color||'#5a625c';
+  const {a,b,variant:v,product:p}=part,w=part.kind==='gate'?v.width:Math.hypot(b.x-a.x,b.y-a.y),h=v.height,g=new THREE.Group();g.position.set((a.x+b.x)/2,v.groundClearance||0,(a.y+b.y)/2);g.rotation.y=-Math.atan2(b.y-a.y,b.x-a.x);this.group.add(g);const c=v.color||'#5a625c';
   if(part.generator==='acoustic'||part.generator==='solid'){this.box(g,0,h/2,0,w,h,v.depth,c);if(part.generator==='acoustic')for(let x=-w/2+.08;x<w/2;x+=.15)this.box(g,x,h/2,v.depth/2+.003,.018,h,.008,'#7e735d');}
   else if(part.generator==='gabion'){
    this.box(g,0,h/2,0,w,h,v.depth,'#b1ada0');const edge=new THREE.EdgesGeometry(new THREE.BoxGeometry(w,h,v.depth));const wire=new THREE.LineSegments(edge,new THREE.LineBasicMaterial({color:'#505955'}));wire.position.y=h/2;g.add(wire);
@@ -52,14 +52,14 @@ export class DecorioViewer{
  }
  render(assembly,state,{fit=false}={}){
   this.clear();for(const part of assembly.parts){
-   if(part.kind==='post'){const v=part.variant;this.box(this.group,part.point.x,v.height/2,part.point.y,.06,v.height+.06,.04,v.color);}
+   if(part.kind==='post'){const v=part.variant;this.box(this.group,part.point.x,(v.height+(v.groundClearance||0))/2,part.point.y,.06,v.height+(v.groundClearance||0)+.06,.04,v.color);}
    else if(part.kind==='gap'){const geo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(part.a.x,.045,part.a.y),new THREE.Vector3(part.b.x,.045,part.b.y)]);const l=new THREE.Line(geo,new THREE.LineDashedMaterial({color:'#c26242',dashSize:.13,gapSize:.08}));l.computeLineDistances();this.group.add(l);}
    else this.panel(part);
   }
   if(state.options.dimensions)for(const s of state.segments){const a=state.nodes.find(n=>n.id===s.a),b=state.nodes.find(n=>n.id===s.b),el=document.createElement('span');el.className='dimension-label';el.textContent=Math.hypot(b.x-a.x,b.y-a.y).toFixed(2)+' m';this.host.append(el);this.labels.push({el,point:new THREE.Vector3((a.x+b.x)/2,2.7,(a.y+b.y)/2)});}
   if(fit)this.fit(state);
  }
- fit(state){const box=new THREE.Box3();for(const n of state.nodes)box.expandByPoint(new THREE.Vector3(n.x,1,n.y));if(box.isEmpty())box.setFromCenterAndSize(new THREE.Vector3(),new THREE.Vector3(8,3,8));const c=box.getCenter(new THREE.Vector3()),size=Math.max(5,box.getSize(new THREE.Vector3()).length());this.controls.target.copy(c);this.camera.position.copy(c).add(new THREE.Vector3(size*.85,size*.65,size*.95));this.controls.update();}
+ fit(state){const box=new THREE.Box3();for(const n of state.nodes)box.expandByPoint(new THREE.Vector3(n.x,1,n.y));if(box.isEmpty())box.setFromCenterAndSize(new THREE.Vector3(),new THREE.Vector3(8,3,8));const c=box.getCenter(new THREE.Vector3()),size=Math.max(5,box.getSize(new THREE.Vector3()).length());this.controls.target.copy(c);const aspect=this.host.clientWidth/Math.max(1,this.host.clientHeight),factor=Math.max(1,1/aspect);this.camera.position.copy(c).add(new THREE.Vector3(size*.85,size*.65,size*.95).multiplyScalar(factor));this.controls.update();}
  layoutLabels(){for(const {el,point} of this.labels){const p=point.clone().project(this.camera);el.style.display=p.z<1?'':'none';el.style.left=(p.x*.5+.5)*this.host.clientWidth+'px';el.style.top=(-p.y*.5+.5)*this.host.clientHeight+'px';}}
  setLight(value){this.sun.position.set(Math.cos(value)*18,12,Math.sin(value)*18);}
 }

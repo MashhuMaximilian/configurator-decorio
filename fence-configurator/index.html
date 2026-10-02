@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="ro"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#233d33"><title>Decorio — Proiectează împrejmuirea</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./decorio.css"><script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/addons/"}}</script></head>
 <body>
-<header class="header"><a class="brand" href="/" aria-label="Decorio configurator"><span class="brand-symbol">▥</span>decorio<span class="brand-dot">.</span></a><div class="header-divider"></div><span class="header-title">STUDIO DE ÎMPREJMUIRI</span><span class="demo-label">DEMO</span><div class="header-actions"><button id="open-projects">Proiectele mele</button><button id="login">Intră în cont</button><button id="share" class="primary">Distribuie ↗</button></div></header>
+<header class="header"><a class="brand" href="/" aria-label="Decorio configurator"><span class="brand-symbol">▥</span>decorio<span class="brand-dot">.</span></a><div class="header-divider"></div><span class="header-title">STUDIO DE ÎMPREJMUIRI</span><span class="demo-label">DEMO</span><div class="header-actions"><button id="open-projects" aria-label="Proiectele mele"><span class="desktop-label">Proiectele mele</span><span class="mobile-label" aria-hidden="true">▣</span></button><button id="login">Intră în cont</button><button id="share" class="primary">Distribuie ↗</button></div></header>
 <main class="workspace">
 <aside class="sidebar">
- <div class="intro"><p class="eyebrow">CONFIGURATOR 3D</p><h1>Locul tău.<br>Limitele tale.</h1><p>Alege sistemul. Desenează traseul.<br>Vezi proiectul prinzând contur.</p></div>
+ <div class="intro"><p class="eyebrow">CONFIGURATOR 3D</p><h1>Locul tău. <br>Limitele tale.</h1><p>Alege sistemul. Desenează traseul.<br>Vezi proiectul prinzând contur.</p></div>
  <nav class="steps" aria-label="Etape configurare"><button class="active" data-step="catalog"><b>01</b> Sistem</button><button data-step="layout"><b>02</b> Traseu</button><button data-step="bom"><b>03</b> Piese</button></nav>
  <section id="catalog-panel" class="panel">
   <label>Familie de produse<select id="family"></select></label>
@@ -12,6 +12,7 @@
   <div class="filter-row"><label class="check"><input id="only-configurable" type="checkbox" checked> Cu dimensiuni documentate</label><span id="product-count"></span></div>
   <label>Produs<select id="product" size="6" aria-label="Produs"></select></label>
   <div class="product-detail"><h2 id="product-name"></h2><p id="product-status" class="tag"></p><p id="product-notes"></p><a id="product-source" target="_blank" rel="noopener noreferrer">Vezi documentația ↗</a></div>
+  <details><summary>Datele produsului</summary><dl id="product-specs"></dl><div id="kit-included"></div></details>
   <label>Variantă<select id="variant"></select></label>
   <div id="custom-dimensions" hidden><p class="muted">Dimensiuni la comandă. Sunt verificate limitele publicate; montajul și disponibilitatea se confirmă.</p><div class="button-grid"><label>Lățime modul (m)<input id="module-width" type="number" step="0.01"></label><label>Înălțime (m)<input id="module-height" type="number" step="0.01"></label></div><p id="size-limits" class="muted"></p></div>
   <button id="apply-all" class="secondary wide">Aplică pe întregul traseu</button>
@@ -34,7 +35,7 @@
 </aside>
 <section class="canvas-area">
  <div class="project-bar"><div><span class="eyebrow">PROIECTUL TĂU</span><input id="project-name" aria-label="Nume proiect" value="Proiect Decorio" maxlength="120"></div><div class="view-switch" role="group" aria-label="Mod vizualizare"><button data-view="3d" class="active">3D</button><button data-view="2d">Plan 2D</button></div></div>
- <div id="viewer" aria-label="Vizualizare 3D a împrejmuirii"><div class="scene-watermark">DECORIO / STUDIO</div></div>
+ <div id="viewer" aria-label="Vizualizare 3D a împrejmuirii"><div class="scene-watermark">DECORIO / VIZUALIZARE SCHEMATICĂ</div></div>
  <div id="editor" hidden><svg id="plan" viewBox="0 0 900 650" aria-label="Editor traseu 2D" role="application" tabindex="0"></svg><div class="editor-help">Click pentru puncte · Trage un nod pentru a-l muta · Escape încheie traseul</div></div>
  <div class="scene-tools"><button id="undo" title="Anulează ultima modificare">↶ <span>Undo</span></button><button id="redo" title="Refă modificarea">↷</button><button id="fit">⌖ <span>Încadrează</span></button><button id="dimensions" aria-pressed="true">↔ <span>Cote</span></button><label class="light-control">☀<input id="light" aria-label="Direcția luminii" type="range" min="0" max="6.28" step="0.1" value="1"></label><button id="reset">Proiect nou</button></div>
  <div class="summary-strip"><div><small>LUNGIME TOTALĂ</small><strong id="total-length">0 <em>m</em></strong></div><div><small>SEGMENTE</small><strong id="segment-count">0</strong></div><div><small>COMPONENTE</small><strong id="item-count">0</strong></div><div class="summary-note"><span class="status-dot"></span> Cantități preliminare<br><small>Montajul se confirmă pentru amplasament.</small></div><button id="show-bom" class="primary">Vezi piesele →</button></div>

@@ -53,7 +53,7 @@ export function assertState(input,catalog){
  let modules=0;
  for(const n of input.nodes){
   const connected=input.segments.filter(s=>s.a===n.id||s.b===n.id);
-  if(new Set(connected.map(s=>s.productId+'|'+s.variantId)).size>1)throw Error('Îmbinarea variantelor diferite nu are o regulă de montaj validată. Folosește trasee separate.');
+  if(new Set(connected.map(s=>s.productId+'|'+s.variantId+'|'+productVariant(catalog,s.productId,s.variantId,s.dimensions).variant.height)).size>1)throw Error('Îmbinarea variantelor diferite nu are o regulă de montaj validată. Folosește trasee separate.');
  }
  for(const s of input.segments){const {product,variant}=productVariant(catalog,s.productId,s.variantId,s.dimensions);modules+=['chainlink','roll-welded'].includes(product.generator)?1:Math.floor(distance(input.nodes.find(n=>n.id===s.a),input.nodes.find(n=>n.id===s.b))/variant.width);}
  if(modules>1500)throw Error('Limita vizualizării este de 1500 de module. Împarte proiectul în zone.');
@@ -77,7 +77,27 @@ export function assertState(input,catalog){
    if(g.offset<other.offset+ov.opening-EPS&&other.offset<g.offset+variant.opening-EPS)throw Error('Porțile nu se pot suprapune.');
   }
  }
+ validateGateClearance(input,catalog);
  return clone(input);
+}
+// A single-leaf door sweeps a quarter disc. Reject fence crossings in that area.
+function validateGateClearance(state,catalog){
+ const nodes=new Map(state.nodes.map(n=>[n.id,n]));
+ for(const gate of state.gates){
+  const {product,variant}=productVariant(catalog,gate.productId,gate.variantId);
+  if(product.generator!=='swing')continue;
+  const e=state.segments.find(e=>e.id===gate.segmentId),a=nodes.get(e.a),b=nodes.get(e.b),length=distance(a,b),ux=(b.x-a.x)/length,uy=(b.y-a.y)/length,side=gate.handing==='left'?1:-1;
+  const pivot={x:a.x+ux*gate.offset,y:a.y+uy*gate.offset},radius=variant.width;
+  const local=n=>({x:(n.x-pivot.x)*ux+(n.y-pivot.y)*uy,y:(-(n.x-pivot.x)*uy+(n.y-pivot.y)*ux)*side});
+  for(const obstacle of state.segments){
+   if(obstacle.id===e.id)continue;
+   const p=local(nodes.get(obstacle.a)),q=local(nodes.get(obstacle.b)),dx=q.x-p.x,dy=q.y-p.y;let lo=0,hi=1;
+   for(const [v,d] of [[p.x,dx],[p.y,dy]]){if(Math.abs(d)<EPS){if(v<EPS){hi=-1;break;}}else if(d>0)lo=Math.max(lo,(EPS-v)/d);else hi=Math.min(hi,(EPS-v)/d);}
+   if(lo>hi)continue;
+   const denom=dx*dx+dy*dy,t=Math.max(lo,Math.min(hi,-(p.x*dx+p.y*dy)/denom));
+   if(Math.hypot(p.x+t*dx,p.y+t*dy)<radius-EPS)throw Error('Spațiul de deschidere al porții intersectează un alt segment.');
+  }
+ }
 }
 function intersect(a,b,c,d){
  const ux=b.x-a.x,uy=b.y-a.y,vx=d.x-c.x,vy=d.y-c.y,den=ux*vy-uy*vx;
@@ -164,7 +184,7 @@ export function deriveAssembly(state,catalog){
   const degree=post.segments.size;post.role=degree===1?'terminal / intermediar':degree===2?'colț / îmbinare':'ramificație';
   if(degree>2)issue('branch-'+key,'Prinderea la ramificația cu '+degree+' segmente necesită confirmare.');
   parts.push({...post,segments:[...post.segments]});const v=post.variant,p=post.product;
-  bom(p.id+'-post-'+v.post.height+'-'+v.finish,v.post.name+' · '+v.post.height+' m · '+v.finish,1,'buc',v.post.source,'Include capacul conform catalogului; fundația nu este dimensionată.');
+  bom(p.id+'-post-'+v.post.height+'-'+v.finish,v.post.name+' · '+v.post.height+' m · '+v.finish,1,'buc',v.post.source,v.post.notes||'Include capacul conform catalogului; fundația nu este dimensionată.');
   if(v.post.clamps)bom(p.id+'-clamp-'+v.finish,'Set prindere '+v.post.system+' · '+v.finish,v.post.clamps,'set',v.post.source,'Tip terminal/intermediar/colț de confirmat la noduri; număr conform tabelului.');
  }
  for(const row of [...rows.values()]){

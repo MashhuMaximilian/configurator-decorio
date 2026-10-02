@@ -300,8 +300,8 @@
       "id": "machine-guarding",
       "name": "Machine guarding",
       "status": "inventoried",
-      "products": 4,
-      "variants": 0,
+      "products": 6,
+      "variants": 12,
       "limitations": [
         "Vezi limitele fiecărui produs."
       ],
@@ -385,7 +385,7 @@
       "name": "Panouri fonoabsorbante",
       "status": "inventoried",
       "products": 6,
-      "variants": 13,
+      "variants": 31,
       "limitations": [
         "Vezi limitele fiecărui produs."
       ],

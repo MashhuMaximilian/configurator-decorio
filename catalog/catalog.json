@@ -13807,10 +13807,9 @@
       "family": "panouri-fonoabsorbante",
       "kind": "panel",
       "source": {
-        "url": "https://decorio.ro/product/noistop-essential-gard-fonoabsorbant-din-lemn-si-otel-noistop-essential",
-        "retrievedAt": "2026-10-02",
-        "section": "Specificații tehnice / denumire produs",
-        "sha256": "ebe64c7653c6ee1606da182b0c2962a3589d2470c25f814f8a065023c3040040"
+        "url": "https://cdn.decorio.ro/Catalog_Noistop.pdf",
+        "page": 6,
+        "retrievedAt": "2026-10-02"
       },
       "specifications": {
         "Lungime": "600 / 1200 / 2400 mm",
@@ -13820,10 +13819,173 @@
         "Izolare fonica": "18 dB conform cu EN1793-2(B2)",
         "Absorbtie fonica": "9 dB conform cu EN1793-1(A3)"
       },
-      "status": "needs-data",
-      "variants": [],
+      "status": "partial",
+      "variants": [
+        {
+          "id": "600-500-RAL9005",
+          "width": 0.6,
+          "height": 0.5,
+          "depth": 0.06,
+          "finish": "RAL9005",
+          "color": "#222625",
+          "label": "0.6 × 0.5 m · RAL9005"
+        },
+        {
+          "id": "600-500-RAL7016",
+          "width": 0.6,
+          "height": 0.5,
+          "depth": 0.06,
+          "finish": "RAL7016",
+          "color": "#383e40",
+          "label": "0.6 × 0.5 m · RAL7016"
+        },
+        {
+          "id": "600-900-RAL9005",
+          "width": 0.6,
+          "height": 0.9,
+          "depth": 0.06,
+          "finish": "RAL9005",
+          "color": "#222625",
+          "label": "0.6 × 0.9 m · RAL9005"
+        },
+        {
+          "id": "600-900-RAL7016",
+          "width": 0.6,
+          "height": 0.9,
+          "depth": 0.06,
+          "finish": "RAL7016",
+          "color": "#383e40",
+          "label": "0.6 × 0.9 m · RAL7016"
+        },
+        {
+          "id": "600-1000-RAL9005",
+          "width": 0.6,
+          "height": 1,
+          "depth": 0.06,
+          "finish": "RAL9005",
+          "color": "#222625",
+          "label": "0.6 × 1 m · RAL9005"
+        },
+        {
+          "id": "600-1000-RAL7016",
+          "width": 0.6,
+          "height": 1,
+          "depth": 0.06,
+          "finish": "RAL7016",
+          "color": "#383e40",
+          "label": "0.6 × 1 m · RAL7016"
+        },
+        {
+          "id": "1200-500-RAL9005",
+          "width": 1.2,
+          "height": 0.5,
+          "depth": 0.06,
+          "finish": "RAL9005",
+          "color": "#222625",
+          "label": "1.2 × 0.5 m · RAL9005"
+        },
+        {
+          "id": "1200-500-RAL7016",
+          "width": 1.2,
+          "height": 0.5,
+          "depth": 0.06,
+          "finish": "RAL7016",
+          "color": "#383e40",
+          "label": "1.2 × 0.5 m · RAL7016"
+        },
+        {
+          "id": "1200-900-RAL9005",
+          "width": 1.2,
+          "height": 0.9,
+          "depth": 0.06,
+          "finish": "RAL9005",
+          "color": "#222625",
+          "label": "1.2 × 0.9 m · RAL9005"
+        },
+        {
+          "id": "1200-900-RAL7016",
+          "width": 1.2,
+          "height": 0.9,
+          "depth": 0.06,
+          "finish": "RAL7016",
+          "color": "#383e40",
+          "label": "1.2 × 0.9 m · RAL7016"
+        },
+        {
+          "id": "1200-1000-RAL9005",
+          "width": 1.2,
+          "height": 1,
+          "depth": 0.06,
+          "finish": "RAL9005",
+          "color": "#222625",
+          "label": "1.2 × 1 m · RAL9005"
+        },
+        {
+          "id": "1200-1000-RAL7016",
+          "width": 1.2,
+          "height": 1,
+          "depth": 0.06,
+          "finish": "RAL7016",
+          "color": "#383e40",
+          "label": "1.2 × 1 m · RAL7016"
+        },
+        {
+          "id": "2400-500-RAL9005",
+          "width": 2.4,
+          "height": 0.5,
+          "depth": 0.06,
+          "finish": "RAL9005",
+          "color": "#222625",
+          "label": "2.4 × 0.5 m · RAL9005"
+        },
+        {
+          "id": "2400-500-RAL7016",
+          "width": 2.4,
+          "height": 0.5,
+          "depth": 0.06,
+          "finish": "RAL7016",
+          "color": "#383e40",
+          "label": "2.4 × 0.5 m · RAL7016"
+        },
+        {
+          "id": "2400-900-RAL9005",
+          "width": 2.4,
+          "height": 0.9,
+          "depth": 0.06,
+          "finish": "RAL9005",
+          "color": "#222625",
+          "label": "2.4 × 0.9 m · RAL9005"
+        },
+        {
+          "id": "2400-900-RAL7016",
+          "width": 2.4,
+          "height": 0.9,
+          "depth": 0.06,
+          "finish": "RAL7016",
+          "color": "#383e40",
+          "label": "2.4 × 0.9 m · RAL7016"
+        },
+        {
+          "id": "2400-1000-RAL9005",
+          "width": 2.4,
+          "height": 1,
+          "depth": 0.06,
+          "finish": "RAL9005",
+          "color": "#222625",
+          "label": "2.4 × 1 m · RAL9005"
+        },
+        {
+          "id": "2400-1000-RAL7016",
+          "width": 2.4,
+          "height": 1,
+          "depth": 0.06,
+          "finish": "RAL7016",
+          "color": "#383e40",
+          "label": "2.4 × 1 m · RAL7016"
+        }
+      ],
       "limitations": [
-        "Date insuficiente pentru un modul configurabil: dimensiuni, goluri de montaj sau combinații de variante neconfirmate."
+        "Module individuale. Suprapunerea, placarea cu lemn, stâlpii și fixarea trebuie confirmate."
       ],
       "inScope": true,
       "generator": "acoustic"
@@ -34161,6 +34323,322 @@
       ],
       "inScope": true,
       "generator": "mesh3d"
+    },
+    {
+      "id": "troax-st20",
+      "name": "Troax ST20 – protecție utilaje",
+      "family": "machine-guarding",
+      "kind": "panel",
+      "generator": "industrial",
+      "inScope": true,
+      "status": "partial",
+      "source": {
+        "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+        "page": 7,
+        "retrievedAt": "2026-10-02"
+      },
+      "specifications": {},
+      "variants": [
+        {
+          "id": "200-1250",
+          "width": 0.2,
+          "height": 1.25,
+          "depth": 0.019,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "0.2 × 1.25 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 60 × 40 mm",
+            "system": "Smart Fix",
+            "height": 1.4,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 7,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "200-2050",
+          "width": 0.2,
+          "height": 2.05,
+          "depth": 0.019,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "0.2 × 2.05 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 60 × 40 mm",
+            "system": "Smart Fix",
+            "height": 2.2,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 7,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "200-2350",
+          "width": 0.2,
+          "height": 2.35,
+          "depth": 0.019,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "0.2 × 2.35 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 60 × 40 mm",
+            "system": "Smart Fix",
+            "height": 2.5,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 7,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "1500-1250",
+          "width": 1.5,
+          "height": 1.25,
+          "depth": 0.019,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "1.5 × 1.25 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 60 × 40 mm",
+            "system": "Smart Fix",
+            "height": 1.4,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 7,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "1500-2050",
+          "width": 1.5,
+          "height": 2.05,
+          "depth": 0.019,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "1.5 × 2.05 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 60 × 40 mm",
+            "system": "Smart Fix",
+            "height": 2.2,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 7,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "1500-2350",
+          "width": 1.5,
+          "height": 2.35,
+          "depth": 0.019,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "1.5 × 2.35 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 60 × 40 mm",
+            "system": "Smart Fix",
+            "height": 2.5,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 7,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        }
+      ],
+      "limitations": [
+        "Sunt modelate lățimile standard de capăt 200 și 1500 mm menționate explicit. Alte șase lățimi nu sunt enumerate în sursă. Consolele, ancorele și distanțele de siguranță necesită proiect."
+      ]
+    },
+    {
+      "id": "troax-st30",
+      "name": "Troax ST30 – protecție utilaje",
+      "family": "machine-guarding",
+      "kind": "panel",
+      "generator": "industrial",
+      "inScope": true,
+      "status": "partial",
+      "source": {
+        "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+        "page": 8,
+        "retrievedAt": "2026-10-02"
+      },
+      "specifications": {},
+      "variants": [
+        {
+          "id": "200-1250",
+          "width": 0.2,
+          "height": 1.25,
+          "depth": 0.03,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "0.2 × 1.25 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 80 × 80 mm",
+            "system": "Strong Fix",
+            "height": 1.4,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 8,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "200-2050",
+          "width": 0.2,
+          "height": 2.05,
+          "depth": 0.03,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "0.2 × 2.05 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 80 × 80 mm",
+            "system": "Strong Fix",
+            "height": 2.2,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 8,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "200-2350",
+          "width": 0.2,
+          "height": 2.35,
+          "depth": 0.03,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "0.2 × 2.35 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 80 × 80 mm",
+            "system": "Strong Fix",
+            "height": 2.5,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 8,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "1500-1250",
+          "width": 1.5,
+          "height": 1.25,
+          "depth": 0.03,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "1.5 × 1.25 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 80 × 80 mm",
+            "system": "Strong Fix",
+            "height": 1.4,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 8,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "1500-2050",
+          "width": 1.5,
+          "height": 2.05,
+          "depth": 0.03,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "1.5 × 2.05 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 80 × 80 mm",
+            "system": "Strong Fix",
+            "height": 2.2,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 8,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        },
+        {
+          "id": "1500-2350",
+          "width": 1.5,
+          "height": 2.35,
+          "depth": 0.03,
+          "groundClearance": 0.15,
+          "finish": "RAL7037",
+          "color": "#85898a",
+          "meshX": 0.02,
+          "meshY": 0.1,
+          "label": "1.5 × 2.35 m · RAL7037",
+          "post": {
+            "name": "Stâlp Troax 80 × 80 mm",
+            "system": "Strong Fix",
+            "height": 2.5,
+            "source": {
+              "url": "https://cdn.decorio.ro/b6ac1647-9bf9-49a8-9071-7e504016522a.pdf",
+              "page": 8,
+              "retrievedAt": "2026-10-02"
+            },
+            "notes": "Fixarea în pardoseală și consolele nu sunt cuantificate."
+          }
+        }
+      ],
+      "limitations": [
+        "Sunt modelate lățimile standard de capăt 200 și 1500 mm menționate explicit. Alte șase lățimi nu sunt enumerate în sursă. Consolele, ancorele și distanțele de siguranță necesită proiect."
+      ]
     },
     {
       "id": "troax-ur-350",

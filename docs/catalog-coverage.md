@@ -25,13 +25,13 @@ Inventar consultat: 2026-10-02. Variantele parțiale permit vizualizarea, nu cer
 | Garduri din gabioane | 1 | 0 | inventoried | Vezi limitele fiecărui produs. |
 | Grilaje | 1 | 0 | inventoried | Vezi limitele fiecărui produs. |
 | Incuietori | 66 | 0 | inventoried | Vezi limitele fiecărui produs. |
-| Machine guarding | 4 | 0 | inventoried | Vezi limitele fiecărui produs. |
+| Machine guarding | 6 | 12 | inventoried | Vezi limitele fiecărui produs. |
 | Opritoare | 29 | 0 | inventoried | Vezi limitele fiecărui produs. |
 | Panouri aluminiu | 9 | 9 | inventoried | Vezi limitele fiecărui produs. |
 | Panouri bordurate | 58 | 56 | inventoried | Vezi limitele fiecărui produs. |
 | Panouri cu bare | 8 | 13 | inventoried | Vezi limitele fiecărui produs. |
 | Panouri dublu fir | 67 | 44 | inventoried | Vezi limitele fiecărui produs. |
-| Panouri fonoabsorbante | 6 | 13 | inventoried | Vezi limitele fiecărui produs. |
+| Panouri fonoabsorbante | 6 | 31 | inventoried | Vezi limitele fiecărui produs. |
 | Panouri rezidentiale | 57 | 56 | inventoried | Vezi limitele fiecărui produs. |
 | Panouri speciale | 10 | 25 | inventoried | Vezi limitele fiecărui produs. |
 | Partitionare depozite | 10 | 70 | inventoried | Vezi limitele fiecărui produs. |
