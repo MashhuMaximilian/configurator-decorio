@@ -16,6 +16,6 @@ Proiect permanent → alegere gard/poartă/accesoriu din trusă → configurarea
 
 Implementare în lucru: consultă `acceptance.md` și `catalog-coverage.md`. Modelele parțial documentate și cele încă neimplementate sunt diferențiate de o configurație validată; listele de piese sunt preliminare.
 
-Buildul include doar dependențele Decorio și bibliotecile comune necesare. Nu publică alte configuratoare, administrarea tenanturilor, Firebase Functions sau reguli. Workflowul manual rămâne dedicat Decorio, iar Actions rămân dezactivate. Ultima versiune live anterioară refacerii este `fb6908c`; noua refacere nu a fost publicată.
+Buildul include doar dependențele Decorio și bibliotecile comune necesare. Nu publică alte configuratoare, administrarea tenanturilor, Firebase Functions sau reguli. Workflowul manual rămâne dedicat Decorio, iar Actions rămân dezactivate. Versiunea live este `82aed12`, pe https://decorio.360configurator.ro, revizia Cloud Run `configurator-decorio-00007-ztr`.
 
-Tenantul și salvarea/distribuirea autentificată rămân blocate de drepturile de provisioning ale contului. Nu s-a acordat acces administrativ suplimentar. Backendul platformei standard nu a fost modificat pentru produsele Decorio.
+Tenantul `decorio` este activ, cu plan pentru un configurator și acces Fence direct. Drepturile de administrare au fost acordate contului desemnat, cu autorizarea explicită a utilizatorului. Autentificarea Google, salvarea/restaurarea și distribuirea au fost verificate pe domeniul public. Backendul platformei standard nu a fost modificat pentru produsele Decorio.
